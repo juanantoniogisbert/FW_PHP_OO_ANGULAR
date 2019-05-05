@@ -51,12 +51,12 @@ function handlerModule($URI_module, $URI_function) {
                 $controllerClass = "controller_" . $URI_module;
                 $obj = new $controllerClass;
             } else {
-                //die($URI_module . ' - Controlador no encontrado');
-                require_once(VIEW_PATH_INC . "top_pages.php");
-                require_once(VIEW_PATH_INC . "header.php");
-                require_once(VIEW_PATH_INC . "menu.php");
-                showErrorPage(1, "", 'HTTP/1.0 400 Bad Request', 400);
-                require_once(VIEW_PATH_INC . "footer.html");
+                die($URI_module . ' - Controlador no encontrado');
+                // require_once(VIEW_PATH_INC . "top_pages.php");
+                // require_once(VIEW_PATH_INC . "header.php");
+                // require_once(VIEW_PATH_INC . "menu.php");
+                // showErrorPage(1, "", 'HTTP/1.0 400 Bad Request', 400);
+                // require_once(VIEW_PATH_INC . "footer.html");
             }
             handlerfunction(((String) $module->name), $obj, $URI_function);
             break;

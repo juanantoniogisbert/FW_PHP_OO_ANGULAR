@@ -1,89 +1,105 @@
-$(document).ready(function(){
-	$('.ajaxLoader').fadeOut("fast");
-	
-	$(document).on('click','#send',function(){
-		result = true;
-		$(".error").remove();
-		
-		var Vfname = /^[a-zA-Z]+[\-'\s]?[a-zA-Z]{2,51}$/;
-    	var Vcorreo = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
-	    var Vmessage = /^[0-9A-Za-z\s]{25,100}$/;
-		
-		if ($("#fullname").val() === "" || $("#fullname").val() === "Introduce tu nombre" ) {
-			$("#fullname").focus().after("<span class='error'>Introduce tu nombre</span>");
-			return false;
-		}else if (!Vfname.test($("#fullname").val())) {
-			$("#fullname").focus().after("<span class='error'>El nombre tiene un minimo de 3 caracteres</span>");
-			return false;
-        }
-        
-		if ($("#correo").val() === "" || $("#correo").val() === "Introduce tu email" ) {
-			$("#correo").focus().after("<span class='error'>Introduce tu email</span>");
-			return false;
-		}else if (!Vcorreo.test($("#correo").val())) {
-			$("#correo").focus().after("<span class='error'>El formato del mail es incorrecto</span>");
-			return false;
-        }
-		
-		if ($("#message").val() === "" || $("#message").val() === "Seleccione un asunto" ) {
-			$("#message").focus().after("<span class='error'>Introduzca su mensaje</span>");
-			return false;
-		}else if (!Vmessage.test($("#message").val())) {
-			$("#message").focus().after("<span class='error'>El mensaje tiene un minimo de 25 caracteres</span>");
-			return false;
-		}
-		
-		if (result) {
-			$('#send').attr('disabled', true);
-			$('.ajaxLoader').fadeIn("fast");
-			var data = {"fullname":$("#fullname").val(),"correo":$("#correo").val(),"message":$("#message").val()};
-			var fin_data = JSON.stringify(data);
-			$.post(amigable("?module=contact&function=send_cont"),{"fin_data":fin_data},function(data,event){
-				$('.ajaxLoader').fadeOut("fast");
-				console.log(data);
-				$("#rltsendmessage").html(data).fadeIn("slow");
-                    
-			    setTimeout(function() {
-			        $("#rltsendmessage").fadeOut("slow")
-			    }, 5000);
-			});
-		}
-	});
-});
+/* ============================================================
+ * bootstrap-button.js v2.3.2
+ * http://twitter.github.com/bootstrap/javascript.html#buttons
+ * ============================================================
+ * Copyright 2012 Twitter, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ * ============================================================ */
 
-function initMap() {
-	var cst = {lat: 39.078470, lng: -0.514171};
-	var map = new google.maps.Map(document.getElementById('map'), {
-	  zoom: 12,
-	  center: cst
-	});
- 
-	var contentString = '<div id="content">'+
-		'<div id="siteNotice">'+
-		'</div>'+
-		'<h1 id="firstHeading" class="firstHeading">Villanueva de Castellón</h1>'+
-		'<div id="bodyContent">'+
-		'<p><b>Villanueva de Castellón</b>, Situado en la confluencia de los ríos Júcar y Albaida. ' +
-		'El relieve es totalmente llano y apenas sobresalen algunos cerros en la parte meridional: Destacan las '+
-		'alturas del puerto de Cárcer (Serreta de Uchera), y la Montaña del Castillo (el Castellet), que corona los restos del antiguo castillo que dio nombre al pueblo,  '+
-		'fortaleza vigía adelantada del de Játiva. El resto del término se mantiene a una altitud media de 30-40 m sobre el nivel del mar, y lo cubren sedimentos  '+
-		'pleistocenos y holocenos procedentes de los acarreos de los ríos Júcar y Albaida. '+
-		'<p>Mas información de Villanueva de Castellón en: '+
-		'<a href="https://es.wikipedia.org/wiki/Villanueva_de_Castell%C3%B3n">'+
-		'https://es.wikipedia.org/wiki/Villanueva_de_Castell%C3%B3n</a> '+
-		'</div>'+
-		'</div>';
- 
-	var infowindow = new google.maps.InfoWindow({
-	  content: contentString
-	});
- 
-	var marker = new google.maps.Marker({
-	  position: cst,
-	  map: map,
-	  title: 'Villanueva de castellon (Valencia)'
-	});
-	marker.addListener('click', function() {
-	  infowindow.open(map, marker);
-	});
+
+!function ($) {
+
+  "use strict"; // jshint ;_;
+
+
+ /* BUTTON PUBLIC CLASS DEFINITION
+  * ============================== */
+
+  var Button = function (element, options) {
+    this.$element = $(element)
+    this.options = $.extend({}, $.fn.button.defaults, options)
   }
+
+  Button.prototype.setState = function (state) {
+    var d = 'disabled'
+      , $el = this.$element
+      , data = $el.data()
+      , val = $el.is('input') ? 'val' : 'html'
+
+    state = state + 'Text'
+    data.resetText || $el.data('resetText', $el[val]())
+
+    $el[val](data[state] || this.options[state])
+
+    // push to event loop to allow forms to submit
+    setTimeout(function () {
+      state == 'loadingText' ?
+        $el.addClass(d).attr(d, d) :
+        $el.removeClass(d).removeAttr(d)
+    }, 0)
+  }
+
+  Button.prototype.toggle = function () {
+    var $parent = this.$element.closest('[data-toggle="buttons-radio"]')
+
+    $parent && $parent
+      .find('.active')
+      .removeClass('active')
+
+    this.$element.toggleClass('active')
+  }
+
+
+ /* BUTTON PLUGIN DEFINITION
+  * ======================== */
+
+  var old = $.fn.button
+
+  $.fn.button = function (option) {
+    return this.each(function () {
+      var $this = $(this)
+        , data = $this.data('button')
+        , options = typeof option == 'object' && option
+      if (!data) $this.data('button', (data = new Button(this, options)))
+      if (option == 'toggle') data.toggle()
+      else if (option) data.setState(option)
+    })
+  }
+
+  $.fn.button.defaults = {
+    loadingText: 'loading...'
+  }
+
+  $.fn.button.Constructor = Button
+
+
+ /* BUTTON NO CONFLICT
+  * ================== */
+
+  $.fn.button.noConflict = function () {
+    $.fn.button = old
+    return this
+  }
+
+
+ /* BUTTON DATA-API
+  * =============== */
+
+  $(document).on('click.button.data-api', '[data-toggle^=button]', function (e) {
+    var $btn = $(e.target)
+    if (!$btn.hasClass('btn')) $btn = $btn.closest('.btn')
+    $btn.button('toggle')
+  })
+
+}(window.jQuery);

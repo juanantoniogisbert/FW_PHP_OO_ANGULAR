@@ -1,6 +1,6 @@
 <?php
 //PROYECTO
-define('PROJECT', '/www/FW_PHP_OO_MVC_ANGULAR/cardoor/');
+define('PROJECT', '/www/FW_PHP_OO_ANGULAR/cardoor/backend/');
 
 //SITE_ROOT
 define('SITE_ROOT', $_SERVER['DOCUMENT_ROOT'] . PROJECT);
@@ -70,7 +70,7 @@ define('MODEL_SHOP', SITE_ROOT . 'module/shop/model/model/');
 define('SHOP_JS_PATH', SITE_PATH . 'module/shop/view/js/');
 
 //model contact
-define('CONTACT_JS_PATH', SITE_PATH . 'module/contact/view/js/');
+// define('CONTACT_JS_PATH', SITE_PATH . 'module/contact/view/js/');
 
 //amigables
 define('URL_AMIGABLES', TRUE);

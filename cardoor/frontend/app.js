@@ -1,4 +1,4 @@
-var cardoor = angular.module('cardoor',['ngRoute']);
+var cardoor = angular.module('cardoor',['ngRoute', 'toastr']);
 cardoor.config(['$routeProvider',
     function ($routeProvider) {
         $routeProvider

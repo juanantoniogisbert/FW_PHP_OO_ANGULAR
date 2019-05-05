@@ -8,20 +8,20 @@
         
         switch ($arr['type']) {
             case 'alta':
-                $subject = 'Tu Alta en Rural_Shop';
+                $subject = 'Tu Alta en Cardoor';
                 $ruta = "<a href='" . amigable("?module=login&function=activar&aux=A" . $arr['token'], true) . "'>aqu&iacute;</a>";
                 $body = 'Gracias por unirte a nuestra aplicaci&oacute;n<br> Para finalizar el registro, pulsa ' . $ruta;
                 break;
     
             case 'modificacion':
-                $subject = 'Tu Nuevo Password en Rural_Shop<br>';
+                $subject = 'Tu Nuevo Password en Cardoor<br>';
                 $ruta = '<a href="' . amigable("?module=login&function=activar&aux=F" . $arr['token'], true) . '">aqu&iacute;</a>';
                 $body = 'Para recordar tu password pulsa ' . $ruta;
                 break;
                 
             case 'contact':
-                $subject = 'Tu Petici&oacute;n a Rural_Shop ha sido enviada<br>';
-                $ruta = '<a href=' . 'http://localhost/www/FW_PHP_OO_MVC_JQUERY_NEW/cardoor/'. '>aqu&iacute;</a>';
+                $subject = 'Tu Petici&oacute;n a Cardoor ha sido enviada<br>';
+                $ruta = '<a href=' . 'http://localhost/www/FW_PHP_OO_ANGULAR/cardoor/'. '>aqu&iacute;</a>';
                 $body = 'Para visitar nuestra web, pulsa ' . $ruta;
                 break;
     
@@ -29,7 +29,6 @@
                 $subject = $arr['inputSubject'];
                 $body = 'inputName: ' . $arr['inputName']. '<br>' .
                 'inputEmail: ' . $arr['inputEmail']. '<br>' .
-                'inputSubject: ' . $arr['inputSubject']. '<br>' .
                 'inputMessage: ' . $arr['inputMessage'];
                 break;
         }
@@ -39,7 +38,7 @@
 	       $html .= "<h4>". $subject ."</h4>";
 	       $html .= $body;
 	       $html .= "<br><br>";
-	       $html .= "<p>Sent by RURAL_SHOP</p>";
+	       $html .= "<p>Sent by Cardoor</p>";
 		$html .= "</body>";
 		$html .= "</html>";
 

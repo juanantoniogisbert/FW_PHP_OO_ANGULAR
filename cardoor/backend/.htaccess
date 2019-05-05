@@ -1,5 +1,5 @@
 RewriteEngine on
-RewriteBase /www/FW_PHP_OO_MVC_ANGULAR/cardoor/
+RewriteBase /www/FW_PHP_OO_ANGULAR/cardoor/
 
 RewriteCond %{REQUEST_FILENAME} !-f
 Rewriterule ^(.*)/(.*)/(.*)$ index.php?module=$1&function=$2&aux=$3 [L,NC]

@@ -1,25 +1,24 @@
-cardoor.controller('contactCtrl', function ($scope, services) {
+cardoor.controller('contactCtrl', function ($scope, services, toastr) {
     $scope.contact = {
-        inputName: "",
-        inputEmail: "",
-        inputSubject: "",
-        inputMessage: ""
+        fullname: "",
+        correo: "",
+        message: ""
     };
-
+    
     $scope.SubmitContact = function () {
-        var data = {"inputName": $scope.contact.inputName, "inputEmail": $scope.contact.inputEmail, 
-        "inputSubject": $scope.contact.inputSubject, "inputMessage": $scope.contact.inputMessage,"token":'contact_form'};
-        var contact_form = JSON.stringify(data);
-        console.log(contact_form);
-        services.post('contact', 'process_contact', contact_form).then(function (response) {
-            console.log(response);
-            response = response.split("|");
-            $scope.message = response[1];
-            if (response[0].substring(1,5) == 'true') {
-                $scope.class = 'alert alert-success';
-            } else {
-                $scope.class = 'alert alert-error';
-            }
+        var data = {"fullname": $scope.contact.fullname, "correo": $scope.contact.correo, "message": $scope.contact.message,"token":'cont_form'};
+        var cont_form = JSON.stringify(data);
+        console.log(cont_form);
+        services.post('contact', 'send_cont', cont_form).then(function (response) {
+        if (response == 'true') {
+                toastr.success('El mensaje ha sido enviado correctamente', 'Mensaje enviado',{
+                closeButton: true
+            });
+        } else {
+                toastr.error('El mensaje no se ha enviado', 'Mensaje no enviado',{
+                closeButton: true
+            });
+        }
         });
     };
 });
