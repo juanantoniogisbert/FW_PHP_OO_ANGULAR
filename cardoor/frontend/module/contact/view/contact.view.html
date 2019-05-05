@@ -1,0 +1,61 @@
+<script src="cardoor/frontend/module/contact/view/js/contact.js"></script>
+<!--== Page Title Area Start ==-->
+    <section id="page-title-area" class="section-padding overlay">
+        <div class="container">
+            <div class="row">
+                <!-- Page Title Start -->
+                <div class="col-lg-12">
+                    <div class="section-title  text-center">
+                        <h2>Contact Us</h2>
+                        <span class="title-line"><i class="fa fa-car"></i></span>
+                    </div>
+                </div>
+                <!-- Page Title End -->
+            </div>
+        </div>
+    </section>
+    <!--== Page Title Area End ==-->
+
+    <div id="map"></div>
+
+    <!--== Contact Page Area Start ==-->
+    <form id="cont_form" name="cont_form">
+        <div class="contact-page-wrao section-padding">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-10 m-auto">
+                        <div class="contact-form">
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6">
+                                    <div class="name-input">
+                                        <input required ng-model="contact.fullname" type="text" id="fullname" name="fullname" required="required" placeholder="Full Name">
+                                        <span class="text-danger" ng-show="cont_form.fullname.$error.required && (cont_form.fullname.$dirty || cont_form.fullname.$touched)">The name is required</span>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6 col-md-6">
+                                    <div class="email-input">
+                                        <input type="email" id="correo" name="correo" required="required" placeholder="Email Address" ng-pattern="/^[a-z0-9!#$%&'*+/=?^_`{|}~.-]+@[a-z0-9-]+(\.[a-z0-9-]+)*$/i">
+                                        <span class="text-danger" ng-show="cont_form.correo.$error.required && (cont_form.correo.$dirty || cont_form.correo.$touched)">The email is required</span>
+                                        <span class="text-danger" ng-show="cont_form.correo.$error.correo">The email is not valid</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="message-input">
+                                <textarea name="review" id="message" name="message" cols="30" rows="5" placeholder="Message"></textarea>
+                                <span class="text-danger" ng-show="cont_form.message.$error.required && (cont_form.message.$dirty || cont_form.message.$touched)">The message is required</span>
+                            </div>
+
+                            <div class="input-submit">
+                                <button name="send" id="send" type="submit" ng-show="cont_form.fullname.$valid && cont_form.correo.$valid && contact_form.message.$valid"
+                                ng-click="SubmitContact()">Submit Message</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <img src="<?php echo IMG_PATH; ?>ajax-loader.gif" alt="ajax loader icon" class="ajaxLoader" /><br/><br/>
+    <div id="rltsendmessage" style="display: none;"></div>
