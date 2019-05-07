@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<functions>
+    <function>
+        <name>view_home</name>
+        <uri>view_home</uri>
+    </function>
+    <function>
+        <name>list_cars</name>
+        <uri>list_cars</uri>
+    </function>
+    <function>
+        <name>more_cars</name>
+        <uri>more_cars</uri>
+    </function>
+    <function>
+        <name>select_name_car_auto</name>
+        <uri>select_name_car_auto</uri>
+    </function>
+    <function>
+        <name>load_car_name</name>
+        <uri>load_car_name</uri>
+    </function>
+</functions>

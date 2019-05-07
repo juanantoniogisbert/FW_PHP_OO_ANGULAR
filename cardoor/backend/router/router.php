@@ -38,6 +38,9 @@ function handlerRouter() {
 }
 
 function handlerModule($URI_module, $URI_function) {
+    // echo '<script>';
+    // echo 'console.log('. json_encode( $URI_function ) .')';
+    // echo '</script>';
     $modules = simplexml_load_file('resources/modules.xml');
     $exist = false;
 
@@ -83,7 +86,7 @@ function handlerFunction($module, $obj, $URI_function) {
         }
     }
     if (!$exist) {
-        //die($URI_function . ' - Funci&oacute;n no encontrada');
+        // die($URI_function . ' - Funci&oacute;n no encontrada');
         require_once(VIEW_PATH_INC . "header.php");
         require_once(VIEW_PATH_INC . "menu.php");
         showErrorPage(1, "", 'HTTP/1.0 400 Bad Request', 400);
