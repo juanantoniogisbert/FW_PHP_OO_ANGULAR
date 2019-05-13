@@ -28,7 +28,7 @@
                         <span class="price"><i class="fa fa-tag"></i>{{data.precio}}</span>
                     </h3>
                     <div class="p-car-feature">
-                        <a>{{data.caballos}}</a>
+                        <a>{{data.caballos}} CV</a>
                         <a>{{data.matricula}}</a>
                         <a>{{data.tipo}}</a>
                             <a><i class="fa fa-heart"></i>
@@ -48,7 +48,7 @@
     <nav aria-label="Page navigation example">
         <ul class="pagination">
             <uib-pagination class="pagination-sm pagination" total-items="shop.length" ng-model="currentPage"
-                ng-change="pageChanged()" previous-text="&lsaquo;" next-text="&rsaquo;" items-per-page=6></uib-pagination>        
+                ng-change="pageChanged()" previous-text="&lsaquo;" next-text="&rsaquo;" items-per-page=3></uib-pagination>        
         </ul>
     </nav>
 </div>
