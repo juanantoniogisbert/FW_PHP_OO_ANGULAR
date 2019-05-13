@@ -1,4 +1,4 @@
-var cardoor = angular.module('cardoor',['ngRoute', 'toastr']);
+var cardoor = angular.module('cardoor',['ngRoute', 'toastr', 'ui.bootstrap']);
 cardoor.config(['$routeProvider',
     function ($routeProvider) {
         $routeProvider
@@ -8,6 +8,29 @@ cardoor.config(['$routeProvider',
                 resolve: {
                     marcas: function (services) {
                         return services.get('home','select_name_car_auto');
+                    },
+                    modelos: function (services) {
+                        return services.get('home','more_cars');
+                    }
+                }
+            })
+
+            // .when("/shop/:id", {
+            //     templateUrl: "cardoor/frontend/module/shop/view/shop.view.html",
+            //     controller: "detailsBCtrl",
+            //     resolve: {
+            //         selbreed: function (services, $route) {
+            //             return services.get('shop', 'load_list', $route.current.params.id);
+            //         }
+            //     }
+            // })
+
+            .when("/shop", {
+                templateUrl: "cardoor/frontend/module/shop/view/shop.view.html", 
+                controller: "shopCtrl",
+                resolve: {
+                    shop: function (services) {
+                        return services.get('shop', 'view_cars_shop');
                     }
                 }
             })

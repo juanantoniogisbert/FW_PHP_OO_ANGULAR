@@ -1,0 +1,54 @@
+<section id="page-title-area" class="section-padding overlay">
+    <div class="container">
+        <div class="row">
+            <!-- Page Title Start -->
+            <div class="col-lg-12">
+                <div class="section-title  text-center">
+                    <h2>Nuestros Coches</h2>
+                    <span class="title-line"><i class="fa fa-car"></i></span>
+                </div>
+            </div>
+            <!-- Page Title End -->
+        </div>
+    </div>
+</section>
+  
+<div id="shop_cars">
+    <div class="row popular-car-gird">
+        <div ng-repeat="data in carpage" id="columna">
+            <div class="single-popular-car">
+                <div class="p-car-thumbnails">
+                    <a class="car-hover">
+                        <img ng-src="http://localhost/www/FW_PHP_OO_ANGULAR/cardoor/frontend/{{data.imagen}}">
+                    </a>
+                </div>
+                <div class="p-car-content">
+                    <h3>
+                        <a>{{data.marca}} {{data.modelo}}</a>
+                        <span class="price"><i class="fa fa-tag"></i>{{data.precio}}</span>
+                    </h3>
+                    <div class="p-car-feature">
+                        <a>{{data.caballos}}</a>
+                        <a>{{data.matricula}}</a>
+                        <a>{{data.tipo}}</a>
+                            <a><i class="fa fa-heart"></i>
+                            <a id="+list.id" class="btn-details"><i class="fa fa-plus"></i></a>
+                            
+                                <!-- <a id="+list.id" class="addToCart" ><i class="fa fa-shopping-cart"></i></a>
+                                <a class="btn btn-primary btn-outline" id="btn-cart">
+                                <span class="glyphicon glyphicon-shopping-cart"></span> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="page-pagi" ng-show="bootpageV">
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+            <uib-pagination class="pagination-sm pagination" total-items="shop.length" ng-model="currentPage"
+                ng-change="pageChanged()" previous-text="&lsaquo;" next-text="&rsaquo;" items-per-page=6></uib-pagination>        
+        </ul>
+    </nav>
+</div>

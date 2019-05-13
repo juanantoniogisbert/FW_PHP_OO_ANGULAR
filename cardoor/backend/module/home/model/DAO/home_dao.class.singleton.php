@@ -37,7 +37,7 @@ class home_DAO {
   }
     
   public function select_all_cars_DAO($db){
-    $sql = "SELECT * FROM coches ORDER BY id ASC limit 6";
+    $sql = "SELECT * FROM coches";
     $res = $db->ejecutar($sql);
     return $db->listar($res);
   }
@@ -49,7 +49,7 @@ class home_DAO {
   }
 
   public function select_more_cars($db, $arrArgument) {
-    $sql = "SELECT * FROM coches GROUP BY marca ORDER BY count(*) DESC LIMIT $arrArgument,3";
+    $sql = "SELECT * FROM coches";
     $res = $db->ejecutar($sql);
     return $db->listar($res);
   }
@@ -61,7 +61,7 @@ class home_DAO {
   }
 
   public function select_name_car_auto($db,$arrArgument) {
-    $sql = "SELECT * FROM coches";
+    $sql = "SELECT DISTINCT marca FROM coches";
     $res = $db->ejecutar($sql);
     return $db->listar($res);
   }

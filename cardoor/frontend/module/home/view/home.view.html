@@ -50,36 +50,21 @@
                         <div class="col-lg-12">
                             <div class="booka-car-content">
                                 <form action="index3.html">
-                                    <!-- <div class="pick-location bookinput-item">
-                                        <select class="custom-select" id="cboTipos">
-                                            <option value="0">Seleccione un tipo</option>
-                                        </select>
-                                    </div>
-    
-                                    <div class="car-choose bookinput-item">
-                                        <select class="custom-select" id="cboGamas">
-                                            <option value="0">Seleccione una gama</option>
-                                        </select>
-                                    </div> -->
-    
                                     <div class="contact-form">
                                         <form action="index.html">
                                             <div class="row">
                                                 <div class="col-lg-6 col-md-6">
                                                     <div class="name-input">
-                                                        <input type="text" id="service" name="service">
-                                                        <div id="suggestions"></div>
-                                                        <div id="vistaauto"></div>
+                                                        <input type="text" ng-model="marcaSelected" placeholder="Buscar nombre..." 
+                                                            uib-typeahead="data as data.marca for data in marca | filter:{marca:$viewValue} | limitTo:5">
                                                     </div>
                                                 </div>
+                                                    <div class="bookcar-btn bookinput-item">
+                                                        <button id="authomeb" ng-click="selectSearch()">Book Car</button>
+                                                    </div>
                                             </div>
                                         </form>
                                     </div>
-    
-                                    <!-- <div class="bookcar-btn bookinput-item">
-                                        <button type="submit" id="send">Book Car</button>
-                                    </div> -->
-    
                                 </form>
                             </div>
                         </div>
@@ -89,14 +74,7 @@
     
             <!--== Book A Car Area End ==-->
     
-            <!--== Our Cars Area Start ==-->
-            <form name="search_breed" id="search_breed" class="search_breed">
-                <input type="text" ng-model="marcaSelected" placeholder="Buscar nombre..." 
-                    uib-typeahead="data as data.marca for data in marcas | filter:{marca:$viewValue} | limitTo:5">
-                <input id="Submit" ng-click="selectSearch()" type="button" value="Buscar nombre" />
-            </form>
-            <div id="list_auto_car"></div>
-            
+            <!--== Our Cars Area Start ==-->          
             <section id="our-cars" class="section-padding">
                 <div class="container">
                     <div class="row">
@@ -116,8 +94,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-12 col-md-6">
-                        <a href='#/home/{{data.modelo}}'>
-                            <div ng-repeat="data in marca" class="single-driver-member" id="columna">
+                            <div ng-repeat="data in modelo" class="single-driver-member" id="columna">
                                 <img ng-src="http://localhost/www/FW_PHP_OO_ANGULAR/cardoor/frontend/{{data.imagen}}">
                                 <div class="driver-mem-info">
                                     <div class="driver-mem-sicons">
@@ -126,17 +103,12 @@
                                     </div>
                                     <h4 id="marca">{{data.marca}}<span id="modelo">{{data.modelo}}</span></h4>
                                 </div>
-                                <a>
-                                    <div class="marca" id="+list.marca+" style="display: none;"></div>
-                                    <div class="modelo" id="+list.modelo+" style="display: none;"></div>
-                                    <div class="precio" id="+list.precio+" style="display: none;"></div>
                             </div>
-                        </a>
                         </div>
                     </div>
                 </div>
             </section>
             <div id="cars_scroll" class="columna"></div>
-            <button class="scroll" ng-click="scroll_more()" id="scroll_more" style="text-align: center; display: inline-block;">Mostrar más</button>
+            <button class="scroll" ng-click="scroll_more()" id="scroll" style="text-align: center; display: inline-block;">Mostrar más</button>
     </section>
     </div>

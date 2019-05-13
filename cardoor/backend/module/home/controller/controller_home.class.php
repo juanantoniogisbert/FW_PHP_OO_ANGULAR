@@ -6,6 +6,28 @@
             $_SESSION['module'] = "home";
         }
 
+        function more_cars() {
+            $json = array();
+            $json = loadModel(MODEL_HOME, "home_model", "more_cars_home");
+            echo json_encode($json);
+        }
+
+        function select_name_car_auto() {
+            $json = array();
+            $json = loadModel(MODEL_HOME, "home_model", "select_name_car_auto", "");
+            echo json_encode($json);
+		}
+	    
+
+        function load_car_name(){
+            $json = array();
+            $json = loadModel(MODEL_HOME, "home_model", "load_car_name", $_GET['param']);
+            echo json_encode($json);
+        }
+        
+        
+    }
+
         // function view_home() {
         //     require_once(VIEW_PATH_INC . "top_pages.php");
         //     require_once(VIEW_PATH_INC . "header.php");
@@ -37,31 +59,6 @@
         //     }
         // }
 
-        function more_cars() {
-	    	if ((isset($_POST["more_cars"])) && ($_POST["more_cars"] == true)){
-				$json = array();
-			 	$json = loadModel(MODEL_HOME, "home_model", "more_cars_home",$_POST['position']);
-			 	echo json_encode($json);
-			}
-        }
-
-        function select_name_car_auto() {
-            $json = array();
-            $json = loadModel(MODEL_HOME, "home_model", "select_name_car_auto", "");
-            echo json_encode($json);
-		}
-	    
-
-        // function load_car_name(){
-	    // 	if ((isset($_POST["load_car_name"])) && ($_POST["load_car_name"] == true)){
-		// 		$json = array();
-		// 	 	$json = loadModel(MODEL_HOME, "home_model", "load_car_name");
-		// 	 	echo json_encode($json);
-		// 	}
-        // }
-        
-        
-    }
             // function details() {
             //     try {
             //         $daoshop = new DAOShop();
