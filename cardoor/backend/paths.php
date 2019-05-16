@@ -6,7 +6,7 @@ define('PROJECT', '/www/FW_PHP_OO_ANGULAR/cardoor/backend/');
 define('SITE_ROOT', $_SERVER['DOCUMENT_ROOT'] . PROJECT);
 
 //SITE_PATH
-define('SITE_PATH', 'https://' . $_SERVER['HTTP_HOST'] . PROJECT);
+define('SITE_PATH', 'http://' . $_SERVER['HTTP_HOST'] . PROJECT);
 
 //CSS
 define('CSS_PATH', SITE_PATH . 'view/assets/css/');

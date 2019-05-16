@@ -34,4 +34,8 @@ class home_bll{
     public function select_name_car_auto_BLL($arrArgument){
       return $this->dao->select_name_car_auto($this->db,$arrArgument);
     }
+
+    public function active_user_BLL($arrArgument){
+			return $this->dao->update_active_user($this->db,$arrArgument);
+		}
 }

@@ -34,4 +34,9 @@ class home_model {
         return $this->bll->select_name_car_auto_BLL($arrArgument);
     }
 
+    public function active_user($arrArgument){
+        return $this->bll->active_user_BLL($arrArgument);
+    }
+
+
 }

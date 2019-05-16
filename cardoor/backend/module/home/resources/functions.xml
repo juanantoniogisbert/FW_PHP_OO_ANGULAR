@@ -20,4 +20,8 @@
         <name>load_car_name</name>
         <uri>load_car_name</uri>
     </function>
+    <function>
+        <name>active_user</name>
+        <uri>active_user</uri>
+    </function>
 </functions>

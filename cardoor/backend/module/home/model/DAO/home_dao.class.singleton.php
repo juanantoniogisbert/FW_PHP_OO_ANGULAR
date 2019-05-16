@@ -65,4 +65,9 @@ class home_DAO {
     $res = $db->ejecutar($sql);
     return $db->listar($res);
   }
+
+  public function update_active_user($db,$arrArgument) {
+    $sql = "UPDATE users SET activate = 1 WHERE token = '$arrArgument'";
+    return $db->ejecutar($sql);
+  }
 }

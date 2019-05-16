@@ -15,16 +15,20 @@ cardoor.config(['$routeProvider',
                 }
             })
 
-            // .when("/shop/:id", {
-            //     templateUrl: "cardoor/frontend/module/shop/view/shop.view.html",
-            //     controller: "detailsBCtrl",
-            //     resolve: {
-            //         selbreed: function (services, $route) {
-            //             return services.get('shop', 'load_list', $route.current.params.id);
-            //         }
-            //     }
-            // })
-
+            .when("/home/active_user/:token", {
+                resolve: {
+                    recpass: function (services, $route) {
+                        console.log($route.current.params.token);
+                        return services.put('home','active_user',{'token':JSON.stringify({'token':$route.current.params.token})})
+                        .then(function(response){
+                            console.log(response);
+                            location.href = '#/';
+                        });
+                    }
+                }
+            })
+            
+            // Shop
             .when("/shop", {
                 templateUrl: "cardoor/frontend/module/shop/view/shop.view.html", 
                 controller: "shopCtrl",
@@ -33,6 +37,12 @@ cardoor.config(['$routeProvider',
                         return services.get('shop', 'view_cars_shop');
                     }
                 }
+            })
+
+            // Login
+            .when("/login", {
+                templateUrl: "cardoor/frontend/module/login/view/login.view.html",
+                controller: "loginCtrl"
             })
 
             // Contact

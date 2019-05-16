@@ -17,7 +17,7 @@ if (PRODUCTION) { //estamos en producción
     ini_set('error_reporting', '0'); //error_reporting(0); 
 }
 
-//ob_start(); 
+// ob_start(); 
 session_start();
 $_SESSION['module'] = "";
 $_POST = json_decode(file_get_contents('php://input'), true);

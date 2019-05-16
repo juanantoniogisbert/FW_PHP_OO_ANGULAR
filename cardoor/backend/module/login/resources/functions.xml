@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<functions>
+    <function>
+        <name>validate_register</name>
+        <uri>validate_register</uri>
+    </function>
+    <function>
+        <name>active_user</name>
+        <uri>active_user</uri>
+    </function>
+    <function>
+        <name>social_login</name>
+        <uri>social_login</uri>
+    </function>
+</functions>
