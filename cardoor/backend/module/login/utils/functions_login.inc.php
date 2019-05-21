@@ -5,7 +5,7 @@
 
 		if ($value === 'login') {
 			$filter = array(
-		        'luser' => array(
+		        'lusername' => array(
 		            'filter' => FILTER_VALIDATE_REGEXP,
 		            'options' => array('regexp' => '/[a-zA-z_.]{3,21}/')
 		        ),
@@ -15,25 +15,25 @@
 		        ),
 		    );
 		    $result = filter_var_array($data, $filter);
-		    $data = exist_user($result['luser']);
+		    $data = exist_user($result['lusername']);
 	    	$data = $data[0];
 	    	$activate = $data['activate'];
 	    	$password = $data['password'];
 		    if ($result != null && $result){
-		        if(!$result['luser']){
-		            $error['luser'] = "El formato del usuario es incorrecto";
+		        if(!$result['lusername']){
+		            $error['lusername'] = "El formato del usuario es incorrecto";
 		            $valid = false;
 		        }
 		        elseif(!$data){
-		            $error['luser'] = "El usuario añadido no coincide con nuestros datos";
+		            $error['lusername'] = "El usuario añadido no coincide con nuestros datos";
 		            $valid = false;
 		        }
-		        elseif(!password_verify($result['lpasswd'],$password)){
+				elseif(!password_verify($result['lpasswd'],$password)){
 		            $error['lpasswd'] = "Contraseña incorrecta";
 		            $valid = false;
 		        }
-		        if($activate == 0){
-		            $error['luser'] = "Tienes que verificar el correo";
+		        if($activate != 0){
+		            $error['lusername'] = "Tienes que verificar el correo";
 		            $valid = false;
 		        }
 		    } else {
@@ -70,10 +70,10 @@
 		            $error['rpasswd'] = "El formato de la contraseña es incorrecta";
 		            $valid = false;
 		        }
-		       	// if(exist_user($result['rusername'])){
-		        //     $error['rusername'] = "El usuario ya existe";
-		        //     $valid = false;
-		        // }
+		       	if(exist_user($result['rusername'])){
+		            $error['rusername'] = "El usuario ya existe";
+		            $valid = false;
+		        }
 		    } else {
 		        $valid = false;
 		    };
@@ -153,9 +153,9 @@
 		}
 	}
 
-	// function exist_user($user){
-	// 	return loadModel(MODEL_LOGIN,'login_model','exist_user',$user);
-	// }
+	function exist_user($user){
+		return loadModel(MODEL_LOGIN,'login_model','exist_user',$user);
+	}
 
 	function validate_birth($date){
 		$thisdate = getdate();
@@ -167,3 +167,10 @@
 			return false;
 		}
 	}
+
+	function generate_Token_secure($longitud){
+        if ($longitud < 10) {
+            $longitud = 10;
+        }
+        return bin2hex(openssl_random_pseudo_bytes(($longitud - ($longitud % 2)) / 2));
+    }

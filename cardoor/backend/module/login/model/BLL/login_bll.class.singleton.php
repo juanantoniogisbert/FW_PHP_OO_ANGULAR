@@ -17,10 +17,20 @@
 	    }
 	    
 	    public function insert_userp_BLL($arrArgument){
-	      return $this->dao->insert_user_page($this->db,$arrArgument);
+	    	return $this->dao->insert_user_page($this->db,$arrArgument);
 		}
 
 		public function rid_social_BLL($arrArgument){
 			return $this->dao->select_rid_social($this->db,$arrArgument);
 		}
+		
+		public function token_user_BLL($arrArgument){
+			$this->dao->update_token($this->db,$arrArgument);
+			return $this->dao->select_token($this->db,$arrArgument);
+		}
+
+		public function exist_user_BLL($arrArgument){
+			return $this->dao->select_exist_user($this->db,$arrArgument);
+		}
+
     }

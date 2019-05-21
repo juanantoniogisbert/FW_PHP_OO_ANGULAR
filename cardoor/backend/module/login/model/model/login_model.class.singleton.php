@@ -26,7 +26,11 @@
             return $this->bll->data_social_BLL($arrArgument);
         }
 
-        public function select_token($arrArgument){
-            return $this->bll->select_token_BLL($arrArgument);
+        public function token_user($arrArgument){
+            return $this->bll->token_user_BLL($arrArgument);
+        }
+
+        public function exist_user($arrArgument){
+            return $this->bll->exist_user_BLL($arrArgument);
         }
     }

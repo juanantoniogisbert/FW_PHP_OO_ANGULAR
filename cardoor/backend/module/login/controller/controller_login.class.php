@@ -27,6 +27,21 @@
 				echo json_encode($jsondata);
 			}
 		}
+
+		function validate_login(){
+			$info_data = json_decode($_POST['total_data'],true);
+			$response = validate_data($info_data,'login');
+			if ($response['result']) {
+				$data = loadModel(MODEL_LOGIN,'login_model','token_user',$info_data['lusername']);
+				$data = $data[0];
+				$data['success'] = true;
+				echo json_encode($data);
+			}else{
+				$jsondata['success'] = false;
+		 		$jsondata['error'] = $response['error'];
+				echo json_encode($jsondata);
+			}
+		}
 		
 		function social_login(){
 			$data_social = json_decode($_POST['data_social_net'],true);

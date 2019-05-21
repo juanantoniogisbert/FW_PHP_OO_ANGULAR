@@ -45,6 +45,11 @@ cardoor.config(['$routeProvider',
                 controller: "loginCtrl"
             })
 
+            .when("/login/passwdChange/:token", {
+                templateUrl: "frontend/modules/login/view/recpass.view.html",
+                controller: "passwdChangeCtrl"
+            })
+
             // Contact
             .when("/contact", {templateUrl: "cardoor/frontend/module/contact/view/contact.view.html", controller: "contactCtrl"})
 

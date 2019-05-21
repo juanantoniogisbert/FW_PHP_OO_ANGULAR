@@ -1,52 +1,97 @@
-<section id="lgoin-page-wrap" class="section-padding">
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-5 col-md-8 m-auto">
-				<div class="login-page-content">
-					<div class="login-form">
-						<h3>Sign Up1</h3>
-						<form autocomplete="on" method="post" name="registro" id="registro">
-							<div class="rusername">
-								<input required type="text" id="rusername" name="rusername" ng-model="register.rusername" placeholder="Username" ng-minlength="3" ng-maxlength="20"/>
-								<span class="text-danger" ng-show="registro.rusername.$error.required && (registro.rusername.$dirty || registro.rusername.$touched)">Introduzca un nombre</span>
-								<span class="text-danger" ng-show="registro.rusername.$error.minlength">Introduzca mas de 3 caracteres</span>
-								<span class="text-danger" ng-show="registro.rusername.$error.maxlength">Introduzca menos de 20 caracteres</span>
-							</div>
-							<div class="rmail">
-								<input required type="email" id="rmail" name="rmail" ng-model="register.rmail" placeholder="Email">
-								<span class="text-danger" ng-show="registro.rmail.$error.required && (registro.rmail.$dirty || registro.rmail.$touched)">Introduzca un correo electroncico</span>
-                				<span class="text-danger" ng-show="registro.rmail.$error.email">Email no valido</span>
-							</div>
-							<div class="rpasswd">
-								<input required type="password" id="rpasswd" name="rpasswd" ng-model="register.rpasswd" placeholder="Password" ng-minlength="6" ng-maxlength="40"/>
-								<span class="text-danger" ng-show="registro.rpasswd.$error.required && (registro.rpasswd.$dirty || registro.rpasswd.$touched)">Introduzca un contraseña</span>
-								<span class="text-danger" ng-show="registro.rpasswd.$error.minlength">Introduzca mas de 6 caracteres</span>
-								<span class="text-danger" ng-show="registro.rpasswd.$error.maxlength">Introduzca menos de 40 caracteres</span>
-							</div>
-							<div class="repPassword">
-								<input required type="password" id="repPassword" name="repPassword" ng-model="register.repPassword" placeholder="Repeat Password" ng-minlength="6" ng-maxlength="40"/>
-								<span class="text-danger" ng-show="registro.repPassword.$error.required && (registro.repPassword.$dirty || registro.repPassword.$touched)">Introduzca un contraseña</span>
-								<span class="text-danger" ng-show="registro.repPassword.$error.minlength">Introduzca mas de 6 caracteres</span>
-								<span class="text-danger" ng-show="registro.repPassword.$error.maxlength">Introduzca menos de 40 caracteres</span>
-								<span class="text-danger" ng-show="register.repPassword != register.rpasswd && (registro.repPassword.$dirty || registro.repPassword.$touched)">Las contraseñas no coinciden</span>
-							</div>
-							<div class="log-btn">
-								<button name="send_register" id="send_register" ng-show="registro.rusername.$valid && registro.rmail.$valid && registro.rpasswd.$valid && registro.repPassword.$valid && register.repPassword === register.rpasswd"
-									ng-click="submitRegister()"><i class="fa fa-check-square"></i>Sign Up</button>
-							</div>
-						</form>
-					</div>
-					
-					<div class="login-other">
-						<span class="or">or</span>
-						<a href="#" class="login-with-btn github" ng-click="googleLog()"><i class="fa fa-github"></i> Signup With Git Hub</a>
-						<a href="#" class="login-with-btn google" ng-click="gitLog()"><i class="fa fa-google"></i> Signup With Google</a>
-					</div>
-					<div class="create-ac">
-						<p>Have an account? <a href="index.php?page=controller_login&op=viewlogin">Sign In</a></p>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</section>
+<div class="reg">
+    <section id="lgoin-page-wrap" class="section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-5 col-md-8 m-auto">
+                    <div class="login-page-content">
+                        <div class="login-form">
+                            <h3>Sign Up</h3>
+                            <form autocomplete="on" method="post" name="registro" id="registro">
+                                <div class="rusername">
+                                    <input required type="text" id="rusername" name="rusername" ng-model="register.rusername" placeholder="Username" ng-minlength="3" ng-maxlength="20"/>
+                                    <span class="text-danger" ng-show="registro.rusername.$error.required && (registro.rusername.$dirty || registro.rusername.$touched)">Introduzca un nombre</span>
+                                    <span class="text-danger" ng-show="registro.rusername.$error.minlength">Introduzca mas de 3 caracteres</span>
+                                    <span class="text-danger" ng-show="registro.rusername.$error.maxlength">Introduzca menos de 20 caracteres</span>
+                                </div>
+                                <div class="rmail">
+                                    <input required type="email" id="rmail" name="rmail" ng-model="register.rmail" placeholder="Email">
+                                    <span class="text-danger" ng-show="registro.rmail.$error.required && (registro.rmail.$dirty || registro.rmail.$touched)">Introduzca un correo electroncico</span>
+                                    <span class="text-danger" ng-show="registro.rmail.$error.email">Email no valido</span>
+                                </div>
+                                <div class="rpasswd">
+                                    <input required type="password" id="rpasswd" name="rpasswd" ng-model="register.rpasswd" placeholder="Password" ng-minlength="6" ng-maxlength="40"/>
+                                    <span class="text-danger" ng-show="registro.rpasswd.$error.required && (registro.rpasswd.$dirty || registro.rpasswd.$touched)">Introduzca un contraseña</span>
+                                    <span class="text-danger" ng-show="registro.rpasswd.$error.minlength">Introduzca mas de 6 caracteres</span>
+                                    <span class="text-danger" ng-show="registro.rpasswd.$error.maxlength">Introduzca menos de 40 caracteres</span>
+                                </div>
+                                <div class="repPassword">
+                                    <input required type="password" id="repPassword" name="repPassword" ng-model="register.repPassword" placeholder="Repeat Password" ng-minlength="6" ng-maxlength="40"/>
+                                    <span class="text-danger" ng-show="registro.repPassword.$error.required && (registro.repPassword.$dirty || registro.repPassword.$touched)">Introduzca un contraseña</span>
+                                    <span class="text-danger" ng-show="registro.repPassword.$error.minlength">Introduzca mas de 6 caracteres</span>
+                                    <span class="text-danger" ng-show="registro.repPassword.$error.maxlength">Introduzca menos de 40 caracteres</span>
+                                    <span class="text-danger" ng-show="register.repPassword != register.rpasswd && (registro.repPassword.$dirty || registro.repPassword.$touched)">Las contraseñas no coinciden</span>
+                                </div>
+                                <div class="log-btn">
+                                    <button name="send_register" id="send_register" ng-show="registro.rusername.$valid && registro.rmail.$valid && registro.rpasswd.$valid && registro.repPassword.$valid && register.repPassword === register.rpasswd"
+                                        ng-click="submitRegister()"><i class="fa fa-check-square"></i>Sign Up</button>
+                                </div>
+                            </form>
+                        </div>
+        
+                        <div class="login-other">
+                            <span class="or">or</span>
+                            <a href="#" class="login-with-btn github" ng-click="googleLog()"><i class="fa fa-github"></i> Signup With Git Hub</a>
+                            <a href="#" class="login-with-btn google" ng-click="gitLog()"><i class="fa fa-google"></i> Signup With Google</a>
+                        </div>
+                        <div class="create-ac">
+                            <p>Have an account? <a ng-href="login.view.html">Sign In</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<div class="log">
+    <section id="lgoin-page-wrap" class="section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-8 m-auto">
+                    <div class="login-page-content">
+                        <div class="login-form">
+                            <h3>SIGN IN</h3>
+                            <form autocomplete="on" method="post" name="formlogin" id="formlogin">
+                                <div class="lusername">
+                                    <input type="text" id="rusername" name="lusername" ng-model="login.lusername" placeholder="Email or Username" ng-minlength="3" ng-maxlength="15">
+                                    <span class="text-danger" ng-show="formlogin.lusername.$error.required && (formlogin.lusername.$dirty || formlogin.lusername.$touched)">Introduzca un nombre</span>
+                                    <span class="text-danger" ng-show="formlogin.lusername.$error.minlength">Introduzca mas de 3 caracteres</span>
+                                    <span class="text-danger" ng-show="formlogin.lusername.$error.maxlength">Introduzca menos de 20 caracteres</span>
+                                </div>
+                                <div class="rpassword">
+                                    <input type="password" id="lpasswd" name="lpasswd" ng-model="login.lpasswd" placeholder="Password" ng-minlength="6" ng-maxlength="40">
+                                    <span class="text-danger" ng-show="formlogin.lpasswd.$error.required && (formlogin.lpasswd.$dirty || formlogin.lpasswd.$touched)">Introduzca un contraseña</span>
+                                    <span class="text-danger" ng-show="formlogin.lpasswd.$error.minlength">Introduzca mas de 6 caracteres</span>
+                                    <span class="text-danger" ng-show="formlogin.lpasswd.$error.maxlength">Introduzca menos de 40 caracteres</span>
+                                </div>
+                                <div class="log-btn">
+                                    <button name="login2" id="login2" ng-show="formlogin.lusername.$valid && formlogin.lpasswd.$valid"
+                                        ng-click="submitLogin()"><i class="fa fa-sign-in"></i> Log In</button>
+                                </div>
+                            </form>
+                        </div>
+                        
+                        <div class="login-other">
+                            <span class="or">or</span>
+                            <a id="logRS" class="login-with-btn github"><i class="fa fa-github"></i> Login With Github</a>
+                            <a id="logRS" class="login-with-btn google"><i class="fa fa-google"></i> Login With Google</a>
+                        </div>
+                        <div class="create-ac">
+                            <p><a ng-click="chanPasswd()">Has Olvidado la contraseña?</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
