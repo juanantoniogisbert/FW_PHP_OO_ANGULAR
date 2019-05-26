@@ -40,8 +40,8 @@
         
                         <div class="login-other">
                             <span class="or">or</span>
-                            <a href="#" class="login-with-btn github" ng-click="googleLog()"><i class="fa fa-github"></i> Signup With Git Hub</a>
-                            <a href="#" class="login-with-btn google" ng-click="gitLog()"><i class="fa fa-google"></i> Signup With Google</a>
+                            <a href="http://localhost/www/FW_PHP_OO_ANGULAR/cardoor/backend/index.php?module=login&function=social_login" class="login-with-btn github"><i class="fa fa-github"></i> Signup With Git Hub</a>
+                            <a href="" class="login-with-btn google"><i class="fa fa-google"></i> Signup With Google</a>
                         </div>
                         <div class="create-ac">
                             <p>Have an account? <a ng-href="login.view.html">Sign In</a></p>
@@ -80,14 +80,18 @@
                                 </div>
                             </form>
                         </div>
-                        
-                        <div class="login-other">
-                            <span class="or">or</span>
-                            <a id="logRS" class="login-with-btn github"><i class="fa fa-github"></i> Login With Github</a>
-                            <a id="logRS" class="login-with-btn google"><i class="fa fa-google"></i> Login With Google</a>
-                        </div>
                         <div class="create-ac">
-                            <p><a ng-click="chanPasswd()">Has Olvidado la contraseña?</a></p>
+                            <p><a ng-click="recupass()" ng-show="butpassV">Has Olvidado la contraseña?</a></p>
+                            <div id="content_revoery_passw" ng-show="recpassV">
+                                <form id="recover_form" name="recover_form">
+                                    <input required type="text" name="inputUserr" id="inputUserr" ng-model="recover.lusername" placeholder="Usuario" ng-minlength="3" ng-maxlength="20"/>
+                                               <span class="text-danger" ng-show="recover_form.inputUserr.$error.required && (recover_form.inputUserr.$dirty || recover_form.inputUserr.$touched)">Introduzca un nombre</span>
+                                               <span class="text-danger" ng-show="recover_form.inputUserr.$error.minlength">Introduzca mas de 3 caracteres</span>
+                                               <span class="text-danger" ng-show="recover_form.inputUserr.$error.maxlength">Introduzca menos de 20 caracteres</span>
+                    
+                                    <input type='submit' ng-click="chanPasswd()" ng-show="recover_form.inputUserr.$valid" value="Enviar Correo"></input>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>

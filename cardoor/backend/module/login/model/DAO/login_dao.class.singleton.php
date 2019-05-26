@@ -32,14 +32,28 @@
         }
 
         public function update_token($db,$arrArgument) {
-            $tokenlog = generate_Token_secure(20);
-            $sql = "UPDATE users SET tokenlog = '$tokenlog' WHERE id = '$arrArgument'";
-            return $db->ejecutar($sql);
+            $tokenlog = JWT_encode($arrArgument);
+            $sql = "UPDATE users SET tokenlog = '$tokenlog' WHERE user = '$arrArgument'";
+            return $db->ejecutar($arrArgument);
+            // return $arrArgument;
         }
 
         public function select_token($db,$arrArgument) {
-            $sql = "SELECT tokenlog FROM users WHERE id = '$arrArgument'";
+            $sql = "SELECT tokenlog FROM users WHERE user = '$arrArgument'";
             $res = $db->ejecutar($sql);
             return $db->listar($res);
+        }
+
+        public function select_mail_rec_pass($db,$arrArgument) {
+            $sql = "SELECT email,token FROM users WHERE user = '$arrArgument'";
+            $stmt = $db->ejecutar($sql);
+            return $db->listar($stmt);
+        }
+
+        public function update_password($db,$arrArgument) {
+            $pass = crypt($arrArgument['recpass'], '$1$rasmusle$');
+            $token = $arrArgument['token'];
+            $sql = "UPDATE users SET password = '$pass' WHERE token = '$token'";
+            return $db->ejecutar($sql);
         }
     }

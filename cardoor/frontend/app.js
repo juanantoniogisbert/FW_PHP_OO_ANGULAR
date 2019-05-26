@@ -46,12 +46,26 @@ cardoor.config(['$routeProvider',
             })
 
             .when("/login/passwdChange/:token", {
-                templateUrl: "frontend/modules/login/view/recpass.view.html",
+                templateUrl: "cardoor/frontend/module/login/view/chpasswd.view.html",
                 controller: "passwdChangeCtrl"
             })
-
+  
+            // Profile
+            .when("/profile", {
+                templateUrl: "cardoor/frontend/module/login/view/profile.view.html",
+                controller: "profileCtrl",
+                resolve: {
+                    infoUser: function (services,localstorageService) {
+                        return services.get('login', 'print_user',localstorageService.getUsers());
+                    }
+                }
+            })
+            
             // Contact
-            .when("/contact", {templateUrl: "cardoor/frontend/module/contact/view/contact.view.html", controller: "contactCtrl"})
+            .when("/contact", {
+                templateUrl: "cardoor/frontend/module/contact/view/contact.view.html", 
+                controller: "contactCtrl"
+            })
 
             // else 404
             .otherwise("/");

@@ -31,8 +31,8 @@
 		function validate_login(){
 			$info_data = json_decode($_POST['total_data'],true);
 			$response = validate_data($info_data,'login');
-			if ($response['result']) {
-				$data = loadModel(MODEL_LOGIN,'login_model','token_user',$info_data['lusername']);
+			if ($response['result'] === true) {
+				$data['token_valid'] = loadModel(MODEL_LOGIN,'login_model','token_user', 'update_token',$info_data['lusername']);
 				$data = $data[0];
 				$data['success'] = true;
 				echo json_encode($data);
@@ -42,17 +42,52 @@
 				echo json_encode($jsondata);
 			}
 		}
+
+		function mail_rec_passwd(){
+			$user_rpass = json_decode($_POST['recuser'],true);
+			$result = validate_data($user_rpass,'rec_pass');
+			if ($result['result']) {
+				$result = loadModel(MODEL_LOGIN,'login_model','mail_rec_pass',$user_rpass);
+				$result = $result[0];
+				$result['token'] = $result['token'];
+				$result['inputEmail'] = $result['email'];
+				if ($result) {
+					$result['type'] = 'modificacion';
+					$result['inputMessage'] = 'Para recuperar tu contraseña en cardoor pulse en el siguiente enlace';
+					enviar_email($result);
+					$result['success'] = true;
+					echo json_encode($result);
+				}else{
+					echo "error";
+				}
+			}else{
+				$jsondata['success'] = false;
+		 		$jsondata['error'] = $result['error'];
+				echo json_encode($jsondata);
+			}
+		}
+
+		function u_passwd(){
+			$pass_data = json_decode($_POST['rec_pass'],true);
+			if ($pass_data) {
+				$result = loadModel(MODEL_LOGIN,'login_model','update_pass',$pass_data);
+				echo json_encode($result);
+			}else{
+				$jsondata = false;
+				echo json_encode($jsondata);	
+			}
+		}
+
 		
 		function social_login(){
-			$data_social = json_decode($_POST['data_social_net'],true);
-			$result = loadModel(MODEL_LOGIN,'login_model','rid_social',$data_social['id_user']);
-			if (!$result) {
-				$json = loadModel(MODEL_LOGIN,'login_model','data_social',$data_social);
-			}else{
-				$json = 'Registrado';
-			}
-			$data = loadModel(MODEL_LOGIN,'login_model','select_token',$data_social['id_user']);
-			$data = $data[0];
-			echo json_encode($data['tokenlog']);
+			$usersocial = social_user();
+			echo json_encode($usersocial);
+			exit;
+		}
+
+		function datasocial(){
+			$data = data_social_user();
+			echo json_encode($data);
+			exit;
 		}
     }

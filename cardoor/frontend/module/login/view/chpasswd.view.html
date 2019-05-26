@@ -7,20 +7,22 @@
                         <h3>SIGN IN</h3>
                         <form autocomplete="on" method="post" name="formCP" id="formCP">
                             <div class="rpasswd">
-                                <input type="text" id="rpasswd" name="rpasswd" ng-model="login.rpasswd" placeholder="Nueva Contraseña" ng-minlength="3" ng-maxlength="15">
-                                <span class="text-danger" ng-show="formCP.rpasswd.$error.required && (formCP.rpasswd.$dirty || formCP.rpasswd.$touched)">Introduzca un nombre</span>
-                                <span class="text-danger" ng-show="formCP.rpasswd.$error.minlength">Introduzca mas de 3 caracteres</span>
-                                <span class="text-danger" ng-show="formCP.rpasswd.$error.maxlength">Introduzca menos de 20 caracteres</span>
+                                <input required type="password" name="rpasswd" id="rpasswd" ng-model="recpass.rpasswd" placeholder="Contraseña" ng-minlength="6" ng-maxlength="40"/>
+                                <span class="text-danger" ng-show="formCP.rpasswd.$error.required && (formCP.rpasswd.$dirty || formCP.rpasswd.$touched)">Introduzca un contraseña</span>
+                                <span class="text-danger" ng-show="formCP.rpasswd.$error.minlength">Introduzca mas de 6 caracteres</span>
+                                <span class="text-danger" ng-show="formCP.rpasswd.$error.maxlength">Introduzca menos de 40 caracteres</span>
                             </div>
                             <div class="repPassword">
-                                <input type="password" id="repPassword" name="repPassword" ng-model="login.repPassword" placeholder="Repita Contraseña" ng-minlength="6" ng-maxlength="40">
-                                <span class="text-danger" ng-show="formCP.repPassword.$error.required && (formCP.repPassword.$dirty || formCP.repPassword.$touched)">Introduzca un contraseña</span>
-                                <span class="text-danger" ng-show="formCP.repPassword.$error.minlength">Introduzca mas de 6 caracteres</span>
-                                <span class="text-danger" ng-show="formCP.repPassword.$error.maxlength">Introduzca menos de 40 caracteres</span>
+                                <input required type="password" name="inputRPassword" id="inputRPassword" ng-model="recpass.inputRPassword" placeholder="Repetir contraseña" ng-minlength="6" ng-maxlength="40"/>
+                                <span class="text-danger" ng-show="formCP.inputRPassword.$error.required && (formCP.inputRPassword.$dirty || formCP.inputRPassword.$touched)">Introduzca un contraseña</span>
+                                <span class="text-danger" ng-show="formCP.inputRPassword.$error.minlength">Introduzca mas de 6 caracteres</span>
+                                <span class="text-danger" ng-show="formCP.inputRPassword.$error.maxlength">Introduzca menos de 40 caracteres</span>
+                                <span class="text-danger" ng-show="recpass.inputRPassword != recpass.rpasswd && (formCP.inputRPassword.$dirty || formCP.inputRPassword.$touched)">Las contraseñas no coinciden</span>
                             </div>
                             <div class="log-btn">
-                                <button name="login2" id="login2" ng-show="formCP.rpasswd.$valid && formCP.repPassword.$valid"
-                                    ng-click="submitLogin()"><i class="fa fa-sign-in"></i> Log In</button>
+                                <button class="btn btn-primary" type="submit" id="sendRegister" name="sendRegister"
+                                ng-show="formCP.rpasswd.$valid && formCP.inputRPassword.$valid && recpass.inputRPassword === recpass.rpasswd"
+                                ng-click="submitRecPass()">Cambiar contraseña</button>
                             </div>
                         </form>
                     </div>

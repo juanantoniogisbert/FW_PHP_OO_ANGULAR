@@ -1,4 +1,8 @@
 <?php
+	// require 'http://localhost/www/FW_PHP_OO_ANGULAR/cardoor/backend/module/login/utils/auth0/vendor/autoload.php';
+	require SITE_ROOT . 'module/login/utils/auth0/vendor/autoload.php';
+	use Auth0\SDK\Auth0;
+
 	function validate_data($data,$value){
 		$error = array();
 	    $valid = true;
@@ -115,7 +119,7 @@
 
 		}elseif($value === 'rec_pass'){
 		        if(!exist_user($data)){
-		            $error['rpuser'] = "El usuario no existe";
+		            $error['recuser'] = "El usuario no existe";
 		            $valid = false;
 		        }
 		    return $return = array('result' => $valid,'error' => $error, 'data' => $result);
@@ -173,4 +177,69 @@
             $longitud = 10;
         }
         return bin2hex(openssl_random_pseudo_bytes(($longitud - ($longitud % 2)) / 2));
-    }
+	}
+	
+	function social_user(){
+		$domain        = 'juagisla.eu.auth0.com';
+		$client_id     = 'sfxhvAtO4jsHzk80Ct5HGspSKlfvR6Kh';
+		$client_secret = 'Zujut4ck5ehhy4A8J4vHUSujniSXWPmcjEG4J27Nr1XYixptIaBiwxiKpVmSYM56';
+		$redirect_uri  = 'http://localhost/www/FW_PHP_OO_ANGULAR/cardoor/backend/index.php?module=login&function=datasocial';
+		$audience      = 'https://' . 'juagisla.eu.auth0.com' . '/userinfo';
+
+		$auth0 = new Auth0([
+			'domain' => $domain,
+			'client_id' => $client_id,
+			'client_secret' => $client_secret,
+			'redirect_uri' => $redirect_uri,
+			'audience' => $audience,
+			'scope' => 'openid profile',
+			'persist_id_token' => true,
+			'persist_access_token' => true,
+			'persist_refresh_token' => true
+		]);
+
+		$auth0->login();
+	}
+
+	function data_social_user(){
+		$domain        = 'juagisla.eu.auth0.com';
+		$client_id     = 'sfxhvAtO4jsHzk80Ct5HGspSKlfvR6Kh';
+		$client_secret = 'Zujut4ck5ehhy4A8J4vHUSujniSXWPmcjEG4J27Nr1XYixptIaBiwxiKpVmSYM56';
+		$redirect_uri  = 'http://localhost/www/FW_PHP_OO_ANGULAR/cardoor/backend/index.php?module=login&function=datasocial';
+		$audience      = 'https://' . 'juagisla.eu.auth0.com' . '/userinfo';
+
+		$auth0 = new Auth0([
+			'domain' => $domain,
+			'client_id' => $client_id,
+			'client_secret' => $client_secret,
+			'redirect_uri' => $redirect_uri,
+			'audience' => $audience,
+			'scope' => 'openid profile',
+			'persist_id_token' => true,
+			'persist_access_token' => true,
+			'persist_refresh_token' => true
+		]);
+		
+		$userInfo = $auth0->getUser();
+		return $userInfo;
+	}
+
+	function JWT_encode($user){
+		require_once "JWT.php";
+
+		$header = '{"typ":"JWT", "alg":"HS256"}';
+		$secret = 'hamirezyclarinwinfornite';
+
+		$payload = '{
+			"iat":"'.time().'", 
+			"exp":"'.time() + (60*60).'",
+			"name":'.$user.'
+		}';
+
+		$JWT = new JWT;
+		$token = $JWT->encode($header, $payload, $secret);
+		// $json = $JWT->decode($token, $secret);
+		// echo 'JWT juanan: '.$token."\n\n"; echo '<br>';
+		// echo 'JWT Decoded juanan: '.$json."\n\n"; echo '<br>'; echo '<br>';
+		return $token;
+	}

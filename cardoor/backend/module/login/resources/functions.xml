@@ -16,4 +16,16 @@
         <name>social_login</name>
         <uri>social_login</uri>
     </function>
+    <function>
+        <name>datasocial</name>
+        <uri>datasocial</uri>
+    </function>
+    <function>
+        <name>mail_rec_passwd</name>
+        <uri>mail_rec_passwd</uri>
+    </function>
+    <function>
+        <name>u_passwd</name>
+        <uri>u_passwd</uri>
+    </function>
 </functions>

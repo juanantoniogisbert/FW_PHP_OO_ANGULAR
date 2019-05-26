@@ -32,5 +32,16 @@
 		public function exist_user_BLL($arrArgument){
 			return $this->dao->select_exist_user($this->db,$arrArgument);
 		}
+		public function update_token_BLL($arrArgument){
+			return $this->dao->update_token($this->db,$arrArgument);
+		}
+
+		public function mail_rec_pass_BLL($arrArgument){
+			return $this->dao->select_mail_rec_pass($this->db,$arrArgument);
+		}
+
+		public function update_pass_BLL($arrArgument){
+			return $this->dao->update_password($this->db,$arrArgument);
+		  }
 
     }

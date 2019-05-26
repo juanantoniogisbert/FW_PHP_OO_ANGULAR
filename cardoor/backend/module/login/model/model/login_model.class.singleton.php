@@ -33,4 +33,16 @@
         public function exist_user($arrArgument){
             return $this->bll->exist_user_BLL($arrArgument);
         }
+
+        public function update_token($arrArgument){
+            return $this->bll->update_token_BLL($arrArgument);
+        }
+
+        public function mail_rec_pass($arrArgument){
+            return $this->bll->mail_rec_pass_BLL($arrArgument);
+        }
+
+        public function update_pass($arrArgument){
+            return $this->bll->update_pass_BLL($arrArgument);
+        }
     }

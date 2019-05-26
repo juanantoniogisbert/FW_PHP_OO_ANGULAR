@@ -16,7 +16,7 @@
     
             case 'modificacion':
                 $subject = 'Tu Nuevo Password en Cardoor<br>';
-                $ruta = '<a href="' . amigable("?module=login&function=activar&aux=F" . $arr['token'], true) . '">aqu&iacute;</a>';
+                $ruta = '<a href="http://' . $_SERVER['HTTP_HOST'] . '/www/FW_PHP_OO_ANGULAR/#/login/passwdChange/'. $arr['token'] .'">aqu&iacute;</a>';
                 $body = 'Para recordar tu password pulsa ' . $ruta;
             break;
                 
