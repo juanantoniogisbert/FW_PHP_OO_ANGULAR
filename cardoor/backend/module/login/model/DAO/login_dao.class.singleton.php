@@ -16,7 +16,7 @@
             $email = $arrArgument['rmail'];
             $password = password_hash($arrArgument['rpasswd'], PASSWORD_DEFAULT);
             $token = generate_Token_secure(20);
-            $tokenlog = generate_Token_secure(20);
+            // $tokenlog = generate_Token_secure(20);
             $img = 'https://www.gravatar.com/avatar/' . md5($email) . '?s=80&d=identicon&r=g';
 
             $sql = "INSERT INTO users (user,email,password,type,avatar,activate,token,tokenlog,nombre,apellido,fnac) 
@@ -56,4 +56,40 @@
             $sql = "UPDATE users SET password = '$pass' WHERE token = '$token'";
             return $db->ejecutar($sql);
         }
+
+        public function select_print_user($db,$arrArgument) {
+            $sql = "SELECT user, email, avatar, nombre, apellido, fnac FROM users WHERE tokenlog = '$arrArgument'";
+            $stmt = $db->ejecutar($sql);
+            return $db->listar($stmt);
+        }
+
+        public function insert_user_social($db,$arrArgument) {
+            $id = $arrArgument['id'];
+            $email = $arrArgument['email'];
+            $user = $arrArgument['user'];
+            $avatar = $arrArgument['avatar'];
+
+            $tokenlog = JWT_encode($user);
+
+            $sql = "INSERT INTO users (user,email,type,avatar,activate,tokenlog,nombre,apellido,fnac) 
+            VALUES('$user','$email','user','$avatar',1,'$tokenlog','','','')";
+            $db->ejecutar($sql);
+            return ($sql);
+        }
+
+        public function select_userType($db,$arrArgument) {
+            $sql = "SELECT type FROM users WHERE tokenlog = '$arrArgument'";
+            $stmt = $db->ejecutar($sql);
+            return $db->listar($stmt);
+        }
+
+        public function select_update_user($db,$arrArgument) {
+            $user = $arrArgument['user'];
+            $pname = $arrArgument['pname'];
+            $psurname = $arrArgument['psurname'];
+            $pbirthday = $arrArgument['pbirthday'];
+            $sql = "UPDATE users SET name = '$pname',surname = '$psurname',birthday = '$pbirthday' WHERE user = '$user'";
+            return $db->ejecutar($sql);
+        }
+
     }

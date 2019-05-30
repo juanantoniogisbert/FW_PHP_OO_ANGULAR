@@ -27,6 +27,18 @@ cardoor.config(['$routeProvider',
                     }
                 }
             })
+
+            .when("/home/:tokenlog", {
+                resolve: {
+                    recpass: function (localstorageService, $route, $timeout) {
+                        console.log($route.current.params.tokenlog);
+                        localstorageService.setUsers($route.current.params.tokenlog);
+                        $timeout( function(){
+                            location.href = '#/';
+                        }, 900);
+                    }
+                }
+            })
             
             // Shop
             .when("/shop", {
@@ -70,11 +82,3 @@ cardoor.config(['$routeProvider',
             // else 404
             .otherwise("/");
     }]);
-
-// cardoor.config([
-//     'FacebookProvider',
-//     function (FacebookProvider) {
-//         var myAppId = '1651372404958355';
-//         FacebookProvider.init(myAppId);
-//     }
-// ]);

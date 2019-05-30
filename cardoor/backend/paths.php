@@ -2,11 +2,20 @@
 //PROYECTO
 define('PROJECT', '/www/FW_PHP_OO_ANGULAR/cardoor/backend/');
 
+define('PROJECT_A', '/www/FW_PHP_OO_ANGULAR/cardoor/');
+define('PROJECT_B', '/www/FW_PHP_OO_ANGULAR/');
+
 //SITE_ROOT
 define('SITE_ROOT', $_SERVER['DOCUMENT_ROOT'] . PROJECT);
 
+//SITE_ROOT
+define('SITE_ROOT_A', $_SERVER['DOCUMENT_ROOT'] . PROJECT_A);
+
 //SITE_PATH
 define('SITE_PATH', 'http://' . $_SERVER['HTTP_HOST'] . PROJECT);
+
+//SITE_PATH
+define('SITE_PATH_B', 'http://' . $_SERVER['HTTP_HOST'] . PROJECT_B);
 
 //CSS
 define('CSS_PATH', SITE_PATH . 'view/assets/css/');
@@ -31,7 +40,7 @@ define('PRODUCTION', true);
 //model
 define('MODEL_PATH', SITE_ROOT . 'model/');
 //view
-define('VIEW_PATH_INC', SITE_ROOT . 'view/inc/');
+define('VIEW_PATH_INC', SITE_ROOT_A . 'assets/inc/');
 define('VIEW_PATH_INC_ERROR', SITE_ROOT . 'view/inc/templates_error/');
 //modules
 define('MODULE_PATH', SITE_ROOT . 'module/');

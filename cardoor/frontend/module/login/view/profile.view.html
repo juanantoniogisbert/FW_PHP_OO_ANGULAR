@@ -7,117 +7,123 @@
 <!------ Include the above in your HEAD tag ---------->
 
  <div class="container">
-              <div class="row">
-                <div class="col-xs-12 ">
-                  <nav>
-                    <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
-                      <a class="nav-item nav-link active" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="true">Profile</a>
-                      <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Like</a>
-                      <a class="nav-item nav-link" id="nav-about-tab" data-toggle="tab" href="#nav-about" role="tab" aria-controls="nav-about" aria-selected="false">Compras</a>
-                    </div>
-                  </nav>
-                  <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
-
-                    <div class="tab-pane fade show active" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-
-                      <form autocomplete="on" method="post" name="registro" id="registro">
-
-                        <div id="content_profile_img">
-                            <div id='img_profile'>
-                                <img ng-src='{{avatar}}'  ng-click="openDrop(userInfo.IDuser)">
-                            </div>
-                        </div>
-
-                        <div class="mail">
-                            <td id="e_email" class="styerror">
-                              <input type="mail" id="email" name="email" placeholder="Email">
-                            </td>
-                        </div>
-                        <br/>
-
-                        <div class="nombre">
-                            <td id="e_nombre" class="styerror">
-                              <input type="text" id="nombre" name="nombre" placeholder="Nombre"/>
-                            </td>
-                        </div>
-                        <br/>
-
-                        <div class="apellidos">
-                            <td id="e_apellidos" class="styerror">
-                              <input type="text" id="apellidos" name="apellidos" placeholder="Apellidos"/>
-                            </td>
-                        </div>
-                        <br/>
-
-                        <div class="username">
-                          <td id="e_username" class="styerror">
-                            <input type="text" id="username" name="username" placeholder="Username"/>
-                          </td>
-                        </div>
-                        <br/>
-
-                        <div class="password">
-                          <td id="e_passwd">
-                            <input type="password" id="passwd" name="passwd" placeholder="Password"/>
-                          </td>
-                        </div>
-                        <br/>
-                        <tr>
-                        <td>Country: </td>
-                          <td id="error_country">
-                            <select name="country" id="country">
-                              <option selected>Select country</option>
-                            </select>
-                          </td>
-                        </tr>
-
-                        <tr>
-                        <td>Province: </td>
-                          <td id="error_province">
-                            <select name="province" id="province">
-                              <option selected>Select province</option>
-                            </select>
-                          </td>
-                        </tr>
-
-                        <tr>
-                        <td>City: </td>
-                          <td id="error_city">
-                            <select name="city" id="city">
-                              <option selected>Select city</option>
-                            </select>
-                          </td>
-                        </tr>
-                        
-                        <div>
-                          <td>
-                            <div class="form-group" id="progress"></div>
-                            <div id="bar"></div>
-                            <div id="percent">0%</div>
-                            <div class="msg"></div>
-                            <br/>
-                            <div id="dropzone" class="dropzone"></div>
-                            <br/>
-                          </td>
-                        </div>
-
-                        <div class="log-btn">
-                          <button type="button" name="enviar" id="enviar"><i class="fa fa-check-square"></i>Sign Up</button>
-                        </div>
-                      </form>
-
-                    </div>
-
-                    <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
-                      Et et consectetur ipsum labore excepteur est proident excepteur ad velit occaecat qui minim occaecat veniam. Fugiat veniam incididunt anim aliqua enim pariatur veniam sunt est aute sit dolor anim. Velit non irure adipisicing aliqua ullamco irure incididunt irure non esse consectetur nostrud minim non minim occaecat. Amet duis do nisi duis veniam non est eiusmod tempor incididunt tempor dolor ipsum in qui sit. Exercitation mollit sit culpa nisi culpa non adipisicing reprehenderit do dolore. Duis reprehenderit occaecat anim ullamco ad duis occaecat ex.
-                    </div>
-                    <div class="tab-pane fade" id="nav-about" role="tabpanel" aria-labelledby="nav-about-tab">
-                      Et et consectetur ipsum labore excepteur est proident excepteur ad velit occaecat qui minim occaecat veniam. Fugiat veniam incididunt anim aliqua enim pariatur veniam sunt est aute sit dolor anim. Velit non irure adipisicing aliqua ullamco irure incididunt irure non esse consectetur nostrud minim non minim occaecat. Amet duis do nisi duis veniam non est eiusmod tempor incididunt tempor dolor ipsum in qui sit. Exercitation mollit sit culpa nisi culpa non adipisicing reprehenderit do dolore. Duis reprehenderit occaecat anim ullamco ad duis occaecat ex.
-                    </div>
-                  </div>
-                
-                </div>
-              </div>
+  <div class="row">
+    <div class="col-xs-12 ">
+      <nav>
+        <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+          <a class="nav-item nav-link active" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="true">Profile</a>
+          <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Like</a>
+          <a class="nav-item nav-link" id="nav-about-tab" data-toggle="tab" href="#nav-about" role="tab" aria-controls="nav-about" aria-selected="false">Compras</a>
         </div>
-      </div>
+      </nav>
+      <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
+        <div class="tab-pane fade show active" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+          <form autocomplete="on" method="post" name="profile" id="profile">
+
+            <div id="content_profile_img">
+                <div id='img_profile'>
+                    <img ng-src='{{avatar}}'  ng-click="openDrop(userInfo.IDuser)">
+                </div>
+            </div>
+
+            <div class="mail">
+                <td>
+                  <input type='text' value='{{userInfo.email}}' readonly=''/>
+                </td>
+            </div>
+            <br/>
+
+            <div class="username">
+              <td>
+                <input type='text' value='{{userInfo.user}}' readonly=''/>
+              </td>
+            </div>
+            <br/>
+
+            <div class="nombre">
+                <td>
+                  <input required type="text" name="nombre" id="nombre" ng-model="userInfo.name" placeholder="Nombre" ng-minlength="3" ng-maxlength="20"/>
+                  <span class="text-danger" ng-show="profile.nombre.$error.required && (profile.nombre.$dirty || profile.nombre.$touched)">Introduzca un Nombre</span>
+                  <span class="text-danger" ng-show="profile.nombre.$error.minlength">Introduzca mas de 3 caracteres</span>
+                  <span class="text-danger" ng-show="profile.nombre.$error.maxlength">Introduzca menos de 20 caracteres</span>
+                </td>
+            </div>
+            <br/>
+
+            <div class="apellidos">
+                <td>
+                  <input required type="text" name="apellido" id="apellido" ng-model="userInfo.name" placeholder="apellido" ng-minlength="3" ng-maxlength="20"/>
+                  <span class="text-danger" ng-show="profile.apellido.$error.required && (profile.apellido.$dirty || profile.apellido.$touched)">Introduzca un apellido</span>
+                  <span class="text-danger" ng-show="profile.apellido.$error.minlength">Introduzca mas de 3 caracteres</span>
+                  <span class="text-danger" ng-show="profile.apellido.$error.maxlength">Introduzca menos de 20 caracteres</span>
+                </td>
+            </div>
+            <br/>
+
+            <div>
+              <tr>
+                <td>
+                  <input required type="text" name="fnac" id="fnac" ng-model="userInfo.fnac" datepickerp="" placeholder="Fecha de nacimiento"/>
+                </td>
+              </tr>
+            </div>
+
+            <br/>
+            <tr>
+            <td>Country: </td>
+              <td id="error_country">
+                <select name="country" id="country">
+                  <option selected>Select country</option>
+                </select>
+              </td>
+            </tr>
+
+            <tr>
+            <td>Province: </td>
+              <td id="error_province">
+                <select name="province" id="province">
+                  <option selected>Select province</option>
+                </select>
+              </td>
+            </tr>
+
+            <tr>
+            <td>City: </td>
+              <td id="error_city">
+                <select name="city" id="city">
+                  <option selected>Select city</option>
+                </select>
+              </td>
+            </tr>
+            
+            <div>
+              <td>
+                <div class="form-group" id="progress"></div>
+                <div id="bar"></div>
+                <div id="percent">0%</div>
+                <div class="msg"></div>
+                <br/>
+                <div id="dropzone" class="dropzone"></div>
+                <br/>
+              </td>
+            </div>
+
+            <div class="log-btn">
+              <button ng-click="sendPro(userInfo.user)"><i class="fa fa-check-square"></i>Sign Up</button>
+            </div>
+          </form>
+
+        </div>
+
+        <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+          Et et consectetur ipsum labore excepteur est proident excepteur ad velit occaecat qui minim occaecat veniam. Fugiat veniam incididunt anim aliqua enim pariatur veniam sunt est aute sit dolor anim. Velit non irure adipisicing aliqua ullamco irure incididunt irure non esse consectetur nostrud minim non minim occaecat. Amet duis do nisi duis veniam non est eiusmod tempor incididunt tempor dolor ipsum in qui sit. Exercitation mollit sit culpa nisi culpa non adipisicing reprehenderit do dolore. Duis reprehenderit occaecat anim ullamco ad duis occaecat ex.
+        </div>
+        <div class="tab-pane fade" id="nav-about" role="tabpanel" aria-labelledby="nav-about-tab">
+          Et et consectetur ipsum labore excepteur est proident excepteur ad velit occaecat qui minim occaecat veniam. Fugiat veniam incididunt anim aliqua enim pariatur veniam sunt est aute sit dolor anim. Velit non irure adipisicing aliqua ullamco irure incididunt irure non esse consectetur nostrud minim non minim occaecat. Amet duis do nisi duis veniam non est eiusmod tempor incididunt tempor dolor ipsum in qui sit. Exercitation mollit sit culpa nisi culpa non adipisicing reprehenderit do dolore. Duis reprehenderit occaecat anim ullamco ad duis occaecat ex.
+        </div>
+      </div> 
+    </div>
+  </div>
 </div>
+
+<button ng-click="logoutB()">Cerrar sesion</button>

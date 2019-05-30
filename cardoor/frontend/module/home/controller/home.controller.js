@@ -32,4 +32,8 @@ cardoor.controller('mainCtrl', function($scope, marcas, modelos, services) {
     $scope.open = function (chip) {
         CommonService.openModal(chip,'home','details_list');
     };
+
+    cardoor.controller('menuCtrl', function(loginService) {
+        loginService.login();
+    });
 });

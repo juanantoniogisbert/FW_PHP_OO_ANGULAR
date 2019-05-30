@@ -1,5 +1,5 @@
-<!-- <div ng-controller="menuCtrl"> -->
-<div id="alertbanner" ng-show="bannerV"><a  ng-class='bannerClass'>{{bannerText}}</a></div>
+<div>
+<!-- <div id="alertbanner" ng-show="bannerV"><a  ng-class='bannerClass'>{{bannerText}}</a></div> -->
     <header id="header">
         <div id="header-bottom">
             <div class="container">
@@ -9,16 +9,17 @@
                             <img src="cardoor/frontend/assets/img/logo.png">
                         </a>
                     </div>
-                    <nav class="mainmenu alignright">
+                    <nav class="mainmenu alignright" ng-controller="menuCtrl">
                         <ul>
                             <li class="active"><a href="#/">Home</a></li>
                             <li><a href="#/contact">Contact</a></li>
                             <li><a href="#/shop">Shop</a></li>
-                            <li><a href="#/login">Login</a></li>
-                            <li><a href="#/profile" ng-show="profileV">Profile</a></li>
+                            <li><a href="#/login" ng-show="login_V">Login</a></li>
+                            <li><a href="#/profile" ng-show="profile_V">Profile</a></li>
                         </ul>
                     </nav>
                 </div>
             </div>
         </div>
     </header>
+</div>

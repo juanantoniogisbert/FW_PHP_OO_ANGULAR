@@ -32,7 +32,7 @@
 			$info_data = json_decode($_POST['total_data'],true);
 			$response = validate_data($info_data,'login');
 			if ($response['result'] === true) {
-				$data['token_valid'] = loadModel(MODEL_LOGIN,'login_model','token_user', 'update_token',$info_data['lusername']);
+				$data = loadModel(MODEL_LOGIN,'login_model','token_user',$info_data['lusername']);
 				$data = $data[0];
 				$data['success'] = true;
 				echo json_encode($data);
@@ -85,9 +85,82 @@
 			exit;
 		}
 
-		function datasocial(){
-			$data = data_social_user();
-			echo json_encode($data);
-			exit;
+		function print_user(){
+			$dogs = array();
+			$result = loadModel(MODEL_LOGIN,'login_model','print_user',$_GET['param']);
+			// $result['dog'] = loadModel(MODEL_LOGIN,'login_model','print_dog',$result[0]['IDuser']);
+			// $chips = loadModel(MODEL_LOGIN,'login_model','print_adoption',$result[0]['IDuser']);
+			// foreach ($chips as $value) {
+			// 	$dog = loadModel(MODEL_LOGIN,'login_model','print_dog',$value['dog']);
+			// 	array_push($dogs, $dog[0]);
+			// }
+			$result['adoptions'] = $dogs;
+			echo json_encode($result);
+		}
+
+		function datasocial() {
+			$hola = data_social_user();
+			$data = json_decode(json_encode($hola), true);
+			$id = explode("|", $data[sub]);
+
+			$red = $id[0];
+			$id = $id[1];
+			$array = exist_user('S_'.$data[nickname]);
+			$_SESSION['avatar']=$data['picture'];
+			if(!$array) {
+				if($red === "github") {
+					$arrArgument = array(
+						'id'=> $id,
+						'email'=>$data['name'],
+						'user'=>'S_'.$data['nickname'],
+						'avatar'=>$data['picture']
+					);
+					$result = loadModel(MODEL_LOGIN,'login_model','insert_social',$arrArgument);
+					$tokenlog = loadModel(MODEL_LOGIN,'login_model','token_user','S_'.$data[nickname]);
+					$url = SITE_PATH_B . "#/home/$tokenlog";
+					redirect($url);
+				}else{
+					$arrArgument = array(
+						'id'=> $id,
+						'email'=>$data['name'],
+						'user'=>$data['nickname'].'@gmail.com',
+						'avatar'=>$data['picture']
+					);
+					$result = loadModel(MODEL_LOGIN,'login_model','insert_social',$arrArgument);
+					$tokenlog = loadModel(MODEL_LOGIN,'login_model','token_user','S_'.$data[nickname]);
+					$url = SITE_PATH_B . "#/home/$tokenlog";
+					redirect($url);
+				}
+			}else{
+				$tokenlog = loadModel(MODEL_LOGIN,'login_model','token_user','S_'.$data[nickname]);
+				$tokenlog = $tokenlog[0][tokenlog];
+				$caca =  $tokenlog;
+				$url = SITE_PATH_B . "#/home/$caca";
+				redirect($url);
+				
+			}
+		}
+
+		function user_log(){
+			$result = loadModel(MODEL_LOGIN,'login_model','userType',$_GET['param']);
+			if ($result) {
+				echo json_encode($result[0]);
+			}else{
+				echo json_encode(false);
+			}
+		}
+
+		function change_profile(){
+			$prof_data = json_decode($_POST['prof_data'],true);
+			$result = validate_data($prof_data,'uprofile');
+			if ($result['result']) {
+				$result = loadModel(MODEL_LOGIN,'login_model','modify_user',$prof_data);
+				$jsondata['success'] = $result;
+				echo json_encode($jsondata);
+			}else{
+				$jsondata['success'] = false;
+		 		$jsondata['error'] = $result['error'];
+				echo json_encode($jsondata);	
+			}
 		}
     }

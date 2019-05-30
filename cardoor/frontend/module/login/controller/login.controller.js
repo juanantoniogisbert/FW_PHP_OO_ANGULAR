@@ -33,15 +33,16 @@ cardoor.controller('loginCtrl', function($scope, services, toastr, $timeout, loc
 	$scope.submitLogin = function(){
 		services.put('login','validate_login',{'total_data':JSON.stringify({'lusername':$scope.login.lusername,'lpasswd':$scope.login.lpasswd})})
 		.then(function (response) {
+			console.log(response);
 			if (response.success) {
-					localstorageService.setUsers(response.tokenlog);
+				localstorageService.setUsers(response.tokenlog);
 					toastr.success('Inicio de sesion correcto', 'Perfecto',{
                     closeButton: true
                 });
                 $timeout( function(){
                 	loginService.login();
-		            location.href = '.';
-		        }, 3000 );
+		            location.href = '#/';
+		        }, 1500 );
 			}else{
 				if (response.error.lusername) {
 					toastr.error(response.error.lusername, 'Error',{
@@ -146,9 +147,9 @@ cardoor.controller('profileCtrl', function($scope, services, toastr, loginServic
         }, 2000 );
 	}
 
-	$scope.editProfile = function (user) {
-		services.put('login','update_profile',
-		{'prof_data':JSON.stringify({'pname':$scope.userInfo.name,'psurname':$scope.userInfo.surname,'pbirthday':$scope.userInfo.birthday,'user':user})})
+	$scope.sendPro = function (user) {
+		services.put('login','change_profile',
+		{'prof_data':JSON.stringify({'nombreP':$scope.userInfo.name,'apellidoP':$scope.userInfo.surname,'fnacP':$scope.userInfo.birthday,'user':user})})
 		.then(function (response) {
 			if (response.success) {
 				toastr.success('Cambios guardados correctamente', 'Perfecto',{
@@ -158,8 +159,8 @@ cardoor.controller('profileCtrl', function($scope, services, toastr, loginServic
 				$scope.eprofV = false;
 				$scope.cprofileV = false;
 			}else{
-				if (response.error.pbirthday) {
-					toastr.error(response.error.pbirthday, 'Error',{
+				if (response.error.fnacP) {
+					toastr.error(response.error.fnacP, 'Error',{
 	                	closeButton: true
 	            	});
 				}else{
@@ -170,59 +171,4 @@ cardoor.controller('profileCtrl', function($scope, services, toastr, loginServic
 			}
 		});
     };
-    
-	// $scope.open = function (chip) {
-    //     CommonService.openModal(chip,'login','details_list');
-    // };
-    
-    // $scope.openDrop = function (user) {
-    //     var modalInstance = $uibModal.open({
-	//         animation: 'true',
-	//         templateUrl: 'frontend/modules/login/view/dropModal.view.html',
-	//         controller: 'dropModalCtrl',
-	//         windowClass : 'show',
-	//         size: "lg",
-	//         resolve: {
-    //                iduser: function () {
-    //                     return user;
-    //                 }
-    //             }
-	//     });
-    // };
-    
-    // $scope.concealDog = function (chip) {
-    // 	services.put('login','conceal_dog',{'chip':chip}).then(function (response) {
-    // 		if (response === '1') {
-	// 			toastr.success('Perro ocultado correctamente', 'Correcto',{
-    //             	closeButton: true
-    //         	});
-    //         	$timeout( function(){
-	// 	            location.href = '#/';
-	// 	            location.href = '#/profile';
-	// 	        }, 1500 );
-	// 		}else{
-	// 			toastr.error('Error', 'Error',{
-    //             	closeButton: true
-    //         	});
-	// 		}
-    // 	});
-    // };
-    
-    // $scope.visibleDog = function (chip) {
-    // 	services.put('login','visible_dog',{'chip':chip}).then(function (response) {
-    // 		if (response === '1') {
-	// 			toastr.success('Perro visible', 'Correcto',{
-    //             	closeButton: true
-    //         	});
-    //         	$timeout( function(){
-	// 	            location.href = '#/';
-	// 	            location.href = '#/profile';
-	// 	        }, 1500 );
-	// 		}else{
-	// 			toastr.error('Error', 'Error',{
-    //             	closeButton: true
-    //         	});
-	// 		}
-    // 	});
-    // };
 });

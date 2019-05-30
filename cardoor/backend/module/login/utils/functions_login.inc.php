@@ -85,31 +85,31 @@
 			
 		}elseif($value === 'uprofile'){
 			$filter = array(
-		        'pname' => array(
+		        'nombreP' => array(
 		            'filter' => FILTER_VALIDATE_REGEXP,
 		            'options' => array('regexp' => '/[a-zA-z]{3,21}/')
 		        ),
-		        'psurname' => array(
+		        'apellidoP' => array(
 		            'filter' => FILTER_VALIDATE_REGEXP,
 		            'options' => array('regexp' => '/[a-zA-z ]{3,21}/')
 		        ),
-		        'pbirthday' => array(
+		        'fnacP' => array(
 		            'filter' => FILTER_VALIDATE_REGEXP,
 		            'options' => array('regexp' => '/^[0-9]{1,2}\/[0-9]{1,2}\/[0-9]{4}$/')
 		        ),
 		    );
 		    $result = filter_var_array($data, $filter);
 		    if ($result != null && $result){
-		        if(!$result['pname']){
-		            $error['pname'] = "El nombre tiene que estar entre 2 y 20 caracteres";
+		        if(!$result['nombreP']){
+		            $error['nombreP'] = "El nombre tiene que estar entre 2 y 20 caracteres";
 		            $valid = false;
 		        }
-		        if(!$result['psurname']){
-		            $error['psurname'] = "El apellido tiene que estar entre 2 y 20 caracteres";
+		        if(!$result['apellidoP']){
+		            $error['apellidoP'] = "El apellido tiene que estar entre 2 y 20 caracteres";
 		            $valid = false;
 		        }
-		        if(validate_birth($result['pbirthday'])){
-		            $error['pbirthday'] = "Tienes que ser mayor de 16 años";
+		        if(validate_birth($result['fnacP'])){
+		            $error['fnacP'] = "Tienes que ser mayor de 18 años";
 		            $valid = false;
 		        }
 		    } else {
@@ -224,8 +224,8 @@
 		return $userInfo;
 	}
 
+	require_once "JWT.php";
 	function JWT_encode($user){
-		require_once "JWT.php";
 
 		$header = '{"typ":"JWT", "alg":"HS256"}';
 		$secret = 'hamirezyclarinwinfornite';

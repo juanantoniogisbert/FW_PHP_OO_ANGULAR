@@ -19,13 +19,9 @@
 	    public function insert_userp_BLL($arrArgument){
 	    	return $this->dao->insert_user_page($this->db,$arrArgument);
 		}
-
-		public function rid_social_BLL($arrArgument){
-			return $this->dao->select_rid_social($this->db,$arrArgument);
-		}
 		
 		public function token_user_BLL($arrArgument){
-			$this->dao->update_token($this->db,$arrArgument);
+			// $this->dao->update_token($this->db,$arrArgument);
 			return $this->dao->select_token($this->db,$arrArgument);
 		}
 
@@ -42,6 +38,21 @@
 
 		public function update_pass_BLL($arrArgument){
 			return $this->dao->update_password($this->db,$arrArgument);
-		  }
+		}
 
+		public function print_user_BLL($arrArgument){
+			return $this->dao->select_print_user($this->db,$arrArgument);
+		}
+
+		public function insert_social_BLL($arrArgument){
+            return $this->dao->insert_user_social($this->db,$arrArgument);
+		}
+		
+		public function userType_BLL($arrArgument){
+			return $this->dao->select_userType($this->db,$arrArgument);
+		}
+
+		public function modify_user_BLL($arrArgument){
+			return $this->dao->select_modify_user($this->db,$arrArgument);
+		  }
     }

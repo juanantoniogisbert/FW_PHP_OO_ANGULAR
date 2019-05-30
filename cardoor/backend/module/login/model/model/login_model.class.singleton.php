@@ -17,10 +17,6 @@
         public function insert_userp($arrArgument){
             return $this->bll->insert_userp_BLL($arrArgument);
         }
-        
-        public function rid_social($arrArgument){
-            return $this->bll->rid_social_BLL($arrArgument);
-        }
 
         public function data_social($arrArgument){
             return $this->bll->data_social_BLL($arrArgument);
@@ -44,5 +40,21 @@
 
         public function update_pass($arrArgument){
             return $this->bll->update_pass_BLL($arrArgument);
+        }
+
+        public function print_user($arrArgument){
+            return $this->bll->print_user_BLL($arrArgument);
+        }
+
+        public function insert_social($arrArgument){
+            return $this->bll->insert_social_BLL($arrArgument);
+        }
+
+        public function userType($arrArgument){
+            return $this->bll->userType_BLL($arrArgument);
+        }
+
+        public function modify_user($arrArgument){
+            return $this->bll->modify_user_BLL($arrArgument);
         }
     }

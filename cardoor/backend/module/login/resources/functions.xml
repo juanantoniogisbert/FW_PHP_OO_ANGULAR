@@ -28,4 +28,16 @@
         <name>u_passwd</name>
         <uri>u_passwd</uri>
     </function>
+    <function>
+        <name>print_user</name>
+        <uri>print_user</uri>
+    </function>
+    <function>
+        <name>user_log</name>
+        <uri>user_log</uri>
+    </function>
+    <function>
+        <name>change_profile</name>
+        <uri>change_profile</uri>
+    </function>
 </functions>
