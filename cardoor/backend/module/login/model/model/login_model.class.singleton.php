@@ -57,4 +57,20 @@
         public function modify_user($arrArgument){
             return $this->bll->modify_user_BLL($arrArgument);
         }
+
+        public function get_paises($url) {
+            return $this->bll->get_paises_BLL($url);
+        }
+
+        public function get_provincias($url) {
+            return $this->bll->get_provincias_BLL($url);
+        }
+
+        public function get_poblaciones($url) {
+            return $this->bll->get_poblaciones_BLL($url);
+        }
+
+        public function u_avatar($arrArgument){
+            return $this->bll->u_avatar_BLL($arrArgument);
+        }
     }

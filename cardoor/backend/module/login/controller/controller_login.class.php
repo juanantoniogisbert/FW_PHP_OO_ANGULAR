@@ -153,14 +153,116 @@
 		function change_profile(){
 			$prof_data = json_decode($_POST['prof_data'],true);
 			$result = validate_data($prof_data,'uprofile');
+			$foto = "http://localhost/www/FW_PHP_OO_ANGULAR/".substr($_SESSION['avatar']['data'],67);
 			if ($result['result']) {
-				$result = loadModel(MODEL_LOGIN,'login_model','modify_user',$prof_data);
+				$arrArgument = array(
+					'nombreP'=> $prof_data['nombreP'],
+					'apellidoP'=>$prof_data['apellidoP'],
+					'user'=>$prof_data['user'],
+					'paisP'=>$prof_data['paisP'],
+					'porvinP'=>$prof_data['porvinP'],
+					'poblaP'=>$prof_data['poblaP'],
+					'avatar'=>$foto
+				);
+				echo json_encode($arrArgument);
+				exit;
+				$result = loadModel(MODEL_LOGIN,'login_model','modify_user',$arrArgument);
 				$jsondata['success'] = $result;
 				echo json_encode($jsondata);
 			}else{
 				$jsondata['success'] = false;
 		 		$jsondata['error'] = $result['error'];
 				echo json_encode($jsondata);	
+			}
+		}
+
+		function upload_avatar(){
+			$res_avatar = upload_files();
+			$_SESSION['avatar'] = $res_avatar;
+			echo json_encode($res_avatar);
+	  	}
+
+	  	function delete_avatar(){
+			unset($_SESSION['avatar']);
+			$result = remove_files();
+			if($result === true){
+				echo json_encode(array("res" => true));
+			}else{
+				echo json_encode(array("res" => false));
+			}
+		}
+		  
+		function change_avatar(){
+        	if (isset($_SESSION['avatar'])) {
+				$url['data'] = substr($_SESSION['avatar']['data'],13);
+        		$url['user'] = $_POST['auser'];
+        		unset($_SESSION['avatar']);
+        		$result = loadModel(MODEL_LOGIN,'login_model','u_avatar',$url);
+        		echo $result;
+        	}
+        }
+
+		function load_pais_p() {
+			if ((isset($_GET["param"])) && ($_GET["param"] == true)) {
+				$json = array();
+				$url = 'http://localhost/www/FW_PHP_OO_ANGULAR/cardoor/backend/resources/ListOfCountryNamesByName.json';
+				
+				try {
+					$json = loadModel(MODEL_LOGIN, 'login_model', 'get_paises', $url);
+				} catch (Exception $e) {
+					$json = false;
+				}
+
+				if ($json) {
+					echo $json;
+					exit;
+				} else {
+					$json = "error";
+					echo $json;
+					exit;
+				}
+			}
+		}
+
+		function load_provincias() {
+			// if ((isset($_GET["param"])) && ($_GET["param"] == true)) {
+				$jsondata = array();
+				$json = array();
+
+					$json = loadModel(MODEL_LOGIN, 'login_model', 'get_provincias');
+	
+				if ($json) {
+					$jsondata["provincias"] = $json;
+					echo json_encode($jsondata);
+					exit;
+				} else {
+					$jsondata["provincias"] = "error";
+					echo json_encode($jsondata);
+					exit;
+				}
+			// }
+		}
+
+		function load_poblaciones() {
+			if (isset($_POST['idPoblac'])) {
+				$jsondata = array();
+				$json = array();
+	
+				try {
+					$json = loadModel(MODEL_LOGIN, 'login_model', 'get_poblaciones', $_POST['idPoblac']);
+				} catch (Exception $e) {
+					$json = false;
+				}
+	
+				if ($json) {
+					$jsondata["poblaciones"] = $json;
+					echo json_encode($jsondata);
+					exit;
+				} else {
+					$jsondata["poblaciones"] = $_POST['idPoblac'];
+					echo json_encode($jsondata);
+					exit;
+				}
 			}
 		}
     }

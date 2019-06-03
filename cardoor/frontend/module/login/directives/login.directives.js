@@ -1,16 +1,17 @@
-cardoor.directive('datepickerp', function () {
+cardoor.directive('datepicker', function () {
     return {
         require: 'ngModel',
-        link: function (scope, el, attr, ngModel) {
+        link: function (scope, el, ngModel) {
             $(el).datepicker({
-                dateFormat: 'mm/dd/yy',
+                dateFormat: 'dd/mm/yy',
                 changeMonth:true,
                 changeYear:true,
                 yearRange:"1900:2020",
                 maxDate:0,
-                onSelect: function (dateText) {
+                onSelect: function (text) {
                     scope.$apply(function () {
-                        ngModel.$setViewValue(dateText);
+                        ngModel.$setViewValue(text);
+                        // ngModel.$render();
                     });
                 }
             });

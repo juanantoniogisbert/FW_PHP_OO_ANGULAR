@@ -83,13 +83,75 @@
             return $db->listar($stmt);
         }
 
-        public function select_update_user($db,$arrArgument) {
+        public function update_user($db,$arrArgument) {
             $user = $arrArgument['user'];
-            $pname = $arrArgument['pname'];
-            $psurname = $arrArgument['psurname'];
-            $pbirthday = $arrArgument['pbirthday'];
-            $sql = "UPDATE users SET name = '$pname',surname = '$psurname',birthday = '$pbirthday' WHERE user = '$user'";
+            $nombreP = $arrArgument['nombreP'];
+            $apellidoP = $arrArgument['apellidoP'];
+            // $fnacP = $arrArgument['fnacP'];
+            $paisP = $arrArgument['paisP'];
+            $porvinP = $arrArgument['porvinP'];
+            $poblaP = $arrArgument['poblaP'];
+            $avatar = $arrArgument['avatar'];
+            $sql = "UPDATE users SET nombre = '$nombreP', apellido = '$apellidoP', pais = '$paisP', provincia = '$porvinP', ciudad = '$poblaP', avatar = '$avatar' WHERE user = '$user'";
             return $db->ejecutar($sql);
+        }
+
+        public function update_avatar($db,$arrArgument) {
+            $url = $arrArgument['data'];
+            $user = $arrArgument['user'];
+            $sql = "UPDATE users SET avatar = '$url' WHERE user = '$user'";
+            return $db->ejecutar($sql);
+        }
+
+        public function obtain_paises($url){
+            $ch = curl_init();
+            curl_setopt ($ch, CURLOPT_URL, $url);
+            curl_setopt ($ch, CURLOPT_RETURNTRANSFER, 1);
+            curl_setopt ($ch, CURLOPT_CONNECTTIMEOUT, 5);
+            $file_contents = curl_exec($ch);
+          
+            $httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+            curl_close($ch);
+            $accepted_response = array(200, 301, 302);
+            if(!in_array($httpcode, $accepted_response)){
+              return FALSE;
+            }else{
+              return ($file_contents) ? $file_contents : FALSE;
+            }
+        }
+
+        public function obtain_provincias() {
+            $json = array();
+            $tmp = array();
+    
+            $provincias = simplexml_load_file(RESOURCES . "provinciasypoblaciones.xml");
+            $result = $provincias->xpath("/lista/provincia/nombre | /lista/provincia/@id");
+            for ($i = 0; $i < count($result); $i+=2) {
+                $e = $i + 1;
+                $provincia = $result[$e];
+                $tmp = array(
+                    'id' => (string) $result[$i], 'nombre' => (string) $provincia
+                );
+                array_push($json, $tmp);
+            }
+            return $json;
+        }
+
+        public function obtain_poblaciones($arrArgument) {
+            $json = array();
+            $tmp = array();
+    
+            $filter = (string) $arrArgument;
+            $xml = simplexml_load_file(RESOURCES . 'provinciasypoblaciones.xml');
+            $result = $xml->xpath("/lista/provincia[@id='$filter']/localidades");
+    
+            for ($i = 0; $i < count($result[0]); $i++) {
+                $tmp = array(
+                    'poblacion' => (string) $result[0]->localidad[$i]
+                );
+                array_push($json, $tmp);
+            }
+            return $json;
         }
 
     }

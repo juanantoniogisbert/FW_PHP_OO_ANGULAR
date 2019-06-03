@@ -9,7 +9,6 @@ function ($location, $rootScope, services,localstorageService) {
         var token = localstorageService.getUsers();
         if (token) {
             services.get('login', 'user_log',token).then(function (response) {
-                console.log(response);
                 if (response.type === "user") {
                     $rootScope.login_V = false;
                     $rootScope.profile_V = true;

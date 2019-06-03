@@ -40,4 +40,28 @@
         <name>change_profile</name>
         <uri>change_profile</uri>
     </function>
+    <function>
+        <name>load_pais_p</name>
+        <uri>load_pais_p</uri>
+    </function>
+    <function>
+        <name>load_provincias</name>
+        <uri>load_provincias</uri>
+    </function>
+    <function>
+        <name>load_poblaciones</name>
+        <uri>load_poblaciones</uri>
+    </function>
+    <function>
+        <name>upload_avatar</name>
+        <uri>upload_avatar</uri>
+    </function>
+    <function>
+        <name>delete_avatar</name>
+        <uri>delete_avatar</uri>
+    </function>
+    <function>
+        <name>change_avatar</name>
+        <uri>change_avatar</uri>
+    </function>
 </functions>

@@ -98,8 +98,8 @@
                                 <img ng-src="http://localhost/www/FW_PHP_OO_ANGULAR/cardoor/frontend/{{data.imagen}}">
                                 <div class="driver-mem-info">
                                     <div class="driver-mem-sicons">
-                                        <a id="+list.id+" class="btn-details"><i class="fa fa-plus"></i></a>
-                                        <a id="+list.id+" class="addToCart" ><i class="fa fa-shopping-cart"></i></a>
+                                        <a ing-click="open(data.id)" class="btn-details"><i class="fa fa-plus"></i></a>
+                                        <a id="+list.id+" class="addToCart" ><i class="fa fa-heart"></i></a>
                                     </div>
                                     <h4 id="marca">{{data.marca}}<span id="modelo">{{data.modelo}}</span></h4>
                                 </div>

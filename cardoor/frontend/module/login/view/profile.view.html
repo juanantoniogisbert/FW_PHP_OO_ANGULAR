@@ -22,9 +22,11 @@
 
             <div id="content_profile_img">
                 <div id='img_profile'>
-                    <img ng-src='{{avatar}}'  ng-click="openDrop(userInfo.IDuser)">
+                    <img ng-src='{{userInfo.avatar}}'  value='{{userInfo.user}}'>
                 </div>
             </div>
+            
+            <br>
 
             <div class="mail">
                 <td>
@@ -42,7 +44,7 @@
 
             <div class="nombre">
                 <td>
-                  <input required type="text" name="nombre" id="nombre" ng-model="userInfo.name" placeholder="Nombre" ng-minlength="3" ng-maxlength="20"/>
+                  <input required type="text" name="nombre" id="nombre" ng-model="userInfo.nombre" placeholder="Nombre" ng-minlength="3" ng-maxlength="20"/>
                   <span class="text-danger" ng-show="profile.nombre.$error.required && (profile.nombre.$dirty || profile.nombre.$touched)">Introduzca un Nombre</span>
                   <span class="text-danger" ng-show="profile.nombre.$error.minlength">Introduzca mas de 3 caracteres</span>
                   <span class="text-danger" ng-show="profile.nombre.$error.maxlength">Introduzca menos de 20 caracteres</span>
@@ -50,9 +52,9 @@
             </div>
             <br/>
 
-            <div class="apellidos">
+            <div class="apellido">
                 <td>
-                  <input required type="text" name="apellido" id="apellido" ng-model="userInfo.name" placeholder="apellido" ng-minlength="3" ng-maxlength="20"/>
+                  <input required type="text" name="apellido" id="apellido" ng-model="userInfo.apellido" placeholder="apellido" ng-minlength="3" ng-maxlength="20"/>
                   <span class="text-danger" ng-show="profile.apellido.$error.required && (profile.apellido.$dirty || profile.apellido.$touched)">Introduzca un apellido</span>
                   <span class="text-danger" ng-show="profile.apellido.$error.minlength">Introduzca mas de 3 caracteres</span>
                   <span class="text-danger" ng-show="profile.apellido.$error.maxlength">Introduzca menos de 20 caracteres</span>
@@ -60,42 +62,47 @@
             </div>
             <br/>
 
-            <div>
+            <!-- <div>
               <tr>
                 <td>
-                  <input required type="text" name="fnac" id="fnac" ng-model="userInfo.fnac" datepickerp="" placeholder="Fecha de nacimiento"/>
+                  <input required type="text" name="fnac" id="fnac" ng-model="userInfo.fnac" datepicker="" placeholder="Fecha de nacimiento"/>
                 </td>
               </tr>
-            </div>
+            </div> -->
 
             <br/>
             <tr>
             <td>Country: </td>
-              <td id="error_country">
-                <select name="country" id="country">
-                  <option selected>Select country</option>
+              <td>
+                <select name="pais" class="form-control" ng-model="login.pais" ng-options="item.sName for item in paises" 
+                placeholder="Pais" id="pais" ng-change="resetPais()">
+                  <option value="">Seleccione un pais</option>
                 </select>
+                <span class="text-danger" ng-show="AlertMessage" ng-model="login.pais_error">{{login.pais_error}}</span>
               </td>
             </tr>
 
             <tr>
             <td>Province: </td>
-              <td id="error_province">
-                <select name="province" id="province">
-                  <option selected>Select province</option>
+              <td>
+                <select name="provincia" class="form-control" id="provincia"  ng-options="item.nombre for item in provincias"
+                ng-model="login.provincia" placeholder="Provincia" ng-change="resetValues()" ng-disabled="login.pais.sISOCode!='ES'">
+                    <option value="">Seleccione una provincia</option>
                 </select>
+                <span class="text-danger" ng-show="AlertMessage" ng-model="login.prov_error">{{login.prov_error}}</span>
               </td>
             </tr>
 
             <tr>
             <td>City: </td>
-              <td id="error_city">
-                <select name="city" id="city">
-                  <option selected>Select city</option>
+              <td>
+                <select type="text" class="form-control" name="poblacion" ng-model="login.poblacion" ng-options="item.poblacion for item in poblaciones"
+                placeholder="Poblacion" id="poblacion" ng-disabled="login.pais.sISOCode!='ES'">
+                    <option value="">Seleccione una ciudad</option>
                 </select>
+                <span class="text-danger" ng-show="AlertMessage" ng-model="login.pob_error">{{login.pob_error}}</span>
               </td>
             </tr>
-            
             <div>
               <td>
                 <div class="form-group" id="progress"></div>
@@ -103,13 +110,19 @@
                 <div id="percent">0%</div>
                 <div class="msg"></div>
                 <br/>
-                <div id="dropzone" class="dropzone"></div>
+                <button required id="dropzone" dropzone="dropzoneConfig" class="dropzone"></button>
                 <br/>
               </td>
             </div>
 
+            <!-- <button class="btn btn-primary" type="button" ng-click="saveAvatar()">Guardar Cambios</button> -->
+
             <div class="log-btn">
               <button ng-click="sendPro(userInfo.user)"><i class="fa fa-check-square"></i>Sign Up</button>
+            </div>
+
+            <div class="log-btnleft">
+              <button ng-click="logoutB()"><i class="fa fa-times-circle"></i>Cerrar sesion</button>
             </div>
           </form>
 
@@ -125,5 +138,3 @@
     </div>
   </div>
 </div>
-
-<button ng-click="logoutB()">Cerrar sesion</button>

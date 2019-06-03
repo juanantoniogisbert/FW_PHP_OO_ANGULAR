@@ -2988,6 +2988,16 @@ body,
 	font-weight: 700;
 }
 
+.log-btnleft button {
+	background-color: #fff;
+	border-color: #fff;
+	border-radius: 4px;
+	-webkit-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+	cursor: pointer;
+	font-weight: 700;
+}
+
 .log-btn button:hover {
 	background-color: #222;
 	border-color: #222;

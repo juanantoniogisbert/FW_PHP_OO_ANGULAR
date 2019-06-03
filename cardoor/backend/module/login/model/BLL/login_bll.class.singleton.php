@@ -53,6 +53,22 @@
 		}
 
 		public function modify_user_BLL($arrArgument){
-			return $this->dao->select_modify_user($this->db,$arrArgument);
-		  }
+			return $this->dao->update_user($this->db,$arrArgument);
+		}
+
+		public function get_paises_BLL($url) {
+            return $this->dao->obtain_paises($url);
+		}
+		
+		public function get_provincias_BLL($url) {
+            return $this->dao->obtain_provincias($url);
+		}
+		
+		public function get_poblaciones_BLL($url) {
+            return $this->dao->obtain_poblaciones($url);
+		}
+		
+		public function u_avatar_BLL($arrArgument){
+			return $this->dao->update_avatar($this->db,$arrArgument);
+		}
     }

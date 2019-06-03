@@ -45,26 +45,26 @@
         // });
 
         // Partner Carousel
-        $(".partner-content-wrap").owlCarousel({
-            loop: true,
-            margin: 15,
-            autoplay: true,
-            autoplayTimeout: 1500,
-            nav: false,
-            dots: false,
-            rtl: true,
-            responsive: {
-                0: {
-                    items: 1
-                },
-                600: {
-                    items: 3
-                },
-                1000: {
-                    items: 5
-                }
-            }
-        }); // Partner Carousel End
+        // $(".partner-content-wrap").owlCarousel({
+        //     loop: true,
+        //     margin: 15,
+        //     autoplay: true,
+        //     autoplayTimeout: 1500,
+        //     nav: false,
+        //     dots: false,
+        //     rtl: true,
+        //     responsive: {
+        //         0: {
+        //             items: 1
+        //         },
+        //         600: {
+        //             items: 3
+        //         },
+        //         1000: {
+        //             items: 5
+        //         }
+        //     }
+        // }); // Partner Carousel End
 
 
         // Funfact Count JS
@@ -248,12 +248,12 @@
 
     }); //Ready Function End
 
-    jQuery(window).load(function () {
-        jQuery('.preloader').fadeOut();
-        jQuery('.preloader-spinner').delay(350).fadeOut('slow');
-        jQuery('body').removeClass('loader-active');
-        jQuery(".popular-car-gird").isotope();
-    }); //window load End
+    // jQuery(window).load(function () {
+    //     jQuery('.preloader').fadeOut();
+    //     jQuery('.preloader-spinner').delay(350).fadeOut('slow');
+    //     jQuery('body').removeClass('loader-active');
+    //     jQuery(".popular-car-gird").isotope();
+    // }); //window load End
 
 
 }(jQuery));

@@ -33,7 +33,6 @@ cardoor.controller('loginCtrl', function($scope, services, toastr, $timeout, loc
 	$scope.submitLogin = function(){
 		services.put('login','validate_login',{'total_data':JSON.stringify({'lusername':$scope.login.lusername,'lpasswd':$scope.login.lpasswd})})
 		.then(function (response) {
-			console.log(response);
 			if (response.success) {
 				localstorageService.setUsers(response.tokenlog);
 					toastr.success('Inicio de sesion correcto', 'Perfecto',{
@@ -108,7 +107,7 @@ cardoor.controller('passwdChangeCtrl', function($scope, services, $route, toastr
 	}
 });
 
-cardoor.controller('profileCtrl', function($scope, services, toastr, loginService, $timeout, infoUser) {
+cardoor.controller('profileCtrl', function($scope, services, toastr, loginService, $timeout, infoUser, load_Pais_Prov_Poblac) {
 	$scope.sprofV = true;
 	$scope.eprofV = false;
 	$scope.cprofileV = false;
@@ -125,18 +124,7 @@ cardoor.controller('profileCtrl', function($scope, services, toastr, loginServic
 		$scope.eprofV = true;
 		$scope.cprofileV = false;
 	}
-	// $scope.showCdogs = function(){
-	// 	$scope.sprofV = false;
-	// 	$scope.eprofV = false;
-	// 	$scope.cprofileV = true;
-	// 	$scope.infoDogs = infoUser.dog;
-	// }
-	// $scope.showAdogs = function(){
-	// 	$scope.sprofV = false;
-	// 	$scope.eprofV = false;
-	// 	$scope.cprofileV = true;
-	// 	$scope.infoDogs = infoUser.adoptions;
-	// }
+
 	$scope.logoutB = function(){
 		loginService.logout();
 		toastr.success('', 'Cerrando Sesion',{
@@ -147,10 +135,119 @@ cardoor.controller('profileCtrl', function($scope, services, toastr, loginServic
         }, 2000 );
 	}
 
+	$scope.error = function() {
+        $scope.pais_error = "";
+        $scope.login.prov_error = "";
+        $scope.login.pob_error = "";
+    };
+
+	load_Pais_Prov_Poblac.load_pais()
+    .then(function (response) {
+        if(response.success){
+            $scope.paises = response.datas;
+        }else{
+            $scope.AlertMessage = true;
+            $scope.pais_error = "Error al recuperar la informacion de paises";
+            $timeout(function () {
+                $scope.pais_error = "";
+                $scope.AlertMessage = false;
+            }, 2000);
+        }
+	});
+	
+	$scope.resetPais = function () {
+        if ($scope.login.pais.sISOCode == 'ES') {
+            load_Pais_Prov_Poblac.loadProvincia()
+            .then(function (response) {
+                if(response.success){
+                    $scope.provincias = response.datas;
+                }else{
+                    $scope.AlertMessage = true;
+                    $scope.login.prov_error = "Error al recuperar la informacion de provincias";
+                    $timeout(function () {
+                        $scope.login.prov_error = "";
+                        $scope.AlertMessage = false;
+                    }, 2000);
+                }
+            });
+            $scope.poblaciones = null;
+        } /*else { //en ng-disabled
+            $scope.provincias = null;
+            $scope.poblaciones = null;
+        }*/
+	};
+
+
+    $scope.resetValues = function () {
+        var datos = {idPoblac: $scope.login.provincia.id};
+        load_Pais_Prov_Poblac.loadPoblacion(datos)
+        .then(function (response) {
+            if(response.success){
+                $scope.poblaciones = response.datas;
+            }else{
+                $scope.AlertMessage = true;
+                $scope.login.pob_error = "Error al recuperar la informacion de poblaciones";
+                $timeout(function () {
+                    $scope.login.pob_error = "";
+                    $scope.AlertMessage = false;
+                }, 2000);
+            }
+        });
+	};
+	
+	$scope.dropzoneConfig = {
+        'options': {
+            'url': 'cardoor/backend/index.php?module=login&function=upload_avatar',
+            addRemoveLinks: true,
+            maxFileSize: 1000,
+            dictResponseError: "Ha ocurrido un error en el server",
+            acceptedFiles: 'image/*,.jpeg,.jpg,.png,.gif,.JPEG,.JPG,.PNG,.GIF,.rar,application/pdf,.psd'
+        },
+        'eventHandlers': {
+            'sending': function (file, formData, xhr) {},
+            'success': function (file, response) {
+				response = JSON.parse(response);
+                if (response.result) {
+					toastr.success('Subida correctamente', 'Perfecto',{
+						closeButton: true
+					});
+                } else {
+                    $(".msg").addClass('msg_error').removeClass('msg_ok').text(response['error']);
+                    $('.msg').animate({'right': '300px'}, 300);
+                }
+            },
+            'removedfile': function (file, serverFileName) {
+                if (file.xhr.response) {
+                    $('.msg').text('').removeClass('msg_ok');
+                    $('.msg').text('').removeClass('msg_error');
+                    var data = jQuery.parseJSON(file.xhr.response);
+                    services.post("dogs", "delete_dog", JSON.stringify({'filename': data.data}));
+                }
+            }
+		}
+	};
+
+	$scope.saveAvatar = function () {
+		services.put('login','change_avatar',{'auser':infoUser.user}).then(function (response) {
+			console.log(infoUser.user);
+			if (response === '1') {
+				toastr.success('Cambios guardados correctamente', 'Perfecto',{
+                    closeButton: true
+                });
+                // $uibModalInstance.dismiss('cancel');
+                $timeout( function(){
+		            location.href = '#/';
+		            location.href = '#/profile';
+		        }, 1500 );
+			}
+		});
+	};
+
 	$scope.sendPro = function (user) {
 		services.put('login','change_profile',
-		{'prof_data':JSON.stringify({'nombreP':$scope.userInfo.name,'apellidoP':$scope.userInfo.surname,'fnacP':$scope.userInfo.birthday,'user':user})})
+		{'prof_data':JSON.stringify({'nombreP':$scope.userInfo.nombre,'apellidoP':$scope.userInfo.apellido,'paisP':$scope.login.pais,'porvinP':$scope.login.provincia,'poblaP':$scope.login.poblacion,'user':user})})
 		.then(function (response) {
+			console.log(response);
 			if (response.success) {
 				toastr.success('Cambios guardados correctamente', 'Perfecto',{
                     closeButton: true
@@ -159,16 +256,16 @@ cardoor.controller('profileCtrl', function($scope, services, toastr, loginServic
 				$scope.eprofV = false;
 				$scope.cprofileV = false;
 			}else{
-				if (response.error.fnacP) {
-					toastr.error(response.error.fnacP, 'Error',{
-	                	closeButton: true
-	            	});
-				}else{
-					toastr.error('Error', 'Error',{
-	                	closeButton: true
-	            	});
-				}
+				// if (response.error.fnacP) {
+				// 	toastr.error(response.error.fnacP, 'Error',{
+	            //     	closeButton: true
+	            // 	});
+				// }else{
+				// 	toastr.error('Error', 'Error',{
+	            //     	closeButton: true
+	            // 	});
+				// }
 			}
 		});
-    };
+	};
 });
