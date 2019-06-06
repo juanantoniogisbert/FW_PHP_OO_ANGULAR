@@ -89,9 +89,9 @@ function handlerFunction($module, $obj, $URI_function) {
     if (!$exist) {
         // die($URI_function . ' - Funci&oacute;n no encontrada');
         // require_once(VIEW_PATH_INC . "header.php");
-        require_once(VIEW_PATH_INC . "menu.view.html");
+        // require_once(VIEW_PATH_INC . "menu.view.html");
         showErrorPage(1, "", 'HTTP/1.0 400 Bad Request', 400);
-        require_once(VIEW_PATH_INC . "footer.view.html");
+        // require_once(VIEW_PATH_INC . "footer.view.html");
     } else {
         //$obj->$event();
         call_user_func(array($obj, $event));

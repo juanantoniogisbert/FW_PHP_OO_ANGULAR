@@ -18,4 +18,8 @@ class shop_model {
         return $this->bll->view_cars_shop_bll($arrArgument);
     }
 
+    public function select_like($arrArgument){
+        return $this->bll->select_like_BLL($arrArgument);
+    }
+
 }

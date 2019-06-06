@@ -86,16 +86,22 @@
 		}
 
 		function print_user(){
-			$dogs = array();
+			$car = array();
 			$result = loadModel(MODEL_LOGIN,'login_model','print_user',$_GET['param']);
-			// $result['dog'] = loadModel(MODEL_LOGIN,'login_model','print_dog',$result[0]['IDuser']);
-			// $chips = loadModel(MODEL_LOGIN,'login_model','print_adoption',$result[0]['IDuser']);
-			// foreach ($chips as $value) {
-			// 	$dog = loadModel(MODEL_LOGIN,'login_model','print_dog',$value['dog']);
-			// 	array_push($dogs, $dog[0]);
-			// }
-			$result['adoptions'] = $dogs;
 			echo json_encode($result);
+		}
+
+
+		function print_car() {
+			$car = array();
+			$result = loadModel(MODEL_LOGIN,'login_model','print_car',$_GET['param']);
+			echo json_encode($result);
+		}
+
+		function details_list(){
+			$json = array();
+		 	$json = loadModel(MODEL_LOGIN, "login_model", "obtain_data_details",$_GET['param']);
+		 	echo json_encode($json);
 		}
 
 		function datasocial() {
@@ -164,8 +170,6 @@
 					'poblaP'=>$prof_data['poblaP'],
 					'avatar'=>$foto
 				);
-				echo json_encode($arrArgument);
-				exit;
 				$result = loadModel(MODEL_LOGIN,'login_model','modify_user',$arrArgument);
 				$jsondata['success'] = $result;
 				echo json_encode($jsondata);

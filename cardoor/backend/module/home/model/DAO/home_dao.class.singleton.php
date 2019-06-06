@@ -70,4 +70,11 @@ class home_DAO {
     $sql = "UPDATE users SET activate = 1 WHERE token = '$arrArgument'";
     return $db->ejecutar($sql);
   }
+
+  public function select_data_details($db,$arrArgument) {
+    $sql = "SELECT * FROM coches WHERE id = '$arrArgument'";
+    $stmt = $db->ejecutar($sql);
+    return $db->listar($stmt);
+  }
+
 }

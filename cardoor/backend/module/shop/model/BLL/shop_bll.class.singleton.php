@@ -19,4 +19,10 @@ class shop_bll{
     public function view_cars_shop_bll($arrArgument){
       return $this->dao->select_cars_shop($this->db, $arrArgument);
     }
+
+    public function select_like_BLL($arrArgument){
+        $arrArgument2 = $this->dao->select_user($this->db,$arrArgument['token']);
+        return $this->dao->insert_like($this->db,$arrArgument2[0]['user'],$arrArgument["matricula"]);
+        // return $this->dao->update_value($this->db,$arrArgument["chip"]);
+    }
 }

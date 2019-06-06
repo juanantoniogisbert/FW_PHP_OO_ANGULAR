@@ -24,4 +24,8 @@
         <name>active_user</name>
         <uri>active_user</uri>
     </function>
+    <function>
+        <name>list_details</name>
+        <uri>list_details</uri>
+    </function>
 </functions>

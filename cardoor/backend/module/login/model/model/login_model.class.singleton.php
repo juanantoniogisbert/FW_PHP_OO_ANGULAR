@@ -73,4 +73,16 @@
         public function u_avatar($arrArgument){
             return $this->bll->u_avatar_BLL($arrArgument);
         }
+
+        public function print_like($arrArgument){
+            return $this->bll->print_like_BLL($arrArgument);
+        }
+
+        public function print_car($arrArgument){
+            return $this->bll->print_car_BLL($arrArgument);
+        }
+
+        public function obtain_data_details($arrArgument){
+            return $this->bll->obtain_data_details_BLL($arrArgument);
+        }
     }

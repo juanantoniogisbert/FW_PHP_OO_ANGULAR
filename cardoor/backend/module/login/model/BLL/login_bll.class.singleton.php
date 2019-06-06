@@ -1,23 +1,23 @@
 <?php
 	class login_bll{
-	    private $dao;
-	    private $db;
-	    static $_instance;
+	   	private $dao;
+	   	private $db;
+		static $_instance;
 
-	    private function __construct() {
-	        $this->dao = login_dao::getInstance();
-	        $this->db = db::getInstance();
-	    }
+		private function __construct() {
+			$this->dao = login_dao::getInstance();
+			$this->db = db::getInstance();
+		}
 
-	    public static function getInstance() {
-	        if (!(self::$_instance instanceof self)){
-	            self::$_instance = new self();
-	        }
-	        return self::$_instance;
-	    }
-	    
-	    public function insert_userp_BLL($arrArgument){
-	    	return $this->dao->insert_user_page($this->db,$arrArgument);
+		public static function getInstance() {
+			if (!(self::$_instance instanceof self)){
+				self::$_instance = new self();
+			}
+			return self::$_instance;
+		}
+		
+		public function insert_userp_BLL($arrArgument){
+			return $this->dao->insert_user_page($this->db,$arrArgument);
 		}
 		
 		public function token_user_BLL($arrArgument){
@@ -45,7 +45,7 @@
 		}
 
 		public function insert_social_BLL($arrArgument){
-            return $this->dao->insert_user_social($this->db,$arrArgument);
+		return $this->dao->insert_user_social($this->db,$arrArgument);
 		}
 		
 		public function userType_BLL($arrArgument){
@@ -57,18 +57,30 @@
 		}
 
 		public function get_paises_BLL($url) {
-            return $this->dao->obtain_paises($url);
+		return $this->dao->obtain_paises($url);
 		}
 		
 		public function get_provincias_BLL($url) {
-            return $this->dao->obtain_provincias($url);
+		return $this->dao->obtain_provincias($url);
 		}
 		
 		public function get_poblaciones_BLL($url) {
-            return $this->dao->obtain_poblaciones($url);
+		return $this->dao->obtain_poblaciones($url);
 		}
 		
 		public function u_avatar_BLL($arrArgument){
 			return $this->dao->update_avatar($this->db,$arrArgument);
+		}
+
+		public function print_like_BLL($arrArgument){
+			return $this->dao->select_like($this->db,$arrArgument);
+		}
+
+		public function print_car_BLL($arrArgument){
+			return $this->dao->select_car($this->db,$arrArgument);
+		}
+
+		public function obtain_data_details_BLL($arrArgument){
+			return $this->dao->select_data_details($this->db,$arrArgument);
 		}
     }

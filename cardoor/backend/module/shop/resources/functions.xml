@@ -4,4 +4,8 @@
         <name>view_cars_shop</name>
         <uri>view_cars_shop</uri>
     </function>
+    <function>
+        <name>like_car</name>
+        <uri>like_car</uri>
+    </function>
 </functions>

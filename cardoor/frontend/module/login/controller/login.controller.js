@@ -107,7 +107,19 @@ cardoor.controller('passwdChangeCtrl', function($scope, services, $route, toastr
 	}
 });
 
-cardoor.controller('profileCtrl', function($scope, services, toastr, loginService, $timeout, infoUser, load_Pais_Prov_Poblac) {
+cardoor.controller('profileCtrl', function($scope, services, toastr, loginService, $timeout, infoUser, userLike, load_Pais_Prov_Poblac) {
+
+
+	$scope.tab = 1;
+
+    $scope.setTab = function(newTab){
+      $scope.tab = newTab;
+    };
+
+    $scope.isSet = function(tabNum){
+      return $scope.tab === tabNum;
+    };
+
 	$scope.sprofV = true;
 	$scope.eprofV = false;
 	$scope.cprofileV = false;
@@ -119,12 +131,20 @@ cardoor.controller('profileCtrl', function($scope, services, toastr, loginServic
 		$scope.eprofV = false;
 		$scope.cprofileV = false;
 	}
+
 	$scope.showEprof = function(){
 		$scope.sprofV = false;
 		$scope.eprofV = true;
 		$scope.cprofileV = false;
 	}
 
+	$scope.showLike = function(){
+		$scope.sprofV = false;
+		$scope.eprofV = false;
+		$scope.cprofileV = true;
+		$scope.infoCar = userLike;
+	}
+	
 	$scope.logoutB = function(){
 		loginService.logout();
 		toastr.success('', 'Cerrando Sesion',{
@@ -171,10 +191,7 @@ cardoor.controller('profileCtrl', function($scope, services, toastr, loginServic
                 }
             });
             $scope.poblaciones = null;
-        } /*else { //en ng-disabled
-            $scope.provincias = null;
-            $scope.poblaciones = null;
-        }*/
+        }
 	};
 
 
@@ -245,7 +262,7 @@ cardoor.controller('profileCtrl', function($scope, services, toastr, loginServic
 
 	$scope.sendPro = function (user) {
 		services.put('login','change_profile',
-		{'prof_data':JSON.stringify({'nombreP':$scope.userInfo.nombre,'apellidoP':$scope.userInfo.apellido,'paisP':$scope.login.pais,'porvinP':$scope.login.provincia,'poblaP':$scope.login.poblacion,'user':user})})
+		{'prof_data':JSON.stringify({'nombreP':$scope.userInfo.nombre,'apellidoP':$scope.userInfo.apellido,'paisP':$scope.login.pais.sName,'porvinP':$scope.login.provincia.nombre,'poblaP':$scope.login.poblacion.poblacion,'user':user})})
 		.then(function (response) {
 			console.log(response);
 			if (response.success) {
@@ -268,4 +285,25 @@ cardoor.controller('profileCtrl', function($scope, services, toastr, loginServic
 			}
 		});
 	};
+});
+
+cardoor.controller('likeCtrl', function($scope) {
+	$scope.viewlike = function(){
+		console.log("hola");
+		// services.put('login','u_passwd',{'rec_pass':JSON.stringify({'recpass':$scope.recpass.rpasswd,'token':$route.current.params.token})})
+		// .then(function (response) {
+		// 	if (response) {
+		// 			toastr.success('Contraseña cambiada correctamente', 'Perfecto',{
+		// 			closeButton: true
+		// 		});
+		// 		$timeout( function(){
+		// 			location.href = '#/';
+		// 		}, 3000 );
+		// 	}else{
+		// 		toastr.error('Error al cambiar la contraseña', 'Error',{
+		// 			closeButton: true
+		// 		});
+		// 	}
+		// });
+	}
 });

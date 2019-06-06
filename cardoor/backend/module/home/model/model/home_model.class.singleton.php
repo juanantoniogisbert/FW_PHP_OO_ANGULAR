@@ -38,5 +38,7 @@ class home_model {
         return $this->bll->active_user_BLL($arrArgument);
     }
 
-
+    public function obtain_details($arrArgument){
+        return $this->bll->obtain_details_BLL($arrArgument);
+    }
 }

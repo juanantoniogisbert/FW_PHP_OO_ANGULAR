@@ -51,6 +51,16 @@ cardoor.config(['$routeProvider',
                 }
             })
 
+            // .when("/shop/:id", {
+            //     templateUrl: "cardoor/frontend/module/shop/view/shop.view.html", 
+            //     controller: "shopSearch",
+            //     resolve: {
+            //         shop: function (services) {
+            //             return services.get('shop', 'search_shop');
+            //         }
+            //     }
+            // })
+
             // Login
             .when("/login", {
                 templateUrl: "cardoor/frontend/module/login/view/login.view.html",
@@ -69,8 +79,22 @@ cardoor.config(['$routeProvider',
                 resolve: {
                     infoUser: function (services,localstorageService) {
                         return services.get('login', 'print_user',localstorageService.getUsers());
+                    },
+
+                    userLike: function (services,localstorageService) {
+                        return services.get('login', 'print_car',localstorageService.getUsers());
                     }
                 }
+            })
+
+            .when("/profile/:token", {
+                templateUrl: "cardoor/frontend/module/login/view/like.view.html",
+                controller: "likeCtrl"
+                // resolve: {
+                //     itemLike: function (services,localstorageService) {
+                //         return services.get('login', 'print_user',localstorageService.getUsers());
+                //     }
+                // }
             })
             
             // Contact

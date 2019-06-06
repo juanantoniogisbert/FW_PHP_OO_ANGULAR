@@ -37,5 +37,9 @@ class home_bll{
 
     public function active_user_BLL($arrArgument){
 			return $this->dao->update_active_user($this->db,$arrArgument);
-		}
+    }
+    
+    public function obtain_details_BLL($arrArgument){
+      return $this->dao->select_details($this->db,$arrArgument);
+    }
 }

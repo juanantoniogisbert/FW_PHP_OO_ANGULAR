@@ -2,6 +2,7 @@ cardoor.factory("CommonService", ['$rootScope','$timeout', function ($rootScope,
     var service = {};
     service.banner = banner;
     service.amigable = amigable;
+    service.openModal = openModal;
     return service;
 
     function banner(message, type) {
@@ -25,5 +26,21 @@ cardoor.factory("CommonService", ['$rootScope','$timeout', function ($rootScope,
             link += aux[1] + "/";
         }
         return link;
+    }
+
+
+    function openModal(id,modul,funct) {
+        var modalInstance = $uibModal.open({
+            animation: 'true',
+            templateUrl: 'cardoor/frontend/module/home/view/details.view.html',
+            controller: 'detailsBCtrl',
+            windowClass : 'show',
+            size: "lg",
+            resolve: {
+                dog: function (services, $route) {
+                    return services.get(modul, funct, id);
+                }
+            }
+        });
     }
 }]);

@@ -19,21 +19,32 @@ cardoor.controller('mainCtrl', function($scope, marcas, modelos, services) {
         }else if($scope.marcaSelected){
             marca = $scope.marcaSelected;
         }else{
-            console.log("hola2");
+            console.log("adios");
         }
         if (marca) {
             console.log(marca);
+            location.href = '#/shop/'+marca;
+            // console.log(marca);
             // services.get('home', 'load_car_name', marca).then(function (response) {
             //     $scope.marca = response;
             // });
         }
     }
 
-    $scope.open = function (id) {
-        CommonService.openModal(id,'home','details_list');
-    };
+    // $scope.open = function (id) {
+    //     console.log(id);
+    //     CommonService.openModal(id,'home','list_details');
+    // };
 
 });
+
+// cardoor.controller('detailsBCtrl', function($scope,selid,CommonService) {
+//     $scope.selid = selid;
+    
+//     $scope.open = function (id) {
+//         CommonService.openModal(id,'home','list_details');
+//     };
+// });
 
 cardoor.controller('menuCtrl', function(loginService) {
     loginService.login();

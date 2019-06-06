@@ -12,6 +12,34 @@
         </div>
     </div>
 </section>
+<!--== Book A Car Area Start ==-->
+<div id="book-a-car">
+    <div class="container" style="align: center;">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="booka-car-content">
+                    <form>
+                        <div class="contact-form">
+                            <form action="index.html">
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6">
+                                        <div class="name-input">
+                                            <input type="text" ng-model="marcaSelected" placeholder="Buscar nombre..." 
+                                                uib-typeahead="data as data.marca for data in marca | filter:{marca:$viewValue} | limitTo:5">
+                                        </div>
+                                    </div>
+                                        <div class="bookcar-btn bookinput-item">
+                                            <button id="authomeb" ng-click="selectSearch()">Book Car</button>
+                                        </div>
+                                </div>
+                            </form>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
   
 <div id="shop_cars">
     <div class="row popular-car-gird">
@@ -31,7 +59,7 @@
                         <a>{{data.caballos}} CV</a>
                         <a>{{data.matricula}}</a>
                         <a>{{data.tipo}}</a>
-                            <a><i class="fa fa-heart"></i>
+                            <a><i ng-click="likeCar(data.user)" class="fa fa-heart"></i>
                             <a id="+list.id" class="btn-details"><i class="fa fa-plus"></i></a>
                             
                                 <!-- <a id="+list.id" class="addToCart" ><i class="fa fa-shopping-cart"></i></a>

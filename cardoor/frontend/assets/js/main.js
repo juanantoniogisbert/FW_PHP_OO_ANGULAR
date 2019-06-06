@@ -45,26 +45,26 @@
         // });
 
         // Partner Carousel
-        // $(".partner-content-wrap").owlCarousel({
-        //     loop: true,
-        //     margin: 15,
-        //     autoplay: true,
-        //     autoplayTimeout: 1500,
-        //     nav: false,
-        //     dots: false,
-        //     rtl: true,
-        //     responsive: {
-        //         0: {
-        //             items: 1
-        //         },
-        //         600: {
-        //             items: 3
-        //         },
-        //         1000: {
-        //             items: 5
-        //         }
-        //     }
-        // }); // Partner Carousel End
+        $(".partner-content-wrap").owlCarousel({
+            loop: true,
+            margin: 15,
+            autoplay: true,
+            autoplayTimeout: 1500,
+            nav: false,
+            dots: false,
+            rtl: true,
+            responsive: {
+                0: {
+                    items: 1
+                },
+                600: {
+                    items: 3
+                },
+                1000: {
+                    items: 5
+                }
+            }
+        }); // Partner Carousel End
 
 
         // Funfact Count JS

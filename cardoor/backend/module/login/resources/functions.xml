@@ -64,4 +64,8 @@
         <name>change_avatar</name>
         <uri>change_avatar</uri>
     </function>
+    <function>
+        <name>print_car</name>
+        <uri>print_car</uri>
+    </function>
 </functions>

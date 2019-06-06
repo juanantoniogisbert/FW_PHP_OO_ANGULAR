@@ -31,5 +31,10 @@
     		echo json_encode($token);
 		}
         
+        function list_details(){
+			$json = array();
+		 	$json = loadModel(MODEL_HOME, "home_model", "obtain_details",$_GET['param']);
+		 	echo json_encode($json);
+	    }
         
     }

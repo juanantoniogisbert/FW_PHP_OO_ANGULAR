@@ -16,7 +16,7 @@
             $email = $arrArgument['rmail'];
             $password = password_hash($arrArgument['rpasswd'], PASSWORD_DEFAULT);
             $token = generate_Token_secure(20);
-            // $tokenlog = generate_Token_secure(20);
+            $tokenlog = JWT_encode($user);
             $img = 'https://www.gravatar.com/avatar/' . md5($email) . '?s=80&d=identicon&r=g';
 
             $sql = "INSERT INTO users (user,email,password,type,avatar,activate,token,tokenlog,nombre,apellido,fnac) 
@@ -152,6 +152,24 @@
                 array_push($json, $tmp);
             }
             return $json;
+        }
+
+        public function select_like($db,$arrArgument) {
+            $sql = "SELECT token FROM like_car WHERE user = '$arrArgument'";
+            $res = $db->ejecutar($sql);
+            return $db->listar($res);
+        }
+
+        public function select_car($db,$arrArgument) {
+            $sql = "SELECT DISTINCT c.* FROM users u, like_car l, coches c WHERE u.`user` = (SELECT user FROM users WHERE tokenlog = '$arrArgument') AND l.`mat_car` = c.`matricula`";
+            $stmt = $db->ejecutar($sql);
+            return $db->listar($stmt);
+        }
+
+        public function select_data_details($db,$arrArgument) {
+            $sql = "SELECT * FROM coches WHERE matricula = '$arrArgument'";
+            $stmt = $db->ejecutar($sql);
+            return $db->listar($stmt);
         }
 
     }
