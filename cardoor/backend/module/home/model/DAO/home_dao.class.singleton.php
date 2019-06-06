@@ -71,7 +71,7 @@ class home_DAO {
     return $db->ejecutar($sql);
   }
 
-  public function select_data_details($db,$arrArgument) {
+  public function select_details($db,$arrArgument) {
     $sql = "SELECT * FROM coches WHERE id = '$arrArgument'";
     $stmt = $db->ejecutar($sql);
     return $db->listar($stmt);

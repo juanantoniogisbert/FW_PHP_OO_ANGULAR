@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-8">
-                <div ng-click="open(data.chip)" ng-repeat="data in dog| filter:filtro">
+                <div ng-repeat="data in data | filter:filtro">
                     <div class="car-details-content">
                         <h2>{{data.marca}}<span class="price">Price: <b>{{data.precio}}</b></span></h2>
                         <div class="car-preview-crousel">

@@ -33,7 +33,7 @@
         
         function list_details(){
 			$json = array();
-		 	$json = loadModel(MODEL_HOME, "home_model", "obtain_details",$_GET['param']);
+		 	$json = loadModel(MODEL_HOME, "home_model", "obtain_details",$_POST['id']);
 		 	echo json_encode($json);
 	    }
         

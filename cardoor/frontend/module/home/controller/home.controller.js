@@ -1,4 +1,6 @@
-cardoor.controller('mainCtrl', function($scope, marcas, modelos, services) {
+cardoor.controller('mainCtrl', function($scope, marcas, modelos, services, $timeout) {
+    $scope.details = false;
+    $scope.homeCars = true;
     cont = 6;
     $scope.index = 0;
     $scope.marca = marcas;
@@ -31,20 +33,20 @@ cardoor.controller('mainCtrl', function($scope, marcas, modelos, services) {
         }
     }
 
-    // $scope.open = function (id) {
-    //     console.log(id);
-    //     CommonService.openModal(id,'home','list_details');
-    // };
+    $scope.open = function (id) {
+        services.put('home','list_details',{'id':id})
+		.then(function (response) {
+            $scope.modelos = response[0];
+        });
+        $scope.details = true;
+        $scope.homeCars = false;
+    };
 
+    $scope.volver = function(){
+        $scope.details = false;
+        $scope.homeCars = true;
+    }
 });
-
-// cardoor.controller('detailsBCtrl', function($scope,selid,CommonService) {
-//     $scope.selid = selid;
-    
-//     $scope.open = function (id) {
-//         CommonService.openModal(id,'home','list_details');
-//     };
-// });
 
 cardoor.controller('menuCtrl', function(loginService) {
     loginService.login();

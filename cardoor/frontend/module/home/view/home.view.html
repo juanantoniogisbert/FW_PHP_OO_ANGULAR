@@ -1,114 +1,161 @@
-<div id="contenido">
+<div id="contenido"  ng-show="homeCars">
     <section id="home" class="text-center">
-            <!--== Slider Area Start ==-->
-            <section id="home-slider-area">
-                <div class="home-slider-item slider-bg-1 overlay">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div class="slideshowcontent">
-                                    <h1>BOOK A CAR TODAY!</h1>
-                                    <p>FOR AS LOW AS $10 A DAY PLUS 15% DISCOUNT <br> FOR OUR RETURNING CUSTOMERS</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-    
-                <div class="home-slider-item slider-bg-2 overlay">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div class="slideshowcontent">
-                                    <h1>SAVE YOUR MONEY</h1>
-                                    <p>FOR AS LOW AS $10 A DAY PLUS 15% DISCOUNT <br> FOR OUR RETURNING CUSTOMERS</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-    
-                <div class="home-slider-item slider-bg-3 overlay">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div class="slideshowcontent">
-                                    <h1>ENJOY YOUR JOURNEY</h1>
-                                    <p>FOR AS LOW AS $10 A DAY PLUS 15% DISCOUNT <br> FOR OUR RETURNING CUSTOMERS</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <!--== Slider Area End ==-->
-    
-            <!--== Book A Car Area Start ==-->
-            <div id="book-a-car">
-                <div class="container" style="align: center;">
+        <section id="home-slider-area">
+            <div class="home-slider-item slider-bg-1 overlay">
+                <div class="container">
                     <div class="row">
                         <div class="col-lg-12">
-                            <div class="booka-car-content">
-                                <form>
-                                    <div class="contact-form">
-                                        <form action="index.html">
-                                            <div class="row">
-                                                <div class="col-lg-6 col-md-6">
-                                                    <div class="name-input">
-                                                        <input type="text" ng-model="marcaSelected" placeholder="Buscar nombre..." 
-                                                            uib-typeahead="data as data.marca for data in marca | filter:{marca:$viewValue} | limitTo:5">
-                                                    </div>
-                                                </div>
-                                                    <div class="bookcar-btn bookinput-item">
-                                                        <button id="authomeb" ng-click="selectSearch()">Book Car</button>
-                                                    </div>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </form>
+                            <div class="slideshowcontent">
+                                <h1>BOOK A CAR TODAY!</h1>
+                                <p>FOR AS LOW AS $10 A DAY PLUS 15% DISCOUNT <br> FOR OUR RETURNING CUSTOMERS</p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-    
-            <!--== Book A Car Area End ==-->
-    
-            <!--== Our Cars Area Start ==-->          
-            <section id="our-cars" class="section-padding">
+
+            <div class="home-slider-item slider-bg-2 overlay">
                 <div class="container">
                     <div class="row">
-                        <!-- Section Title Start -->
                         <div class="col-lg-12">
-                            <div class="section-title  text-center">
-                                <h2>Nuestros coches</h2>
-                                <span class="title-line"><i class="fa fa-car"></i></span>
-                                <p>Los coches mas votasdos por la gente</p>
+                            <div class="slideshowcontent">
+                                <h1>SAVE YOUR MONEY</h1>
+                                <p>FOR AS LOW AS $10 A DAY PLUS 15% DISCOUNT <br> FOR OUR RETURNING CUSTOMERS</p>
                             </div>
                         </div>
-                        <!-- Section Title End -->
                     </div>
                 </div>
-            </section>
-            <section id="driver-page-wrap" class="section-padding">
+            </div>
+
+            <div class="home-slider-item slider-bg-3 overlay">
                 <div class="container">
                     <div class="row">
-                        <div class="col-lg-12 col-md-6">
-                            <div ng-repeat="data in modelo" class="single-driver-member" id="columna">
-                                <img ng-src="http://localhost/www/FW_PHP_OO_ANGULAR/cardoor/frontend/{{data.imagen}}">
-                                <div class="driver-mem-info">
-                                    <div class="driver-mem-sicons">
-                                        <a ng-click="open(data.id)" class="btn-details"><i class="fa fa-plus"></i></a>
-                                        <a ng-click="open(data.id)" class="addToCart" ><i class="fa fa-heart"></i></a>
+                        <div class="col-lg-12">
+                            <div class="slideshowcontent">
+                                <h1>ENJOY YOUR JOURNEY</h1>
+                                <p>FOR AS LOW AS $10 A DAY PLUS 15% DISCOUNT <br> FOR OUR RETURNING CUSTOMERS</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div id="book-a-car">
+            <div class="container" style="align: center;">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="booka-car-content">
+                            <form>
+                                <div class="contact-form">
+                                    <form action="index.html">
+                                        <div class="row">
+                                            <div class="col-lg-6 col-md-6">
+                                                <div class="name-input">
+                                                    <input type="text" ng-model="marcaSelected" placeholder="Buscar nombre..." 
+                                                        uib-typeahead="data as data.marca for data in marca | filter:{marca:$viewValue} | limitTo:5">
+                                                </div>
+                                            </div>
+                                                <div class="bookcar-btn bookinput-item">
+                                                    <button id="authomeb" ng-click="selectSearch()">Book Car</button>
+                                                </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <section id="our-cars" class="section-padding">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="section-title  text-center">
+                            <h2>Nuestros coches</h2>
+                            <span class="title-line"><i class="fa fa-car"></i></span>
+                            <p>Los coches mas votasdos por la gente</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="driver-page-wrap" class="section-padding">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 col-md-6">
+                        <div ng-click="open(data.id)" ng-repeat="data in modelo" class="single-driver-member" id="columna">
+                            <img ng-src="http://localhost/www/FW_PHP_OO_ANGULAR/cardoor/frontend/{{data.imagen}}">
+                            <div class="driver-mem-info">
+                                <div class="driver-mem-sicons">
+                                    <a ng-click="open(data.id)" class="addToCart" ><i class="fa fa-heart"></i></a>
+                                </div>
+                                <h4 id="marca">{{data.marca}}<span id="modelo">{{data.modelo}}</span></h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div id="cars_scroll" class="columna"></div>
+        <button class="scroll" ng-click="scroll_more()" id="scroll" style="text-align: center; display: inline-block;">Mostrar más</button>
+    </section>
+</div>
+
+    <section id="car-list-area" class="section-padding" ng-show="details">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="car-details-content">
+                        <h2>{{modelos.marca}}<span class="price">Price: <b>{{modelos.precio}}</b></span></h2>
+                        <div class="car-preview-crousel">
+                            <div class="single-car-preview">
+                                <img ng-src="http://localhost/www/FW_PHP_OO_ANGULAR/cardoor/frontend/{{modelos.imagen}}">
+                            </div>
+                        </div>
+                        <div class="car-details-info">
+                            <h4>Additional Info</h4>
+                            <p>The Aventador LPER 720-4 50° ise a limited a new specific engine calibration,plitter.</p>
+                            <div class="technical-info">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="tech-info-table">
+                                            <table class="table table-bordered">
+                                                <tr>
+                                                    <th>Maker</th>
+                                                    <td>{{modelos.fabricante}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Fuel</th>
+                                                    <td>{{modelos.combus}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Doors</th>
+                                                    <td>{{modelos.puertas}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Date fabric</th>
+                                                    <td>{{modelos.date_fabric}}</td>
+                                                </tr>
+                                            </table>
+                                        </div>
                                     </div>
-                                    <h4 id="marca">{{data.marca}}<span id="modelo">{{data.modelo}}</span></h4>
+
+                                    <div class="col-lg-6">
+                                        <div class="tech-info-list">
+                                            <ul>
+                                                <li>{{modelos.extra}}</li>
+                                            </ul>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </section>
-            <div id="cars_scroll" class="columna"></div>
-            <button class="scroll" ng-click="scroll_more()" id="scroll" style="text-align: center; display: inline-block;">Mostrar más</button>
+            </div>
+        </div>
+        <button ng-click="volver()" style="text-align: center; display: inline-block;">Vovler</button>
     </section>
-    </div>
