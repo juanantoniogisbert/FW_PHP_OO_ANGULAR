@@ -16,4 +16,8 @@
         <name>login</name>
         <uri>login</uri>
     </module>
+    <module>
+        <name>coche</name>
+        <uri>coche</uri>
+    </module>
 </modules>
