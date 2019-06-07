@@ -8,4 +8,8 @@
         <name>like_car</name>
         <uri>like_car</uri>
     </function>
+    <function>
+        <name>list_details</name>
+        <uri>list_details</uri>
+    </function>
 </functions>

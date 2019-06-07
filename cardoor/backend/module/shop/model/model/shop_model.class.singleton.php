@@ -22,4 +22,8 @@ class shop_model {
         return $this->bll->select_like_BLL($arrArgument);
     }
 
+    public function obtain_details($arrArgument){
+        return $this->bll->obtain_details_BLL($arrArgument);
+    }
+
 }

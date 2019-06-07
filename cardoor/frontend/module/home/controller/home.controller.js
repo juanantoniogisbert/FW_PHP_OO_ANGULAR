@@ -1,4 +1,4 @@
-cardoor.controller('mainCtrl', function($scope, marcas, modelos, services, $timeout) {
+cardoor.controller('mainCtrl', function($scope, marcas, modelos, services) {
     $scope.details = false;
     $scope.homeCars = true;
     cont = 6;

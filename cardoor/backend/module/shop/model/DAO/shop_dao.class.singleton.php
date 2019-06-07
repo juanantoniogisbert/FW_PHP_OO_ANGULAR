@@ -30,8 +30,9 @@
 			return $db->ejecutar($sql);
 		}
 
-		// public function update_value($db,$arrArgument) {
-		// 	$sql = "UPDATE dogs SET state = 1 WHERE chip = '$arrArgument'";
-		// 	return $db->ejecutar($sql);
-		// }
+		public function select_details($db,$arrArgument) {
+			$sql = "SELECT * FROM coches WHERE id = '$arrArgument'";
+			$stmt = $db->ejecutar($sql);
+			return $db->listar($stmt);
+		}
 	}

@@ -1,8 +1,26 @@
 cardoor.controller('shopCtrl', function($scope, shop, localstorageService, services, toastr) {
+    $scope.details = false;
+    $scope.shopCars = true;
     $scope.shop = shop;
     $scope.currentPage = 1;
     $scope.carpage = $scope.shop.slice(0,3);
     $scope.bootpageV = true;
+
+    $scope.open = function (id) {
+        services.put('shop','list_details',{'id':id})
+		.then(function (response) {
+            console.log(response[0]);
+            $scope.shop = response[0];
+        });
+        $scope.details = true;
+        $scope.shopCars = false;
+    };
+
+    $scope.volver = function(){
+        location.reload();
+        $scope.details = false;
+        $scope.shopCars = true;
+    }
 
     $scope.pageChanged = function() {
         var startPos = ($scope.currentPage - 1) * 3;

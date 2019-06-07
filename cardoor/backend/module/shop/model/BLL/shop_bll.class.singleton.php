@@ -23,6 +23,9 @@ class shop_bll{
     public function select_like_BLL($arrArgument){
         $arrArgument2 = $this->dao->select_user($this->db,$arrArgument['token']);
         return $this->dao->insert_like($this->db,$arrArgument2[0]['user'],$arrArgument["matricula"]);
-        // return $this->dao->update_value($this->db,$arrArgument["chip"]);
+    }
+
+    public function obtain_details_BLL($arrArgument){
+        return $this->dao->select_details($this->db,$arrArgument);
     }
 }
