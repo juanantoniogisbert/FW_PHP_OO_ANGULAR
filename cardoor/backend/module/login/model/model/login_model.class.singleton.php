@@ -85,4 +85,8 @@
         public function obtain_data_details($arrArgument){
             return $this->bll->obtain_data_details_BLL($arrArgument);
         }
+
+        public function obtain_details($arrArgument){
+            return $this->bll->obtain_details_BLL($arrArgument);
+        }
     }

@@ -108,7 +108,8 @@ cardoor.controller('passwdChangeCtrl', function($scope, services, $route, toastr
 });
 
 cardoor.controller('profileCtrl', function($scope, services, toastr, loginService, $timeout, infoUser, userLike, load_Pais_Prov_Poblac) {
-
+	$scope.details = false;
+    $scope.likeCars = true;
 
 	$scope.tab = 1;
 
@@ -159,7 +160,21 @@ cardoor.controller('profileCtrl', function($scope, services, toastr, loginServic
         $scope.pais_error = "";
         $scope.login.prov_error = "";
         $scope.login.pob_error = "";
+	};
+	
+	$scope.open = function (id) {
+        services.put('login','list_details',{'id':id})
+		.then(function (response) {
+            $scope.modelos = response[0];
+        });
+        $scope.details = true;
+        $scope.likeCars = false;
     };
+
+    $scope.volver = function(){
+        $scope.details = false;
+        $scope.likeCars = true;
+    }
 
 	load_Pais_Prov_Poblac.load_pais()
     .then(function (response) {

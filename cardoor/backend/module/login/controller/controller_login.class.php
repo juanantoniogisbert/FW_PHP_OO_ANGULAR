@@ -269,4 +269,10 @@
 				}
 			}
 		}
+
+		function list_details(){
+			$json = array();
+		 	$json = loadModel(MODEL_LOGIN, "login_model", "obtain_details",$_POST['id']);
+		 	echo json_encode($json);
+	    }
     }

@@ -172,4 +172,10 @@
             return $db->listar($stmt);
         }
 
+        public function select_details($db,$arrArgument) {
+            $sql = "SELECT * FROM coches WHERE id = '$arrArgument'";
+            $stmt = $db->ejecutar($sql);
+            return $db->listar($stmt);
+        }
+
     }

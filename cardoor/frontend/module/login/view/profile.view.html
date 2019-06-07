@@ -129,12 +129,12 @@
         </div>
   </div>
   <div ng-show="isSet(2)">
-      <div id="shop_cars">
+      <div id="shop_cars"  ng-show="likeCars">
           <div class="row popular-car-gird">
               <div ng-repeat="data in infoCar" id="columna">
                   <div class="single-popular-car">
                       <div class="p-car-thumbnails">
-                          <a class="car-hover">
+                          <a class="car-hover" ng-click="open(data.id)">
                               <img ng-src="http://localhost/www/FW_PHP_OO_ANGULAR/cardoor/frontend/{{data.imagen}}">
                           </a>
                       </div>
@@ -161,3 +161,59 @@
     <h1>Compras</h1>
   </div>
 </div>
+
+<section id="car-list-area" class="section-padding" ng-show="details">
+  <div class="container">
+      <div class="row">
+          <div class="col-lg-8">
+              <div class="car-details-content">
+                  <h2>{{modelos.marca}}<span class="price">Price: <b>{{modelos.precio}}</b></span></h2>
+                  <div class="car-preview-crousel">
+                      <div class="single-car-preview">
+                          <img ng-src="http://localhost/www/FW_PHP_OO_ANGULAR/cardoor/frontend/{{modelos.imagen}}">
+                      </div>
+                  </div>
+                  <div class="car-details-info">
+                      <h4>Additional Info</h4>
+                      <p>The Aventador LPER 720-4 50° ise a limited a new specific engine calibration,plitter.</p>
+                      <div class="technical-info">
+                          <div class="row">
+                              <div class="col-lg-6">
+                                  <div class="tech-info-table">
+                                      <table class="table table-bordered">
+                                          <tr>
+                                              <th>Maker</th>
+                                              <td>{{modelos.fabricante}}</td>
+                                          </tr>
+                                          <tr>
+                                              <th>Fuel</th>
+                                              <td>{{modelos.combus}}</td>
+                                          </tr>
+                                          <tr>
+                                              <th>Doors</th>
+                                              <td>{{modelos.puertas}}</td>
+                                          </tr>
+                                          <tr>
+                                              <th>Date fabric</th>
+                                              <td>{{modelos.date_fabric}}</td>
+                                          </tr>
+                                      </table>
+                                  </div>
+                              </div>
+
+                              <div class="col-lg-6">
+                                  <div class="tech-info-list">
+                                      <ul>
+                                          <li>{{modelos.extra}}</li>
+                                      </ul>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  <button ng-click="volver()" style="text-align: center; display: inline-block;">Vovler</button>
+</section>

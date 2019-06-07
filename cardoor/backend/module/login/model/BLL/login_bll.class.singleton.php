@@ -83,4 +83,8 @@
 		public function obtain_data_details_BLL($arrArgument){
 			return $this->dao->select_data_details($this->db,$arrArgument);
 		}
+
+		public function obtain_details_BLL($arrArgument){
+			return $this->dao->select_details($this->db,$arrArgument);
+		}
     }
