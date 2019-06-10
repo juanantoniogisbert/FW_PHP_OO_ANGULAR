@@ -28,4 +28,8 @@ class shop_bll{
     public function obtain_details_BLL($arrArgument){
         return $this->dao->select_details($this->db,$arrArgument);
     }
+
+    public function car_search_BLL($arrArgument){
+        return $this->dao->select_car($this->db,$arrArgument);
+    }
 }

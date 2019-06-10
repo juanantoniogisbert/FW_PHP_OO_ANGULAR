@@ -38,10 +38,6 @@ cardoor.controller('shopCtrl', function($scope, shop, localstorageService, servi
         if (marca) {
             console.log(marca);
             location.href = '#/shop/'+marca;
-            // console.log(marca);
-            // services.get('home', 'load_car_name', marca).then(function (response) {
-            //     $scope.marca = response;
-            // });
         }
     }
 
@@ -52,16 +48,10 @@ cardoor.controller('shopCtrl', function($scope, shop, localstorageService, servi
             toastr.success('Este coche te ha gustado', 'Gracias',{
                 closeButton: true
             });
-                // $timeout( function(){
-                //     location.href = '#';
-                // }, 3000 );
         });
     };
 });
 
-cardoor.controller('shopSearch', function($scope, search_list){
+cardoor.controller('shopSerCtrl', function($scope, services, search_list){
     $scope.list = search_list;
-    console.log(search_list);
-    // $scope.filter_list = true;
-    // $scope.all_list = false;
 });

@@ -26,4 +26,7 @@ class shop_model {
         return $this->bll->obtain_details_BLL($arrArgument);
     }
 
+    public function car_search($arrArgument){
+        return $this->bll->car_search_BLL($arrArgument);
+    }
 }

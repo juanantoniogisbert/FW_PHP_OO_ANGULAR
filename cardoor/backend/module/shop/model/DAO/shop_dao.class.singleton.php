@@ -35,4 +35,10 @@
 			$stmt = $db->ejecutar($sql);
 			return $db->listar($stmt);
 		}
+
+		public function select_car($db,$arrArgument) {
+			$sql = "SELECT * FROM coches WHERE marca = '$arrArgument'";
+			$stmt = $db->ejecutar($sql);
+			return $db->listar($stmt);
+		}
 	}

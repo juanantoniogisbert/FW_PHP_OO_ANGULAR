@@ -78,6 +78,33 @@
     </div>
 </div>
 
+
+<div id="shop_cars">
+    <div class="row popular-car-gird">
+        <div ng-repeat="data in list" id="columna">
+            <div class="single-popular-car">
+                <div class="p-car-thumbnails">
+                    <a ng-click="open(data.id)" class="car-hover">
+                        <img ng-src="http://localhost/www/FW_PHP_OO_ANGULAR/cardoor/frontend/{{data.imagen}}">
+                    </a>
+                </div>
+                <div class="p-car-content">
+                    <h3>
+                        <a>{{data.marca}} {{data.modelo}}</a>
+                        <span class="price"><i class="fa fa-tag"></i>{{data.precio}}</span>
+                    </h3>
+                    <div class="p-car-feature">
+                        <a>{{data.caballos}} CV</a>
+                        <a>{{data.matricula}}</a>
+                        <a>{{data.tipo}}</a>
+                            <!-- <a><i ng-click="likeCar(data.user)" class="fa fa-heart"></i> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <section id="car-list-area" class="section-padding" ng-show="details">
     <div class="container">
         <div class="row">

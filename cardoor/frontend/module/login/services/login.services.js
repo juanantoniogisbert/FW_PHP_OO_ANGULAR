@@ -12,13 +12,11 @@ function ($location, $rootScope, services,localstorageService) {
                 if (response.type === "user") {
                     $rootScope.login_V = false;
                     $rootScope.profile_V = true;
-                    // $rootScope.ubicaV = true;
-                    // $rootScope.dogsV = true;
+                    $rootScope.coche_V = true;
 	            } else if (response.type === "admin") {
                     $rootScope.login_V = false;
                     $rootScope.profile_V = true;
-                    // $rootScope.ubicaV = true;
-                    // $rootScope.dogsV = true;
+                    $rootScope.coche_V = true;
 	            }else{
                     $rootScope.login_V = true;
                 }

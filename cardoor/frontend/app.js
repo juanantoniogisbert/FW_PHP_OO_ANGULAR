@@ -39,8 +39,19 @@ cardoor.config(['$routeProvider',
                 }
             }
         })
+
         
         // Shop
+        .when("/shop/:id", {
+            templateUrl: "cardoor/frontend/module/shop/view/shop.view.html",
+            controller: "shopSerCtrl",
+            resolve: {
+                search_list: function (services, $route) {
+                    return services.get('shop', 'view_search',$route.current.params.id);
+                }
+            }
+        })
+        
         .when("/shop", {
             templateUrl: "cardoor/frontend/module/shop/view/shop.view.html", 
             controller: "shopCtrl",
@@ -81,6 +92,12 @@ cardoor.config(['$routeProvider',
         .when("/contact", {
             templateUrl: "cardoor/frontend/module/contact/view/contact.view.html", 
             controller: "contactCtrl"
+        })
+
+        // coche
+        .when("/coche", {
+            templateUrl: "cardoor/frontend/module/coche/view/coche.view.html", 
+            controller: "cocheCtrl"
         })
 
         // else 404

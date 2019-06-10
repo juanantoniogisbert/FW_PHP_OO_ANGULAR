@@ -1,0 +1,111 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/3.51/jquery.form.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.0.1/min/dropzone.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.0.1/dropzone.css">
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+<nav>
+    <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+        <a ng-class="{ active: isSet(1) }" href ng-click="setTab(1)" class="nav-item nav-link active" id="nav-profile-tab" data-toggle="tab" role="tab" aria-controls="nav-profile" aria-selected="true">Create</a>
+        <a ng-class="{ active: isSet(2) }" href ng-click="setTab(2); showLike()" class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" role="tab" aria-controls="nav-contact" aria-selected="false">Update</a>
+        <a ng-class="{ active: isSet(3) }" href ng-click="setTab(2); showLike()" class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" role="tab" aria-controls="nav-contact" aria-selected="false">Read</a>
+        <a ng-class="{ active: isSet(4) }" href ng-click="setTab(2); showLike()" class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" role="tab" aria-controls="nav-contact" aria-selected="false">Delete</a>
+    </div>
+</nav>
+<div class="jumbotron">
+    <div ng-show="isSet(1)">
+        <div class="container">
+            <div class="row">
+              <div class="col-xs-12 ">
+                <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
+                  <div class="tab-pane fade show active" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                    <form autocomplete="on" method="post" name="create_car" id="create_car">
+                        <div>
+                            <h5>Tipo de coche</h5>
+                            Deportivo <input required="true" name="radiotipo" id="radiotipo" type="radio" ng-model="dogs.radiotipo" value="deportivo">
+                            Turismo <input name="radiotipo" id="radiotipo" type="radio" ng-model="dogs.radiotipo" value="turismo">
+                            Todoterreno <input name="radiotipo" id="radiotipo" type="radio" ng-model="dogs.radiotipo" value="todoterreno">
+                            <span class="text-danger" ng-show="create_car.radiotipo.$error.required">Seleccione un campo</span>
+                        </div>
+                        <br/>
+                        <div class="matricula">
+                            <h5>Matricula</h5>
+                            <input required type="text" id="matricula" name="matricula" ng-model="register.matricula" placeholder="Matricula" ng-minlength="3" ng-maxlength="20"/>
+                            <span class="text-danger" ng-show="create_car.matricula.$error.required && (create_car.matricula.$dirty || create_car.matricula.$touched)">Introduzca un nombre</span>
+                            <span class="text-danger" ng-show="create_car.matricula.$error.minlength">Introduzca mas de 3 caracteres</span>
+                            <span class="text-danger" ng-show="create_car.matricula.$error.maxlength">Introduzca menos de 20 caracteres</span>
+                        </div>
+                        <br/>
+
+                        <div class="marca">
+                            <h5>Marca</h5>
+                            <input required type="text" id="marca" name="marca" ng-model="register.marca" placeholder="Marca" ng-minlength="3" ng-maxlength="20"/>
+                            <span class="text-danger" ng-show="create_car.marca.$error.required && (create_car.marca.$dirty || create_car.marca.$touched)">Introduzca un nombre</span>
+                            <span class="text-danger" ng-show="create_car.marca.$error.minlength">Introduzca mas de 3 caracteres</span>
+                            <span class="text-danger" ng-show="create_car.marca.$error.maxlength">Introduzca menos de 20 caracteres</span>
+                        </div>
+                        <br/>
+
+                        <div class="modelo">
+                            <h5>Modelo</h5>
+                            <input required type="text" id="modelo" name="modelo" ng-model="register.modelo" placeholder="Modelo" ng-minlength="3" ng-maxlength="20"/>
+                            <span class="text-danger" ng-show="create_car.modelo.$error.required && (create_car.modelo.$dirty || create_car.modelo.$touched)">Introduzca un nombre</span>
+                            <span class="text-danger" ng-show="create_car.modelo.$error.minlength">Introduzca mas de 3 caracteres</span>
+                            <span class="text-danger" ng-show="create_car.modelo.$error.maxlength">Introduzca menos de 20 caracteres</span>
+                        </div>
+                        <br/>
+
+                        <div class="fabricante">
+                            <h5>Fabricante</h5>
+                            <input required type="text" id="fabricante" name="fabricante" ng-model="register.fabricante" placeholder="Fabricante" ng-minlength="3" ng-maxlength="20"/>
+                            <span class="text-danger" ng-show="create_car.fabricante.$error.required && (create_car.fabricante.$dirty || create_car.fabricante.$touched)">Introduzca un nombre</span>
+                            <span class="text-danger" ng-show="create_car.fabricante.$error.minlength">Introduzca mas de 3 caracteres</span>
+                            <span class="text-danger" ng-show="create_car.fabricante.$error.maxlength">Introduzca menos de 20 caracteres</span>
+                        </div>
+                        <br/>
+
+                        <div class="fabricante">
+                            <h5>Color</h5>
+                            <input required type="text" id="color" name="color" ng-model="register.color" placeholder="Color" ng-minlength="3" ng-maxlength="20"/>
+                            <span class="text-danger" ng-show="create_car.color.$error.required && (create_car.color.$dirty || create_car.color.$touched)">Introduzca un nombre</span>
+                            <span class="text-danger" ng-show="create_car.color.$error.minlength">Introduzca mas de 3 caracteres</span>
+                            <span class="text-danger" ng-show="create_car.color.$error.maxlength">Introduzca menos de 20 caracteres</span>
+                        </div>
+                        <br/>
+
+                        <div class="fabricante">
+                            <h5>Caballos</h5>
+                            <input required type="text" id="caballos" name="caballos" ng-model="register.caballos" placeholder="Caballos" ng-minlength="3" ng-maxlength="20"/>
+                            <span class="text-danger" ng-show="create_car.caballos.$error.required && (create_car.caballos.$dirty || create_car.caballos.$touched)">Introduzca un nombre</span>
+                            <span class="text-danger" ng-show="create_car.caballos.$error.minlength">Introduzca mas de 3 caracteres</span>
+                            <span class="text-danger" ng-show="create_car.caballos.$error.maxlength">Introduzca menos de 20 caracteres</span>
+                        </div>
+                        <br/>
+          
+                      <!-- <div>
+                        <h5>Fecha Fabricacion</h5>
+                        <tr>
+                          <td>
+                            <input required type="text" name="fnac" id="fnac" ng-model="userInfo.fnac" datepicker="" placeholder="Fecha de nacimiento"/>
+                          </td>
+                        </tr>
+                      </div> -->
+
+                      <div>
+                        <td>
+                          <button required id="dropzone" dropzone="dropzoneConfig" class="dropzone"></button>
+                        </td>
+                      </div>
+          
+                      <div class="log-btn">
+                        <button ng-click="sendPro(userInfo.user)"><i class="fa fa-check-square"></i>Registrar Coche</button>
+                      </div>
+                    </form>
+          
+                  </div>
+                </div> 
+              </div>
+            </div>
+          </div>
+    </div>
