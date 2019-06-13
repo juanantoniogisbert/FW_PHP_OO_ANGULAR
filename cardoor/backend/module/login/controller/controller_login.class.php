@@ -33,6 +33,7 @@
 			$response = validate_data($info_data,'login');
 			if ($response['result'] === true) {
 				$data = loadModel(MODEL_LOGIN,'login_model','token_user',$info_data['lusername']);
+				// $data1 = loadModel(MODEL_LOGIN,'login_model','update_token',$info_data['lusername']);
 				$data = $data[0];
 				$data['success'] = true;
 				echo json_encode($data);

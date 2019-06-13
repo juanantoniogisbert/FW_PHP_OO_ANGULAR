@@ -68,6 +68,19 @@ cardoor.config(['$routeProvider',
             controller: "loginCtrl"
         })
 
+        // Coche
+        .when("/coche", {
+            templateUrl: "cardoor/frontend/module/coche/view/coche.view.html",
+            controller: "cocheCtrl",
+            // resolve: {
+            //     infoCar: function (services) {
+            //         return services.get('coche', 'select_car',$route.current.params.id);
+            //     }
+            // }
+        })  
+
+
+        // change passwd
         .when("/login/passwdChange/:token", {
             templateUrl: "cardoor/frontend/module/login/view/chpasswd.view.html",
             controller: "passwdChangeCtrl"

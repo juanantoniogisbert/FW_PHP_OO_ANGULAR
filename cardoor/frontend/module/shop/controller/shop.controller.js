@@ -36,7 +36,6 @@ cardoor.controller('shopCtrl', function($scope, shop, localstorageService, servi
             console.log("adios");
         }
         if (marca) {
-            console.log(marca);
             location.href = '#/shop/'+marca;
         }
     }
@@ -54,4 +53,20 @@ cardoor.controller('shopCtrl', function($scope, shop, localstorageService, servi
 
 cardoor.controller('shopSerCtrl', function($scope, services, search_list){
     $scope.list = search_list;
+
+    $scope.open = function (id) {
+        services.put('shop','list_details',{'id':id})
+		.then(function (response) {
+            console.log(response[0]);
+            $scope.shop = response[0];
+        });
+        $scope.details = true;
+        $scope.shopCars = false;
+    };
+
+    $scope.volver = function(){
+        location.reload();
+        $scope.details = false;
+        $scope.shopCars = true;
+    }
 });

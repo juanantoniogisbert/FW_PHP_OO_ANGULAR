@@ -3281,3 +3281,7 @@ body,
 	opacity: 1;
 	visibility: visible;
 }
+
+table, th, td {
+	border: 1px solid black;
+}

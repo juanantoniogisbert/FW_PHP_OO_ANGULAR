@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<functions>
+    <function>
+        <name>create_coche</name>
+        <uri>create_coche</uri>
+    </function>
+    <function>
+        <name>load_pais_p</name>
+        <uri>load_pais_p</uri>
+    </function>
+    <function>
+        <name>load_provincias</name>
+        <uri>load_provincias</uri>
+    </function>
+    <function>
+        <name>load_poblaciones</name>
+        <uri>load_poblaciones</uri>
+    </function>
+    <function>
+        <name>select_car</name>
+        <uri>select_car</uri>
+    </function>
+    <function>
+        <name>load_car_up</name>
+        <uri>load_car_up</uri>
+    </function>
+</functions>

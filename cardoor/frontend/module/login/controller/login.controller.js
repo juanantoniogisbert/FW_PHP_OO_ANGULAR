@@ -301,24 +301,3 @@ cardoor.controller('profileCtrl', function($scope, services, toastr, loginServic
 		});
 	};
 });
-
-cardoor.controller('likeCtrl', function($scope) {
-	$scope.viewlike = function(){
-		console.log("hola");
-		// services.put('login','u_passwd',{'rec_pass':JSON.stringify({'recpass':$scope.recpass.rpasswd,'token':$route.current.params.token})})
-		// .then(function (response) {
-		// 	if (response) {
-		// 			toastr.success('Contraseña cambiada correctamente', 'Perfecto',{
-		// 			closeButton: true
-		// 		});
-		// 		$timeout( function(){
-		// 			location.href = '#/';
-		// 		}, 3000 );
-		// 	}else{
-		// 		toastr.error('Error al cambiar la contraseña', 'Error',{
-		// 			closeButton: true
-		// 		});
-		// 	}
-		// });
-	}
-});

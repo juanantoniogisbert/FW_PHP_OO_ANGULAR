@@ -230,6 +230,9 @@
 		$header = '{"typ":"JWT", "alg":"HS256"}';
 		$secret = 'hamirezyclarinwinfornite';
 
+		$rand = time();
+		$pass = $rand.$secret;
+
 		$payload = '{
 			"iat":"'.time().'", 
 			"exp":"'.time() + (60*60).'",

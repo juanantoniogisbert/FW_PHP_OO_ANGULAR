@@ -31,17 +31,21 @@
             return $db->listar($res);
         }
 
-        public function update_token($db,$arrArgument) {
-            $tokenlog = JWT_encode($arrArgument);
-            $sql = "UPDATE users SET tokenlog = '$tokenlog' WHERE user = '$arrArgument'";
-            return $db->ejecutar($arrArgument);
-            // return $arrArgument;
-        }
+        // public function update_token_dao($db,$arrArgument) {
+        //     $tokenlog = JWT_encode($arrArgument);
+        //     $sql = "UPDATE users SET tokenlog = '$arrArgument' WHERE user = 'yomogan'";
+        //     return $db->ejecutar($arrArgument);
+        // }
 
         public function select_token($db,$arrArgument) {
+            $tokenlog = JWT_encode($arrArgument);
+            $sql = "UPDATE users SET tokenlog = '$tokenlog' WHERE user = '$arrArgument'";
+            $res1 = $db->ejecutar($sql);
+            
             $sql = "SELECT tokenlog FROM users WHERE user = '$arrArgument'";
             $res = $db->ejecutar($sql);
             return $db->listar($res);
+
         }
 
         public function select_mail_rec_pass($db,$arrArgument) {

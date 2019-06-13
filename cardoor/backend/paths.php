@@ -70,6 +70,14 @@ define('BLL_LOGIN', SITE_ROOT . 'module/login/model/BLL/');
 define('MODEL_LOGIN', SITE_ROOT . 'module/login/model/model/');
 define('LOGIN_JS_PATH', SITE_PATH . 'module/login/view/js/');
 
+//model coche
+define('FUNCTIONS_COCHE', SITE_ROOT . 'module/coche/utils/');
+define('MODEL_PATH_COCHE', SITE_ROOT . 'module/coche/model/');
+define('DAO_COCHE', SITE_ROOT . 'module/coche/model/DAO/');
+define('BLL_COCHE', SITE_ROOT . 'module/coche/model/BLL/');
+define('MODEL_COCHE', SITE_ROOT . 'module/coche/model/model/');
+define('COCHE_JS_PATH', SITE_PATH . 'module/coche/view/js/');
+
 //model shop
 define('FUNCTIONS_SHOP', SITE_ROOT . 'module/shop/utils/');
 define('MODEL_PATH_SHOP', SITE_ROOT . 'module/shop/model/');
