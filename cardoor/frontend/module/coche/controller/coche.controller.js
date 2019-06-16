@@ -1,7 +1,8 @@
 cardoor.controller('cocheCtrl', function($scope, services, toastr, load_Pais_Prov_Poblac) {
-    $scope.update = true;
-    // $scope.carInfo = infoCar;
-    // console.log(infoCar);
+    $scope.upcars = true;
+    $scope.listacar = false;
+    $scope.reCar = true;
+    $scope.detCar = false;
 
 	$scope.tab = 1;
 
@@ -74,23 +75,25 @@ cardoor.controller('cocheCtrl', function($scope, services, toastr, load_Pais_Pro
             }
 		}
     };
-
     
-	$scope.showUp = function(){
-		$scope.sprofV = false;
-		$scope.eprofV = false;
-		$scope.cprofileV = true;
-		$scope.infoCar = userLike;
-	}
-    
-    $scope.open = function (id) {
-        services.put('coche','load_car_up',{'id':id})
+    $scope.editcar = function (id) {
+        services.put('coche','select_car_up',{'id':id})
 		.then(function (response) {
             console.log(response[0]);
-            $scope.infoCar = response[0];
+            $scope.upCoche = response[0];
         });
-        $scope.details = true;
-        $scope.update = false;
+		$scope.upcars = false;
+		$scope.listacar = true;
+    };
+
+    $scope.readcar = function (id) {
+        services.put('coche','list_details',{'id':id})
+		.then(function (response) {
+            console.log(response[0]);
+            $scope.upCoche = response[0];
+        });
+		$scope.reCar = false;
+		$scope.detCar = true;
     };
 
 	load_Pais_Prov_Poblac.load_pais()
@@ -142,5 +145,54 @@ cardoor.controller('cocheCtrl', function($scope, services, toastr, load_Pais_Pro
                 }, 2000);
             }
         });
-	};
+    };
+    
+    services.put('coche', 'load_car_up').then(function (response) {
+        $scope.fideus = response;
+    });
+
+
+    $scope.carDet = function (id) {
+        services.put('coche', 'list_details',{'id':id})
+        .then(function (response) {
+            $scope.carRead = response;
+        });
+    };
+
+
+    $scope.sendCar = function () {
+		var data = {'radiotipo':$scope.upCoche.radiotipo, 'matricula':$scope.upCoche.matricula,
+        'marca':$scope.upCoche.marca,'modelo':$scope.upCoche.modelo,'fabricante':$scope.upCoche.fabricante,
+        'color':$scope.upCoche.color,'caballos':$scope.upCoche.caballos,'paisC':$scope.coche.pais.sName,
+        'porvinC':$scope.coche.provincia.nombre,'poblaC':$scope.coche.poblacion.poblacion};
+
+        services.post('coche','change_coche',{'total_data':JSON.stringify(data)})
+		.then(function (response) {
+			console.log(response);
+            if (response.success) {
+				toastr.success('Coche modificado correctamente', 'Perfecto',{
+                    closeButton: true
+                });
+                $scope.sprofV = true;
+				$scope.eprofV = false;
+				$scope.cprofileV = false;
+			}else{
+				// if (response.error.fnacP) {
+				// 	toastr.error(response.error.fnacP, 'Error',{
+	            //     	closeButton: true
+	            // 	});
+				// }else{
+					toastr.error('Error', 'Error',{
+	                	closeButton: true
+	            	});
+				// }
+			}
+		});
+    };
+    
+    $scope.volver = function(){
+        location.reload();
+        $scope.details = false;
+        $scope.shopCars = true;
+    }
 });

@@ -17,11 +17,19 @@
         <uri>load_poblaciones</uri>
     </function>
     <function>
-        <name>select_car</name>
-        <uri>select_car</uri>
-    </function>
-    <function>
         <name>load_car_up</name>
         <uri>load_car_up</uri>
+    </function>
+    <function>
+        <name>select_car_up</name>
+        <uri>select_car_up</uri>
+    </function>
+    <function>
+        <name>change_coche</name>
+        <uri>change_coche</uri>
+    </function>
+    <function>
+        <name>list_details</name>
+        <uri>list_details</uri>
     </function>
 </functions>

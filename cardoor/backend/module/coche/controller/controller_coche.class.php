@@ -7,22 +7,11 @@
         }
 
         function create_coche(){
-			// $info_data = json_decode($_POST['total_data'],true);
-			// $response = validate_data_create($info_data,'create');
-
 			$jsondata = array();
 			$result=validate_data_create(json_decode($_POST['total_data'], true));
 
 		  	$token = json_decode($_POST['total_data'],true);
 		  	$id_user = loadModel(MODEL_COCHE,'coche_model', "creador", $token['token']);
-		  
-			// if (empty($_SESSION['result_dogpic'])){
-			// 	$_SESSION['result_dogpic'] = array('result' => true, 'error' => "", "data" => "/1_Fw_PHP_OO_MVC_jQuery_AngularJS/AngularJS/4_adopt_dogs/backend/media/default_avatar.svg");
-			// 	$result_dogpic = $_SESSION['result_dogpic'];
-			// }else{
-			// 	$result_dogpic = $_SESSION['result_dogpic'];
-			// 	$result_dogpic['data'] = substr($_SESSION['result_dogpic']['data'],13);
-			// }
 
 			// && $result_dogpic['result'] posar en el if
 			
@@ -130,13 +119,61 @@
 			}
 		}
 
-		function select_car() {
-			echo json_encode("hola");
-		}
-
 		function load_car_up() {
 			$json = array();
-			$json = loadModel(MODEL_COCHE,'coche_model', "car_up",$_GET['param']);
+			$json = loadModel(MODEL_COCHE,'coche_model', "car_up");
 			echo json_encode($json);
 		}
+
+		function select_car_up() {
+			$json = array();
+			$json = loadModel(MODEL_COCHE,'coche_model', "car_update", $_POST['id']);
+			echo json_encode($json);
+		}
+
+		function change_coche(){
+
+			$jsondata = array();
+			$result=validate_data_create(json_decode($_POST['total_data'], true));
+
+			// $prof_data = json_decode($_POST['prof_data'],true);
+			// $result=validate_data_create(json_decode($_POST['total_data'], true));
+			// $foto = "http://localhost/www/FW_PHP_OO_ANGULAR/".substr($_SESSION['avatar']['data'],67);
+			if ($result['result']) {
+				$arrArgument = array(
+					'id' => $prof_data['data']['id'],
+					'radiotipo' => $prof_data['data']['radiotipo'],
+					'matricula' => $prof_data['data']['matricula'],
+					'marca' => $prof_data['data']['marca'],
+					'modelo' => $prof_data['data']['modelo'],
+					'fabricante' => $prof_data['data']['fabricante'],
+					'color' => $prof_data['data']['color'],
+					'caballos' => $prof_data['data']['caballos'],
+					'paisC' => $prof_data['data']['paisC'],
+					'porvinC' => $prof_data['data']['porvinC'],
+					'poblaC' => $prof_data['data']['poblaC']
+				);
+				$jsondata['success'] = $result;
+				echo json_encode($jsondata);
+				
+				$arrValue = false;
+				$arrValue = loadModel(MODEL_COCHE,'coche_model','modify_car',$arrArgument);
+				if ($arrValue){
+					$message = "El coche ha sido registrado correctamente";
+				}else{
+					$message = "El coche no se ha podido registar en base de datos";
+				}
+		
+			}else{
+				$jsondata['success'] = false;
+		 		$jsondata['error'] = $result['error'];
+				echo json_encode($jsondata);	
+			}
+		}
+
+		function list_details(){
+			$json = array();
+			$json = loadModel(MODEL_COCHE,'coche_model', 'obtain_details',$_POST['id']);
+			echo json_encode($json);
+		}	
     }

@@ -71,12 +71,7 @@ cardoor.config(['$routeProvider',
         // Coche
         .when("/coche", {
             templateUrl: "cardoor/frontend/module/coche/view/coche.view.html",
-            controller: "cocheCtrl",
-            // resolve: {
-            //     infoCar: function (services) {
-            //         return services.get('coche', 'select_car',$route.current.params.id);
-            //     }
-            // }
+            controller: "cocheCtrl"
         })  
 
 

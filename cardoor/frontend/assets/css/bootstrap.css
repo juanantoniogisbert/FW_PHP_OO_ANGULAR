@@ -1455,6 +1455,7 @@ th {
 .table-bordered > thead > tr > td,
 .table-bordered > tbody > tr > td,
 .table-bordered > tfoot > tr > td {
+  font-size: x-large;
   border: 1px solid #ddd;
 }
 .table-bordered > thead > tr > th,

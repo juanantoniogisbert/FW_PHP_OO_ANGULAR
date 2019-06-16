@@ -36,7 +36,19 @@
 			return $this->dao->select_creador($this->db, $arrArgument);
 		}
 
-		public function car_up_BLL($arrArgument){
-			return $this->dao->select_car_up($this->db, $arrArgument);
+		public function car_up_BLL(){
+			return $this->dao->select_car_up($this->db);
+		}
+
+		public function car_update_BLL($arrArgument){
+			return $this->dao->select_car_update($this->db, $arrArgument);
+		}
+
+		public function modify_car_BLL($arrArgument){
+			return $this->dao->update_car($this->db,$arrArgument);
+		}
+
+		public function obtain_details_BLL($arrArgument){
+			return $this->dao->select_details($this->db,$arrArgument);
 		}
     }

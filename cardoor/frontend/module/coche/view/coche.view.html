@@ -8,8 +8,8 @@
 <nav>
     <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
         <a ng-class="{ active: isSet(1) }" href ng-click="setTab(1)" class="nav-item nav-link active" id="nav-profile-tab" data-toggle="tab" role="tab" aria-controls="nav-profile" aria-selected="true">Create</a>
-        <a ng-class="{ active: isSet(2) }" href ng-click="setTab(2); showUp()" class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" role="tab" aria-controls="nav-contact" aria-selected="false">Update</a>
-        <!-- <a ng-class="{ active: isSet(3) }" href ng-click="setTab(3)" class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" role="tab" aria-controls="nav-contact" aria-selected="false">Read</a> -->
+        <a ng-class="{ active: isSet(2) }" href ng-click="setTab(2)" class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" role="tab" aria-controls="nav-contact" aria-selected="false">Update</a>
+        <a ng-class="{ active: isSet(3) }" href ng-click="setTab(3)" class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" role="tab" aria-controls="nav-contact" aria-selected="false">Read</a>
         <!-- <a ng-class="{ active: isSet(4) }" href ng-click="setTab(4)" class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" role="tab" aria-controls="nav-contact" aria-selected="false">Delete</a> -->
     </div>
 </nav>
@@ -126,8 +126,6 @@
         
                     <div class="log-btn">
                       <button ng-click="createCar()"><i class="fa fa-check-square"></i>Registrar Coche</button>
-                      <!-- <button name="createCar" id="createCar" ng-show="create_car.matricula.$valid && create_car.rmail.$valid && create_car.rpasswd.$valid && create_car.repPassword.$valid"
-                      ng-click="createCar()"><i class="fa fa-check-square"></i>Sign Up</button> -->
                     </div>
                 </form>
               </div>
@@ -137,7 +135,7 @@
       </div>
     </div>
     <div ng-show="isSet(2)">
-      <div id="shop_cars">
+      <div id="shop_cars" ng-show="upcars">
           <div class="car-details-info">
               <div class="technical-info">
                   <div class="row">
@@ -149,11 +147,11 @@
                                     <th>Marca</th>
                                     <th>Modelo</th>
                                   </tr>
-                                  <tr>
-                                    <td>{{create.matricula}}</td>
-                                    <td>{{create.marca}}</td>
-                                    <td>{{create.modelo}}</td>
-                                    <td><button ng-click="createCar()"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>Editar</button></td>
+                                  <tr ng-repeat="data in fideus">
+                                    <td>{{data.matricula}}</td>
+                                    <td>{{data.marca}}</td>
+                                    <td>{{data.modelo}}</td>
+                                    <td><button ng-click="editcar(data.id)"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>Editar</button></td>
                                   </tr>
                               </table>
                           </div>
@@ -162,5 +160,207 @@
               </div>
           </div>
       </div>
+      <div class="container" ng-show="listacar">
+          <div class="row">
+            <div class="col-xs-12 ">
+              <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
+                <div class="tab-pane fade show active" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                  <form autocomplete="on" method="post" name="update_car" id="update_car">
+                    <div>
+                        <h5>Tipo de coche</h5>
+                        Deportivo <input required="true" name="radiotipo" id="radiotipo" type="radio" ng-model="upCoche.radiotipo" value="deportivo">
+                        Turismo <input name="radiotipo" id="radiotipo" type="radio" ng-model="upCoche.radiotipo" value="turismo">
+                        Todoterreno <input name="radiotipo" id="radiotipo" type="radio" ng-model="upCoche.radiotipo" value="todoterreno">
+                        <span class="text-danger" ng-show="update_car.radiotipo.$error.required">Seleccione un campo</span>
+                    </div>
+                    <br/>
+                    <div class="matricula">
+                        <h5>Matricula</h5>
+                        <input required type="text" id="matricula" name="matricula" ng-model="upCoche.matricula" placeholder="Matricula" ng-minlength="3" ng-maxlength="20"/>
+                        <span class="text-danger" ng-show="update_car.matricula.$error.required && (update_car.matricula.$dirty || update_car.matricula.$touched)">Introduzca la matricula</span>
+                        <span class="text-danger" ng-show="update_car.matricula.$error.minlength">Introduzca mas de 3 caracteres</span>
+                        <span class="text-danger" ng-show="update_car.matricula.$error.maxlength">Introduzca menos de 20 caracteres</span>
+                    </div>
+                    <br/>
+
+                    <div class="marca">
+                        <h5>Marca</h5>
+                        <input required type="text" id="marca" name="marca" ng-model="upCoche.marca" placeholder="Marca" ng-minlength="3" ng-maxlength="20"/>
+                        <span class="text-danger" ng-show="update_car.marca.$error.required && (update_car.marca.$dirty || update_car.marca.$touched)">Introduzca la marca</span>
+                        <span class="text-danger" ng-show="update_car.marca.$error.minlength">Introduzca mas de 3 caracteres</span>
+                        <span class="text-danger" ng-show="update_car.marca.$error.maxlength">Introduzca menos de 20 caracteres</span>
+                    </div>
+                    <br/>
+
+                    <div class="modelo">
+                        <h5>Modelo</h5>
+                        <input required type="text" id="modelo" name="modelo" ng-model="upCoche.modelo" placeholder="Modelo" ng-minlength="3" ng-maxlength="20"/>
+                        <span class="text-danger" ng-show="update_car.modelo.$error.required && (update_car.modelo.$dirty || update_car.modelo.$touched)">Introduzca el modelo</span>
+                        <span class="text-danger" ng-show="update_car.modelo.$error.minlength">Introduzca mas de 3 caracteres</span>
+                        <span class="text-danger" ng-show="update_car.modelo.$error.maxlength">Introduzca menos de 20 caracteres</span>
+                    </div>
+                    <br/>
+
+                    <div class="fabricante">
+                        <h5>Fabricante</h5>
+                        <input required type="text" id="fabricante" name="fabricante" ng-model="upCoche.fabricante" placeholder="Fabricante" ng-minlength="3" ng-maxlength="20"/>
+                        <span class="text-danger" ng-show="update_car.fabricante.$error.required && (update_car.fabricante.$dirty || update_car.fabricante.$touched)">Introduzca un fabricante</span>
+                        <span class="text-danger" ng-show="update_car.fabricante.$error.minlength">Introduzca mas de 3 caracteres</span>
+                        <span class="text-danger" ng-show="update_car.fabricante.$error.maxlength">Introduzca menos de 20 caracteres</span>
+                    </div>
+                    <br/>
+
+                    <div class="color">
+                        <h5>Color</h5>
+                        <input required type="text" id="color" name="color" ng-model="upCoche.color" placeholder="Color" ng-minlength="3" ng-maxlength="20"/>
+                        <span class="text-danger" ng-show="update_car.color.$error.required && (update_car.color.$dirty || update_car.color.$touched)">Introduzca un color</span>
+                        <span class="text-danger" ng-show="update_car.color.$error.minlength">Introduzca mas de 3 caracteres</span>
+                        <span class="text-danger" ng-show="update_car.color.$error.maxlength">Introduzca menos de 20 caracteres</span>
+                    </div>
+                    <br/>
+
+                    <div class="caballos">
+                        <h5>Caballos</h5>
+                        <input required type="text" id="caballos" name="caballos" ng-model="upCoche.caballos" placeholder="Caballos" ng-minlength="3" ng-maxlength="20"/>
+                        <span class="text-danger" ng-show="update_car.caballos.$error.required && (update_car.caballos.$dirty || update_car.caballos.$touched)">Introduzca un caballos</span>
+                        <span class="text-danger" ng-show="update_car.caballos.$error.minlength">Introduzca mas de 3 caracteres</span>
+                        <span class="text-danger" ng-show="update_car.caballos.$error.maxlength">Introduzca menos de 20 caracteres</span>
+                    </div>
+                    <br/>
+      
+                    <br/>
+                    <tr>
+                    <td>Country: </td>
+                      <td>
+                        <select name="pais" class="form-control" ng-model="coche.pais" ng-options="item.sName for item in paises" 
+                        placeholder="Pais" id="pais" ng-change="resetPais()">
+                          <option value="">Seleccione un pais</option>
+                        </select>
+                        <span class="text-danger" ng-show="AlertMessage" ng-model="coche.pais_error">{{coche.pais_error}}</span>
+                      </td>
+                    </tr>
+        
+                    <tr>
+                    <td>Province: </td>
+                      <td>
+                        <select name="provincia" class="form-control" id="provincia"  ng-options="item.nombre for item in provincias"
+                        ng-model="coche.provincia" placeholder="Provincia" ng-change="resetValues()" ng-disabled="coche.pais.sISOCode!='ES'">
+                            <option value="">Seleccione una provincia</option>
+                        </select>
+                        <span class="text-danger" ng-show="AlertMessage" ng-model="coche.prov_error">{{coche.prov_error}}</span>
+                      </td>
+                    </tr>
+        
+                    <tr>
+                    <td>City: </td>
+                      <td>
+                        <select type="text" class="form-control" name="poblacion" ng-model="coche.poblacion" ng-options="item.poblacion for item in poblaciones"
+                        placeholder="Poblacion" id="poblacion" ng-disabled="coche.pais.sISOCode!='ES'">
+                            <option value="">Seleccione una ciudad</option>
+                        </select>
+                        <span class="text-danger" ng-show="AlertMessage" ng-model="coche.pob_error">{{coche.pob_error}}</span>
+                      </td>
+                    </tr>
+                    <br/>
+
+                    <div>
+                      <td>
+                        <button required id="dropzone" dropzone="dropzoneConfig" class="dropzone"></button>
+                      </td>
+                    </div>
+        
+                    <div class="log-btn">
+                      <button ng-click="sendCar()"><i class="fa fa-check-square"></i>Modificar Coche</button>
+                    </div>
+                </form>
+              </div>
+            </div> 
+          </div>
+        </div>
+      </div>
     </div>
+
+    <div ng-show="isSet(3)">
+      <div id="shop_cars" ng-show="reCar">
+          <div class="car-details-info">
+              <div class="technical-info">
+                  <div class="row">
+                      <div class="col-lg-6">
+                          <div class="tech-info-table">
+                              <table class="table table-bordered">
+                                  <tr>
+                                    <th>Matricula</th>
+                                    <th>Marca</th>
+                                    <th>Modelo</th>
+                                  </tr>
+                                  <tr ng-repeat="data in fideus">
+                                    <td>{{data.matricula}}</td>
+                                    <td>{{data.marca}}</td>
+                                    <td>{{data.modelo}}</td>
+                                    <td><button ng-click="readcar(data.id); carDet(data.id)"><i class="fa fa-eye" aria-hidden="true"></i></button></td>
+                                  </tr>
+                              </table>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <section id="car-list-area" class="section-padding" ng-show="detCar">
+        <div class="container" ng-repeat="data in carRead">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="car-details-content">
+                        <h2>{{data.marca}}<span class="price">Price: <b>{{data.precio}}</b></span></h2>
+                        <div class="car-preview-crousel">
+                            <div class="single-car-preview">
+                                <img ng-src="http://localhost/www/FW_PHP_OO_ANGULAR/cardoor/frontend/{{data.imagen}}">
+                            </div>
+                        </div>
+                        <div class="car-details-info">
+                            <h4>Additional Info</h4>
+                            <p>The Aventador LPER 720-4 50° ise a limited a new specific engine calibration,plitter.</p>
+                            <div class="technical-info">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="tech-info-table">
+                                            <table class="table table-bordered">
+                                                <tr>
+                                                    <th>Maker</th>
+                                                    <td>{{data.fabricante}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Fuel</th>
+                                                    <td>{{data.combus}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Doors</th>
+                                                    <td>{{data.puertas}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Date fabric</th>
+                                                    <td>{{data.date_fabric}}</td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+    
+                                    <div class="col-lg-6">
+                                        <div class="tech-info-list">
+                                            <ul>
+                                                <li>{{data.extra}}</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button ng-click="volver()" style="text-align: center; display: inline-block;">Vovler</button>
+    </section>
+    </div>
+
 </div>

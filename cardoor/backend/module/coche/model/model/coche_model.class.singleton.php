@@ -34,7 +34,19 @@
             return $this->bll->creador_BLL($arrArgument);
         }
 
-        public function car_up($arrArgument){
-            return $this->bll->car_up_BLL($arrArgument);
+        public function car_up(){
+            return $this->bll->car_up_BLL();
         }
+
+        public function car_update($arrArgument){
+            return $this->bll->car_update_BLL($arrArgument);
+        }
+
+        public function modify_car($arrArgument){
+            return $this->bll->modify_car_BLL($arrArgument);
+        }
+
+        public function obtain_details($arrArgument){
+            return $this->bll->obtain_details_BLL($arrArgument);
+        }    
     }

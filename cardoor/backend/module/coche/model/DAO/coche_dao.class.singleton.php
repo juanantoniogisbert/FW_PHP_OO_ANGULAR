@@ -86,9 +86,37 @@
             return $json;
         }
 
-		public function select_car_up($db,$arrArgument) {
-			$sql = "SELECT * FROM coches WHERE id = '$arrArgument'";
+		public function select_car_up($db) {
+			$sql = "SELECT * FROM coches";
 			$res = $db->ejecutar($sql);
 			return $db->listar($res);
+        }
+        
+        public function select_car_update($db,$arrArgument) {
+			$sql = "SELECT * FROM coches WHERE id = '$arrArgument'";
+			$stmt = $db->ejecutar($sql);
+			return $db->listar($stmt);
+        }
+        
+        public function update_car($db,$arrArgument) {
+            $radiotipo = $arrArgument['radiotipo'];
+            $matricula = $arrArgument['matricula'];
+            $marca = $arrArgument['marca'];
+            $modelo = $arrArgument['modelo'];
+            $fabricante = $arrArgument['fabricante'];
+            $color = $arrArgument['color'];
+            $caballos = $arrArgument['caballos'];
+            $paisC = $arrArgument['paisC'];
+            $porvinC = $arrArgument['porvinC'];
+            $poblaC = $arrArgument['poblaC'];
+            $imagen = $arrArgument['avatar'];
+            $sql = "UPDATE coches SET tipo = '$radiotipo', marca = '$marca', modelo = '$modelo', fabricante = '$fabricante', color = '$color', caballos = '$caballos', pais = '$paisC', provincia = '$porvinC', ciudad = '$poblaC', imagen = '$avatar' WHERE matricula = '$matricula'";
+            return $db->ejecutar($sql);
+        }
+
+        public function select_details($db,$arrArgument) {
+			$sql = "SELECT * FROM coches WHERE id = '$arrArgument'";
+			$stmt = $db->ejecutar($sql);
+			return $db->listar($stmt);
 		}
     }
