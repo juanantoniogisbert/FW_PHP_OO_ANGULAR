@@ -4,7 +4,7 @@ cardoor.config(['$routeProvider',
         $routeProvider
 
         // Home
-        .when("/", {templateUrl: "cardoor/frontend/module/home/view/home.view.html", controller: "mainCtrl",
+        .when("/", {templateUrl: "frontend/module/home/view/home.view.html", controller: "mainCtrl",
             resolve: {
                 marcas: function (services) {
                     return services.get('home','select_name_car_auto');
@@ -43,7 +43,7 @@ cardoor.config(['$routeProvider',
         
         // Shop
         .when("/shop/:id", {
-            templateUrl: "cardoor/frontend/module/shop/view/shop.view.html",
+            templateUrl: "frontend/module/shop/view/shop.view.html",
             controller: "shopSerCtrl",
             resolve: {
                 search_list: function (services, $route) {
@@ -53,7 +53,7 @@ cardoor.config(['$routeProvider',
         })
         
         .when("/shop", {
-            templateUrl: "cardoor/frontend/module/shop/view/shop.view.html", 
+            templateUrl: "frontend/module/shop/view/shop.view.html", 
             controller: "shopCtrl",
             resolve: {
                 shop: function (services) {
@@ -64,26 +64,26 @@ cardoor.config(['$routeProvider',
 
         // Login
         .when("/login", {
-            templateUrl: "cardoor/frontend/module/login/view/login.view.html",
+            templateUrl: "frontend/module/login/view/login.view.html",
             controller: "loginCtrl"
         })
 
         // Coche
         .when("/coche", {
-            templateUrl: "cardoor/frontend/module/coche/view/coche.view.html",
+            templateUrl: "frontend/module/coche/view/coche.view.html",
             controller: "cocheCtrl"
         })  
 
 
         // change passwd
         .when("/login/passwdChange/:token", {
-            templateUrl: "cardoor/frontend/module/login/view/chpasswd.view.html",
+            templateUrl: "frontend/module/login/view/chpasswd.view.html",
             controller: "passwdChangeCtrl"
         })
 
         // Profile
         .when("/profile", {
-            templateUrl: "cardoor/frontend/module/login/view/profile.view.html",
+            templateUrl: "frontend/module/login/view/profile.view.html",
             controller: "profileCtrl",
             resolve: {
                 infoUser: function (services,localstorageService) {
@@ -98,13 +98,13 @@ cardoor.config(['$routeProvider',
         
         // Contact
         .when("/contact", {
-            templateUrl: "cardoor/frontend/module/contact/view/contact.view.html", 
+            templateUrl: "frontend/module/contact/view/contact.view.html", 
             controller: "contactCtrl"
         })
 
         // coche
         .when("/coche", {
-            templateUrl: "cardoor/frontend/module/coche/view/coche.view.html", 
+            templateUrl: "frontend/module/coche/view/coche.view.html", 
             controller: "cocheCtrl"
         })
 
