@@ -135,23 +135,21 @@
 
 			$jsondata = array();
 			$result=validate_data_create(json_decode($_POST['total_data'], true));
-
 			// $prof_data = json_decode($_POST['prof_data'],true);
 			// $result=validate_data_create(json_decode($_POST['total_data'], true));
 			// $foto = "http://localhost/www/FW_PHP_OO_ANGULAR/".substr($_SESSION['avatar']['data'],67);
 			if ($result['result']) {
 				$arrArgument = array(
-					'id' => $prof_data['data']['id'],
-					'radiotipo' => $prof_data['data']['radiotipo'],
-					'matricula' => $prof_data['data']['matricula'],
-					'marca' => $prof_data['data']['marca'],
-					'modelo' => $prof_data['data']['modelo'],
-					'fabricante' => $prof_data['data']['fabricante'],
-					'color' => $prof_data['data']['color'],
-					'caballos' => $prof_data['data']['caballos'],
-					'paisC' => $prof_data['data']['paisC'],
-					'porvinC' => $prof_data['data']['porvinC'],
-					'poblaC' => $prof_data['data']['poblaC']
+					'radiotipo' => $result['data']['radiotipo'],
+					'matricula' => $result['data']['matricula'],
+					'marca' => $result['data']['marca'],
+					'modelo' => $result['data']['modelo'],
+					'fabricante' => $result['data']['fabricante'],
+					'color' => $result['data']['color'],
+					'caballos' => $result['data']['caballos'],
+					'paisC' => $result['data']['paisC'],
+					'porvinC' => $result['data']['porvinC'],
+					'poblaC' => $result['data']['poblaC']
 				);
 				$jsondata['success'] = $result;
 				echo json_encode($jsondata);
