@@ -32,4 +32,8 @@
         <name>list_details</name>
         <uri>list_details</uri>
     </function>
+    <function>
+        <name>delete_car</name>
+        <uri>delete_car</uri>
+    </function>
 </functions>

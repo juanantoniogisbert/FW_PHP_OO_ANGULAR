@@ -176,4 +176,10 @@
 			$json = loadModel(MODEL_COCHE,'coche_model', 'obtain_details',$_POST['id']);
 			echo json_encode($json);
 		}	
+
+		function delete_car(){
+			$json = array();
+			$json = loadModel(MODEL_COCHE,'coche_model', 'del_car',$_POST['id']);
+			echo json_encode($json);
+		}	
     }

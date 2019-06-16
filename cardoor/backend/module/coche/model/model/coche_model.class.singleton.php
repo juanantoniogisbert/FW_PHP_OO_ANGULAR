@@ -48,5 +48,9 @@
 
         public function obtain_details($arrArgument){
             return $this->bll->obtain_details_BLL($arrArgument);
-        }    
+        }
+
+        public function del_car($arrArgument){
+            return $this->bll->del_car_BLL($arrArgument);
+        }
     }

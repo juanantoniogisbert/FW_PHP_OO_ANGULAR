@@ -51,4 +51,8 @@
 		public function obtain_details_BLL($arrArgument){
 			return $this->dao->select_details($this->db,$arrArgument);
 		}
+
+		public function del_car_BLL($arrArgument){
+			return $this->dao->del_car_dao($this->db,$arrArgument);
+		}
     }

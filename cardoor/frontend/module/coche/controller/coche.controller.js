@@ -159,6 +159,13 @@ cardoor.controller('cocheCtrl', function($scope, services, toastr, load_Pais_Pro
         });
     };
 
+    $scope.removeCar = function (id) {
+        services.put('coche', 'delete_car',{'id':id})
+        .then(function (response) {
+            location.reload();
+        });
+    };
+
 
     $scope.sendCar = function () {
 		var data = {'radiotipo':$scope.upCoche.radiotipo, 'matricula':$scope.upCoche.matricula,

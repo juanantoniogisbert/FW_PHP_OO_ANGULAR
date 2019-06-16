@@ -118,5 +118,11 @@
 			$sql = "SELECT * FROM coches WHERE id = '$arrArgument'";
 			$stmt = $db->ejecutar($sql);
 			return $db->listar($stmt);
+        }
+        
+        public function del_car_dao($db,$arrArgument) {
+            $sql = "DELETE FROM coches WHERE id = '$arrArgument'";
+			$stmt = $db->ejecutar($sql);
+			return $db->listar($stmt);
 		}
     }
