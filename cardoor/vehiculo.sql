@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 07-06-2019 a las 08:54:58
+-- Tiempo de generación: 17-06-2019 a las 15:11:35
 -- Versión del servidor: 5.6.38
 -- Versión de PHP: 5.6.32
 
@@ -83,29 +83,28 @@ CREATE TABLE `coches` (
   `hora` time DEFAULT NULL,
   `fecha` date DEFAULT NULL,
   `imagen` varchar(200) NOT NULL,
-  `imagen2` varchar(200) NOT NULL,
-  `imagen3` varchar(200) NOT NULL,
   `precio` varchar(15) CHARACTER SET utf8mb4 NOT NULL,
   `gama` varchar(255) NOT NULL,
-  `lat` varchar(100) NOT NULL,
-  `lon` varchar(100) NOT NULL
+  `pais` varchar(120) NOT NULL,
+  `provincia` varchar(120) NOT NULL,
+  `ciudad` varchar(120) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `coches`
 --
 
-INSERT INTO `coches` (`id`, `tipo`, `matricula`, `marca`, `modelo`, `fabricante`, `combus`, `extra`, `color`, `puertas`, `caballos`, `marchas`, `velocidad`, `motor`, `date_fabric`, `hora`, `fecha`, `imagen`, `imagen2`, `imagen3`, `precio`, `gama`, `lat`, `lon`) VALUES
-(1, 'Deportivo', '8645HCX', 'Mercedes', 'GLA', 'mercedes', 'hybrid', 'Ruedas', 'verde', '3', '290', '6', '250', 'v12', '2018-01-02', NULL, NULL, 'assets/img/images/mercedes.png', 'assets/img/images/mercedes2.png', 'assets/img/images/mercedes3.png', '27400', 'alta', '', ''),
-(2, 'turismo', '8492KRF', 'Seat', 'Leon', 'Auvi', 'Diesel', 'Ruedas', 'azul', '5', '130', '6', '260', 'v6', '03/10/2018', NULL, NULL, 'assets/img/images/seat.png', '', '', '16700', 'alta', '', ''),
-(3, 'Deportivo', '2005GJK', 'Alfa Romeo', 'Mito', 'alfa', 'Gasolina', 'WIFI', 'rojo', '3', '150', '6', '140', 'v2', '04/10/2018', NULL, NULL, 'assets/img/images/mito.png', '', '', '16700', 'alta', '', ''),
-(4, 'turismo', '4879JKL', 'Ford', 'Focus', 'ford', 'Diesel', 'Ruedas', 'gris', '5', '110', '5', '120', 'v1', '03/12/2018', NULL, NULL, 'assets/img/images/ford.png', '', '', '1000', 'baja', '', ''),
-(5, 'Turismo', '0000BCD', 'Ferrari', 'LaFerrari2', 'ferrari', 'hybrid', 'llantas,ruedas,cristal,', 'rojo', '3', '200', '8', '370', 'v8', '2019-03-22', NULL, NULL, 'assets/img/images/ferrari.png', '', '', '16700', 'media', '', ''),
-(6, 'turismo', '8477CFD', 'Ford', 'Mondeo', 'Ford', 'Gasolina', 'WIFI', 'Azul', '5', '120', '5', '175', 'v6', '05/05/2015', NULL, NULL, 'assets/img/images/ford.png', '', '', '13700', 'baja', '', ''),
-(7, 'Todoterreno', '4851CDF', 'Audi', 'A3', 'VW', 'Gasolina', 'WIFI', 'Azul', '5', '120', '5', '175', 'v6', '05/05/2015', NULL, NULL, 'assets/img/images/seat.png', '', '', '13700', 'baja', '', ''),
-(8, 'Deportivo', '9634FTG', 'Citroen', 'C4', 'Ford', 'Gasolina', 'WIFI', 'Azul', '5', '120', '5', '175', 'v6', '05/05/2015', NULL, NULL, 'assets/img/images/mercedes.png', '', '', '13700', 'media', '', ''),
-(9, 'Turismo', '0321CDT', 'Skoda', 'Favia', 'Ford', 'hybrid', '', 'Azul', '5', '120', '5', '175', 'v6', '', NULL, NULL, 'assets/img/images/ferrari.png', '', '', '13700', 'alta', '', ''),
-(10, 'Todoterreno', '7984LNP', 'BMW', 'm4', 'Ford', 'Gasolina', 'WIFI', 'Azul', '5', '120', '5', '175', 'v6', '05/05/2015', NULL, NULL, 'assets/img/images/ford1.png', '', '', '13700', 'alta', '', '');
+INSERT INTO `coches` (`id`, `tipo`, `matricula`, `marca`, `modelo`, `fabricante`, `combus`, `extra`, `color`, `puertas`, `caballos`, `marchas`, `velocidad`, `motor`, `date_fabric`, `hora`, `fecha`, `imagen`, `precio`, `gama`, `pais`, `provincia`, `ciudad`) VALUES
+(1, 'Deportivo', '8645HCX', 'Mercedes', 'GLA', 'mercedes', 'hybrid', 'Ruedas', 'verde', '3', '290', '6', '250', 'v12', '2018-01-02', NULL, NULL, 'assets/img/images/mercedes.png', '27400', 'alta', '', '', ''),
+(2, 'turismo', '8492KRF', 'Seat', 'Leon', 'Auvi', 'Diesel', 'Ruedas', 'azul', '5', '130', '6', '260', 'v6', '03/10/2018', NULL, NULL, 'assets/img/images/seat.png', '16700', 'alta', '', '', ''),
+(3, '', '2005GJK', 'Alfa Romeo', 'Mito', 'ALfaromeo', 'Gasolina', 'WIFI', 'rojo', '3', '150', '6', '140', 'v2', '04/10/2018', NULL, NULL, '', '16700', 'alta', 'Spain', 'Alava', 'Aberasturi'),
+(4, 'turismo', '4879JKL', 'Ford', 'Focus', 'ford', 'Diesel', 'Ruedas', 'gris', '5', '110', '5', '120', 'v1', '03/12/2018', NULL, NULL, 'assets/img/images/ford.png', '1000', 'baja', '', '', ''),
+(5, 'Turismo', '0000BCD', 'Ferrari', 'LaFerrari2', 'ferrari', 'hybrid', 'llantas,ruedas,cristal,', 'rojo', '3', '200', '8', '370', 'v8', '2019-03-22', NULL, NULL, 'assets/img/images/ferrari.png', '16700', 'media', '', '', ''),
+(6, 'turismo', '8477CFD', 'Ford', 'Mondeo', 'Ford', 'Gasolina', 'WIFI', 'Azul', '5', '120', '5', '175', 'v6', '05/05/2015', NULL, NULL, 'assets/img/images/ford.png', '13700', 'baja', '', '', ''),
+(7, 'Todoterreno', '4851CDF', 'Audi', 'A3', 'VW', 'Gasolina', 'WIFI', 'Azul', '5', '120', '5', '175', 'v6', '05/05/2015', NULL, NULL, 'assets/img/images/seat.png', '13700', 'baja', '', '', ''),
+(8, 'Deportivo', '9634FTG', 'Citroen', 'C4', 'Ford', 'Gasolina', 'WIFI', 'Azul', '5', '120', '5', '175', 'v6', '05/05/2015', NULL, NULL, 'assets/img/images/mercedes.png', '13700', 'media', '', '', ''),
+(9, 'Turismo', '0321CDT', 'Skoda', 'Favia', 'Ford', 'hybrid', '', 'Azul', '5', '120', '5', '175', 'v6', '', NULL, NULL, 'assets/img/images/ferrari.png', '13700', 'alta', '', '', ''),
+(10, 'Todoterreno', '7984LNP', 'BMW', 'm4', 'Ford', 'Gasolina', 'WIFI', 'Azul', '5', '120', '5', '175', 'v6', '05/05/2015', NULL, NULL, 'assets/img/images/ford1.png', '13700', 'alta', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -187,7 +186,7 @@ INSERT INTO `users` (`id`, `user`, `email`, `password`, `type`, `avatar`, `activ
 (27, 'elcompare', 'juagisla@gmail.com', '$2y$10$0xumZ4sZotSmp61RJGYm8eWV9JWocMKfMVBLrXtVqec6K2beGFlda', 'user', 'https://www.gravatar.com/avatar/169c07f107dd25f695f18e6ae9dade4c?s=80&d=identicon&r=g', '1', 'd9a0c3407d5751aa6303', '', '', '', '', '', '', ''),
 (28, 'juanantonio', 'juagisla@gmail.com', '$2y$10$b8d/gZ1z/y5ecVKte6KhIugXpV2Sq9WD4hkxBp1LE62DSB5TxdUXO', 'user', 'https://www.gravatar.com/avatar/169c07f107dd25f695f18e6ae9dade4c?s=80&d=identicon&r=g', '1', '7369143192d0cae550b7', '', '', '', '', '', '', ''),
 (29, 'alba', 'juagisla@gmail.com', '$2y$10$DopvjN3mh7WznoLDSh0Tn.PmsDvzBAE49sHNTcizFFzsh8MAcGVEa', 'user', 'https://www.gravatar.com/avatar/169c07f107dd25f695f18e6ae9dade4c?s=80&d=identicon&r=g', '1', 'cd49f9b31142ad4cdb96', '', '', '', '', '', '', ''),
-(30, 'adrian', 'juagisla@gmail.com', '$1$rasmusle$1VxHqziCth9QpNTgYc8/S1', 'user', 'http://localhost/www/FW_PHP_OO_ANGULAR/cardoor/backend/media/flowers.png', '1', 'fadc1af71c1b9a03b60b', 'e22a5926a9de478da5fe', 'elbobo', 'asdasd', '', 'Spain', 'Valencia', 'Val De La Sabina'),
+(30, 'adrian', 'juagisla@gmail.com', '$1$rasmusle$1VxHqziCth9QpNTgYc8/S1', 'user', 'http://localhost/www/FW_PHP_OO_ANGULAR/cardoor/backend/media/flowers.png', '1', 'fadc1af71c1b9a03b60b', 'eyJ0eXAiOiJKV1QiLCAiYWxnIjoiSFMyNTYifQ.MzYwMCIsDQoJCQkibmFtZSI6YWRyaWFuDQoJCX0.wDwoRXlqf2GTK6pfwpO4J', 'elbobo', 'asdasd', '', 'Spain', 'Valencia', 'Val De La Sabina'),
 (33, 'S_juanantoniogisbert', 'juagisla@gmail.com', NULL, 'user', 'https://avatars1.githubusercontent.com/u/46688139?v=4', '1', NULL, 'eyJ0eXAiOiJKV1QiLCAiYWxnIjoiSFMyNTYifQ.MzYwMCIsDQoJCQkibmFtZSI6U19qdWFuYW50b25pb2dpc2JlcnQNCgkJfQ.RG', '', '', '', '', '', ''),
 (34, 'elruven', 'juagisla@gmail.com', '$2y$10$eoGEd2icaKGjCwlTZLDhKOnyz6GmIeG7a2mQRR.tsm3NeQPswJH0u', 'user', 'https://www.gravatar.com/avatar/169c07f107dd25f695f18e6ae9dade4c?s=80&d=identicon&r=g', '1', 'fb896d12d3763c7bf41a', '', '', '', '', '', '', ''),
 (35, 'eladri', 'juagisla@gmail.com', '$2y$10$./8hoE0mhTKFbxOUDrtrWuloRoQF7zVo1OM4tpCu8t9jbtOnEpGny', 'user', 'https://www.gravatar.com/avatar/169c07f107dd25f695f18e6ae9dade4c?s=80&d=identicon&r=g', '1', '650dbbe9a0bfc8aa33ca', 'eyJ0eXAiOiJKV1QiLCAiYWxnIjoiSFMyNTYifQ.MzYwMCIsDQoJCQkibmFtZSI6ZWxhZHJpDQoJCX0.1u9nZyN_xNa6hcV7gVo4h', '', '', '', '', '', ''),
@@ -202,6 +201,12 @@ INSERT INTO `users` (`id`, `user`, `email`, `password`, `type`, `avatar`, `activ
 --
 ALTER TABLE `cart`
   ADD PRIMARY KEY (`reference`);
+
+--
+-- Indices de la tabla `coches`
+--
+ALTER TABLE `coches`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indices de la tabla `like_car`
@@ -224,6 +229,12 @@ ALTER TABLE `users`
 --
 ALTER TABLE `cart`
   MODIFY `reference` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=94;
+
+--
+-- AUTO_INCREMENT de la tabla `coches`
+--
+ALTER TABLE `coches`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT de la tabla `users`
